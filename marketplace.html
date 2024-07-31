@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <title>AquaShine</title>
+    <style>
+        .swiper-button-next, .swiper-button-prev {
+            color: rgb(245, 0, 0); /* Color de las flechas */
+            top: 50%; /* Centra verticalmente las flechas */
+            transform: translateY(-20%); /* Ajusta el centrado vertical */
+        }
+    </style>
+</head>
+<body class="container mx-auto mt-5 bg-gray-200 ">
+    <header>
+        <nav class="flex items-center justify-between flex-wrap bg-zinc-50 border-inset border-2 border-zinc-200 p-6">
+            <div class="text-6xl flex items-center flex-shrink-0 text-sky-700 mr-6">
+                <span class="font-semibold text-xl tracking-tight">Aqua Shine</span>
+            </div>
+            <div class="block lg:hidden">
+                <button id='boton' class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                </button>
+            </div>
+            <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
+                <div class="text-sm lg:flex-grow">
+                    <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700 mr-4">
+                        HOME
+                    </a>
+                    <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700 mr-4">
+                        SERVICIOS
+                    </a>
+                    <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700">
+                        PRODUCTOS
+                    </a>
+                </div>
+                <div>
+                    <a href="login.html" class="inline-block text-sm px-4 py-2 leading-none border rounded border-white hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- WEKDLK-->
+
+    <h1>Bienvenido a mi página web</h1>
+    <img src="img/5.jpg" alt="Descripción de la imagen">
+
+
+
+    
+ <!-- Seccion productos -->
+ <section class="max-w-6xl mx-auto py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Producto 1 -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <img src="img/1.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+        <div class="mt-4">
+          <h3 class="text-lg font-bold">Always Shine Wax.</h3>
+          <p class="mt-2 text-gray-600"> Cera pasta 200gr</p>
+          <div class="flex justify-between items-center mt-4">
+            <span class="text-xl font-bold text-gray-900">$35.000</span>
+            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <!-- Producto 2 -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <img src="img/2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+        <div class="mt-4">
+          <h3 class="text-lg font-bold">Cera Fast Wax</h3>
+          <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+          <div class="flex justify-between items-center mt-4">
+            <span class="text-xl font-bold text-gray-900">$35.000</span>
+            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <!-- Producto 3 -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <img src="img/3.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+        <div class="mt-4">
+          <h3 class="text-lg font-bold">Cera Fast Wax</h3>
+          <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+          <div class="flex justify-between items-center mt-4">
+            <span class="text-xl font-bold text-gray-900">$35.000</span>
+            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+        <!-- Producto 4 -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <img src="img/3.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+            <div class="mt-4">
+              <h3 class="text-lg font-bold">Cera Fast Wax</h3>
+              <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+              <div class="flex justify-between items-center mt-4">
+                <span class="text-xl font-bold text-gray-900">$35.000</span>
+                <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+    <!-- Producto 5 -->
+     <div class="bg-white rounded-lg shadow-lg p-6">
+    <img src="img/4.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Cera Fast Wax</h3>
+      <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$35.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
+      <!-- Producto 6 -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <img src="img/3.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+        <div class="mt-4">
+          <h3 class="text-lg font-bold">Cera Fast Wax</h3>
+          <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+          <div class="flex justify-between items-center mt-4">
+            <span class="text-xl font-bold text-gray-900">$35.000</span>
+            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </section>
