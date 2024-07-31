@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <title>AquaShine</title>
     <style>
         .swiper-button-next, .swiper-button-prev {
@@ -14,10 +15,10 @@
         }
     </style>
 </head>
-<body class="container mx-auto mt-5 bg-gray-200 ">
+<body class=" mx-auto mt-5 bg-zinc-50 font-[Poppins] ">
     <header>
-        <nav class="flex items-center justify-between flex-wrap bg-zinc-50 border-inset border-2 border-zinc-200 p-6">
-            <div class="text-6xl flex items-center flex-shrink-0 text-sky-700 mr-6">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-900 border-inset border-2 border-zinc-200 p-6">
+            <div class="text-6xl flex items-center flex-shrink-0 text-blue-600 mr-6">
                 <span class="font-semibold text-xl tracking-tight">Aqua Shine</span>
             </div>
             <div class="block lg:hidden">
@@ -27,78 +28,86 @@
             </div>
             <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
                 <div class="text-sm lg:flex-grow">
-                    <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700 mr-4">
+                    <a href="Index.html" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600  mr-4">
                         HOME
                     </a>
-                    <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700 mr-4">
+                    <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
                         SERVICIOS
                     </a>
-                    <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700">
-                        PRODUCTOS
+                    <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
+                        TIENDA
                     </a>
+                    <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600">
+                      SOBRE NOSOTROS
+                  </a>
+                  
                 </div>
                 <div>
-                    <a href="login.html" class="inline-block text-sm px-4 py-2 leading-none border rounded border-white hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
+                    <a href="login.html" class="inline-block text-gray-200  text-sm px-4 py-2 leading-none border rounded  hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container mx-auto flex items-center justify-center min-h-screen mt-6">
+
+    <div class="container bg-gray-900 grid grid-cols-2 mx-auto flex items-center justify-center min-h-screen mt-6">
+      <div class="text-center text-4xl  text-gray-200 my-10">
+        Vive la Mejor Experiencia de Lavado para tu vehiculo
+      </div>
         <div>
-            <img src="./img/auto.gif">
+            <img class="mr-4" src="./img/auto.gif">
         </div>
     </div>
 
-    <div class="relative mx-auto mt-5 grid grid-cols-1 gap-3 bg-sky-700 max-w-5xl">
-      <div class="text-center text-6xl font-bold text-white shadow-lg">
-        <h1>SERVICIOS ESPECIALES</h1>
+    <div class="relative mx-auto grid grid-cols-1 gap-3  max-w-5xl">
+      <div class="text-center text-6xl font-bold text-blue-600 bg-gray-900 my-5 shadow-lg">
+        <h1 class="my-5">SERVICIOS ESPECIALES</h1>
       </div>
       
-        <div class="swiper-container relative">
+        <div class="container swiper-container relative">
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
-                <div class="swiper-slide bg-zinc-50 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
+                <div class="swiper-slide bg-gray-900 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 bg-gray-900 mx-auto mt-2 mb-2">
                     <img src="img/istockphoto-1171355962-640_adpp_is.gif" class="w-full">
-                    <div class="text-2xl text-center">
+                    <div class="text-2xl text-center text-gray-200">
                         SERVICIO 1
                     </div>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
+                    <p class="text-gray-200">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
                     <div class="text-center justify-center mx-auto mt-3">
-                      <button type="button" class="inline-block rounded-full bg-cyan-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-cyan-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
+                      <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
                     </div>
                   </div>
                 <!-- Slide 2 -->
-                <div class="swiper-slide bg-zinc-50 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
+                <div class="swiper-slide bg-gray-900 text-gray-200 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
                     <img src="img/istockphoto-1171355962-640_adpp_is.gif" class="w-full">
                     <div class="text-2xl text-center">
                         SERVICIO 2
                     </div>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
                     <div class="text-center justify-center mx-auto mt-3">
-                      <button type="button" class="inline-block rounded-full bg-cyan-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-cyan-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
+                      <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
                     </div>
                   </div>
                 <!-- Slide 3 -->
-                <div class="swiper-slide bg-zinc-50 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
+                <div class="swiper-slide bg-gray-900 text-gray-200 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
                     <img src="img/istockphoto-1171355962-640_adpp_is.gif" class="w-full">
                     <div class="text-2xl text-center">
                         SERVICIO 3
                     </div>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
                     <div class="text-center justify-center mx-auto mt-3">
-                      <button type="button" class="inline-block rounded-full bg-cyan-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-cyan-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
+                      <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
                     </div>
                   </div>
                 <!-- Slide 4 -->
-                <div class="swiper-slide bg-zinc-50 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
+                <div class="swiper-slide bg-gray-900 text-gray-200 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
                     <img src="img/istockphoto-1171355962-640_adpp_is.gif" class="w-full">
                     <div class="text-2xl text-center">
                         SERVICIO 4
                     </div>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
                     <div class="text-center justify-center mx-auto mt-3">
-                      <button type="button" class="inline-block rounded-full bg-cyan-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-cyan-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
+                      <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
                     </div>
                   </div>
             </div>
@@ -129,17 +138,17 @@
     <div
     class="mx-auto mt-5 block rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white">
     <div
-      class="border-b-2 border-neutral-100 px-6 py-3 dark:border-white/10 text-center text-6xl">
-      ¿Quienes somos?
+      class="border-b-2 border-neutral-100 px-6 py-3 dark:border-white/10 text-center text-6xl bg-gray-900">
+      <p class="text-gray-200 font-bold">¿Quienes somos?</p>
     </div>
-    <div class=" grid grid-cols-2 p-6 gap-4">
+    <div class=" grid grid-cols-2 p-6 gap-4 bg-gray-900">
       <div class=""><img src="img/pexels-pixabay-372810.jpg" alt=""></div>
       <blockquote>
-        <p class="text-xl">
+        <p class="text-xl text-gray-200">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ducimus saepe soluta ipsum earum ipsa, sequi hic omnis accusamus iste quod eius fuga aut sed autem voluptatum, nam temporibus neque. 
         </p>
         <br>
-        <p>
+        <p class="text-gray-200">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sed eum itaque adipisci, libero hic excepturi ut architecto? Dicta molestias eum esse fugit amet suscipit nobis impedit repellat autem earum. 
         </p>
       </blockquote>
@@ -150,9 +159,9 @@
   </div>
   <!--Footer container-->
 <footer
-class="">
+class=" mt-1">
   <div
-    class="flex items-center justify-center border-b-2 border-neutral-200 p-6 flex flex-col items-center bg-[#0a4275] text-center text-white">
+    class="grid-cols-2 flex items-center justify-center border-b-2 border-neutral-200 p-6 flex flex-col items-center bg-gray-900 text-center text-white">
     <div class="me-12 hidden lg:block">
       <span>Conéctate con nosotros en las redes sociales:
       </span>
@@ -220,26 +229,27 @@ class="">
         </svg>
       </a>
     </div>
+    <div class=" p-6 flex flex-col items-center bg-gray-900 text-center text-white">
+      <div class="">
+        <p class="flex items-center justify-center">
+          <span class="me-4">REGISTRATE ES GRATIS  </span>
+          <a href="register.html"
+            type="button"
+            class="inline-block rounded-full border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-300 hover:text-gray-900 focus:border-neutral-300 focus:text-neutral-200 focus:outline-none focus:ring-0 active:border-neutral-300 active:text-neutral-200 hover:bg-purple-300 dark:focus:bg-neutral-600"
+            data-twe-ripple-init
+            data-twe-ripple-color="light">
+            REGISTRATE! 
+        </a>
+        </p>
+      </div>
+    </div>
   </div>
 
 
-<div class="container p-6 flex flex-col items-center bg-[#0a4275] text-center text-white">
-  <div class="">
-    <p class="flex items-center justify-center">
-      <span class="me-4">REGISTRATE ES GRATIS  </span>
-      <button
-        type="button"
-        class="inline-block rounded-full border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-300 hover:text-neutral-200 focus:border-neutral-300 focus:text-neutral-200 focus:outline-none focus:ring-0 active:border-neutral-300 active:text-neutral-200 dark:hover:bg-neutral-600 dark:focus:bg-neutral-600"
-        data-twe-ripple-init
-        data-twe-ripple-color="light">
-        REGISTRATE! 
-      </button>
-    </p>
-  </div>
-</div>
+
 
 <!--Copyright section-->
-<div class="w-full bg-black/20 p-4 text-center">
+<div class="w-full bg-gray-900 p-4 text-center text-gray-200 mt-1">
   © 2024 Copyright:
   <a href="Index.html">AquaShine</a>
 </div>
