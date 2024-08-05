@@ -39,37 +39,41 @@
       <link rel="icon" type="image" href="img/Logo.png">
 
 </head>
-<body class="container mx-auto mt-5 bg-gray-200 ">
+<body class=" mx-auto mt-5 bg-zinc-50 font-[Poppins] ">
+  <header>
+      <nav class="flex items-center justify-between flex-wrap bg-gray-900 border-inset border-2 border-zinc-200 p-6">
+          <div class="text-6xl flex items-center flex-shrink-0 text-blue-600 mr-6">
+              <span class="font-semibold text-xl tracking-tight">Aqua Shine</span>
+          </div>
+          <div class="block lg:hidden">
+              <button id='boton' class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+                  <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+              </button>
+          </div>
+          <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
+              <div class="text-sm lg:flex-grow">
+                  <a href="Index.html" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600  mr-4">
+                      HOME
+                  </a>
+                  <a href="servicios/index.html" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
+                      SERVICIOS
+                  </a>
+                  <a href="ventas.html" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
+                      TIENDA
+                  </a>
+                  <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600">
+                    SOBRE NOSOTROS
+                </a>
+                
+              </div>
+              <div>
+                  <a href="login.html" class="inline-block text-gray-200  text-sm px-4 py-2 leading-none border rounded  hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
+              </div>
+          </div>
+      </nav>
+  </header>
 
-    <header>
-        <nav class="flex items-center justify-between flex-wrap bg-zinc-50 border-inset border-2 border-zinc-200 p-6">
-            <div class="text-6xl flex items-center flex-shrink-0 text-sky-700 mr-6">
-                <span class="font-semibold text-xl tracking-tight">Aqua Shine</span>
-            </div>
-            <div class="block lg:hidden">
-                <button id='boton' class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                </button>
-            </div>
-            <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
-                <div class="text-sm lg:flex-grow">
-                    <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700 mr-4">
-                        HOME
-                    </a>
-                    <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700 mr-4">
-                        SERVICIOS
-                    </a>
-                    <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-sky-700 hover:text-white rounded hover:border hover:bg-sky-700">
-                        PRODUCTOS
-                    </a>
-                </div>
-                <div>
-                    <a href="login.html" class="inline-block text-sm px-4 py-2 leading-none border rounded border-white hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
+  <br>
 
     <!-- Contenido principal -->
   <main class="container mx-auto mt-8 text-center">
@@ -77,7 +81,8 @@
     <br>
     <h1 class="text-4xl font-bold mb-4">Productos para la limpieza y el cuidado de su vehículo</h1>
    <!---->
-    
+    <br>  
+    <br>
     <div class="flex justify-center items-center bg-gray-100">
       <div class="flex flex-wrap justify-center gap-8">
         <div class="w-64 bg-white rounded-lg shadow-md p-6">
@@ -95,16 +100,411 @@
   </main>
   <br>
   <br>
+ 
 <!-- Sección de productos -->
+<div class="flex justify-center items-center h-full">
+  <h1 class="text-4xl font-bold mb-4">CERAS, BRILLO Y PROTECCIÓN</h1>
+</div>
+<div class="flex flex-wrap justify-around p-6">
+<!-- Producto 1 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C1.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">Pro Hybrid Ceramic Sealant 1G. Meguiar’s</h3>
+    <p class="mt-2 text-gray-600">3.79 L</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$690.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 2 -->
+
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">Hybrid Ceramic Bead Booster</h3>
+    <p class="mt-2 text-gray-600">3.79 L</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$740.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 3 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C3.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">DA Microfiber Finishing Wax</h3>
+    <p class="mt-2 text-gray-600">3.79 L</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$408.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 4 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C4.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">GOLD CLASS CARNAUBA LIQUIDA</h3>
+    <p class="mt-2 text-gray-600">473 ml</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$148.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 5 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C5.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">GOLD CLASS CARNAUBA PLUS</h3>
+    <p class="mt-2 text-gray-600">311 g</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$163.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 6 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C8.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">Hybrid Ceramic Sealant</h3>
+    <p class="mt-2 text-gray-600">473 ml</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$95.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 7 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C6.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">DA Microfiber Finishing Wax</h3>
+    <p class="mt-2 text-gray-600">3.79 L</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$80.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 8 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C7.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">Hybrid Ceramic Wax</h3>
+    <p class="mt-2 text-gray-600">472 ml</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$130.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 9 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C9.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">Hybrid Ceramic Liquid Wax</h3>
+    <p class="mt-2 text-gray-600">472 ml</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$139.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Producto 10 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C10.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">Hybrid Ceramic Detailer</h3>
+    <p class="mt-2 text-gray-600">472 ml</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$110.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 11 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C11.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">Hibrid paint coating Meguiar’s</h3>
+    <p class="mt-2 text-gray-600">KIT</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$430.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 12 -->
+<div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+  <img src="img/C12.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+  <div class="mt-4">
+    <h3 class="text-lg font-bold">3-in-1 Wax</h3>
+    <p class="mt-2 text-gray-600">475 ml</p>
+    <div class="flex justify-between items-center mt-4">
+      <span class="text-xl font-bold text-gray-900">$162.000</span>
+      <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+        <!-- SVG Icon here -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+          <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+        </svg>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="flex justify-center items-center h-full">
+  <h1 class="text-4xl font-bold mb-4">INTERIOR Y EXTERIOR</h1>
+</div>
+
 <div class="flex flex-wrap justify-around p-6">
   <!-- Producto 1 -->
   <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
-    <img src="img/2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <img src="img/I1.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
     <div class="mt-4">
-      <h3 class="text-lg font-bold">Cera Fast Wax</h3>
-      <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+      <h3 class="text-lg font-bold">Pro Hybrid Ceramic Sealant 1G. Meguiar’s</h3>
+      <p class="mt-2 text-gray-600">3.79 L</p>
       <div class="flex justify-between items-center mt-4">
-        <span class="text-xl font-bold text-gray-900">$35.000</span>
+        <span class="text-xl font-bold text-gray-900">$690.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+          <!-- SVG Icon here -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+            <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+          </svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Producto 2 -->
+  
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+    <img src="img/I2.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Hyper Dressing</h3>
+      <p class="mt-2 text-gray-600">3.79 L</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$490.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+          <!-- SVG Icon here -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+            <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+          </svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Producto 3 -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+    <img src="img/I3.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Glass Cleaner Concentrate</h3>
+      <p class="mt-2 text-gray-600">3.79 L</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$210.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+          <!-- SVG Icon here -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+            <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+          </svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Producto 4 -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+    <img src="img/I4.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Last Touch Spray Detailer</h3>
+      <p class="mt-2 text-gray-600">3.79 L</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$158.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+          <!-- SVG Icon here -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+            <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+          </svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<div class="flex justify-center items-center h-full">
+  <h1 class="text-4xl font-bold mb-4">PULIDORES</h1>
+</div>
+
+<div class="flex flex-wrap justify-around p-6">
+  <!-- Producto 1 -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+    <img src="img/P1.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Mirror Glaze Pro Speed</h3>
+      <p class="mt-2 text-gray-600">3.79 L</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$430.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+          <!-- SVG Icon here -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+            <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+          </svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Producto 2 -->
+  
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+    <img src="img/P2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Surface Prep – Paint Inspection Spray</h3>
+      <p class="mt-2 text-gray-600">3.79 L</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$257.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+          <!-- SVG Icon here -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+            <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+          </svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Producto 3 -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+    <img src="img/P3.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Ultra Finishing Polish</h3>
+      <p class="mt-2 text-gray-600">3.79 L</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$590.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+          <!-- SVG Icon here -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+            <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+          </svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Producto 4 -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+    <img src="img/P4.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">FOAM CUT COMPOUND </h3>
+      <p class="mt-2 text-gray-600">3.78L</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$780.000</span>
+        <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+          <!-- SVG Icon here -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+            <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+          </svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+
+
+<br>
+<div class="flex justify-center items-center h-full">
+  <h1 class="text-4xl font-bold mb-4">ACCESORIOS</h1>
+</div>
+
+<div class="flex flex-wrap justify-around p-6">
+  <!-- Producto 1 -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+    <img src="img/11.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <div class="mt-4">
+      <h3 class="text-lg font-bold">Foam Finishing Disc</h3>
+      <p class="mt-2 text-gray-600">Dimensiones: 5 pulgadas (127 mm)</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-xl font-bold text-gray-900">$74.000</span>
         <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
           <!-- SVG Icon here -->
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
@@ -118,12 +518,12 @@
 
   <!-- Producto 2 -->
   <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
-    <img src="img/2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <img src="img/13.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
     <div class="mt-4">
-      <h3 class="text-lg font-bold">Cera Fast Wax</h3>
-      <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+      <h3 class="text-lg font-bold">WRFC7 POMO DE CORTE</h3>
+      <p class="mt-2 text-gray-600">Dimensiones: 7 pulgadas (177 mm)</p>
       <div class="flex justify-between items-center mt-4">
-        <span class="text-xl font-bold text-gray-900">$35.000</span>
+        <span class="text-xl font-bold text-gray-900">$128.000</span>
         <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
           <!-- SVG Icon here -->
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
@@ -137,12 +537,12 @@
 
   <!-- Producto 3 -->
   <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
-    <img src="img/2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <img src="img/15.jpeg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
     <div class="mt-4">
-      <h3 class="text-lg font-bold">Cera Fast Wax</h3>
-      <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+      <h3 class="text-lg font-bold">Pomo </h3>
+      <p class="mt-2 text-gray-600">100% de lana</p>
       <div class="flex justify-between items-center mt-4">
-        <span class="text-xl font-bold text-gray-900">$35.000</span>
+        <span class="text-xl font-bold text-gray-900">$98.000</span>
         <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
           <!-- SVG Icon here -->
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
@@ -156,12 +556,12 @@
 
   <!-- Producto 4 -->
   <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
-    <img src="img/2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <img src="img/A1.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
     <div class="mt-4">
-      <h3 class="text-lg font-bold">Cera Fast Wax</h3>
-      <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+      <h3 class="text-lg font-bold">DFC5 Soft buff foam cutting</h3>
+      <p class="mt-2 text-gray-600">Disc 5″</p>
       <div class="flex justify-between items-center mt-4">
-        <span class="text-xl font-bold text-gray-900">$35.000</span>
+        <span class="text-xl font-bold text-gray-900">$74.000</span>
         <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
           <!-- SVG Icon here -->
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
@@ -174,12 +574,12 @@
   </div>
   <!-- Producto 5 -->
   <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
-    <img src="img/2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+    <img src="img/A2.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
     <div class="mt-4">
-      <h3 class="text-lg font-bold">Cera Fast Wax</h3>
-      <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+      <h3 class="text-lg font-bold">INTERFACE DE LIJADO</h3>
+      <p class="mt-2 text-gray-600">DE 5″ VELCRO 3M</p>
       <div class="flex justify-between items-center mt-4">
-        <span class="text-xl font-bold text-gray-900">$35.000</span>
+        <span class="text-xl font-bold text-gray-900">$68.000</span>
         <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
           <!-- SVG Icon here -->
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
@@ -194,10 +594,28 @@
     <!-- Producto 6 -->
 
     <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
-      <img src="img/2.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+      <img src="img/A3.png" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
       <div class="mt-4">
-        <h3 class="text-lg font-bold">Cera Fast Wax</h3>
-        <p class="mt-2 text-gray-600">Pulo 540 mL</p>
+        <h3 class="text-lg font-bold">PLATO SOPORTE</h3>
+        <p class="mt-2 text-gray-600"> POMO MEDIA CARA</p>
+        <div class="flex justify-between items-center mt-4">
+          <span class="text-xl font-bold text-gray-900">$35.000</span>
+          <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+            <!-- SVG Icon here -->
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+              <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+            </svg>
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Producto 7 -->
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+      <img src="img/A4.jpeg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+      <div class="mt-4">
+        <h3 class="text-lg font-bold">Chemical Resistant Sprayer</h3>
+        <p class="mt-2 text-gray-600">(QUIMICOS FUERTES)</p>
         <div class="flex justify-between items-center mt-4">
           <span class="text-xl font-bold text-gray-900">$35.000</span>
           <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
@@ -211,6 +629,25 @@
       </div>
     </div>
 
+
+        <!-- Producto 8 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full mb-6">
+          <img src="img/A5.jpg" alt="Product Image" class="w-full h-80 object-cover rounded-t-lg">
+          <div class="mt-4">
+            <h3 class="text-lg font-bold">ADAPTADOR PARA POMO </h3>
+            <p class="mt-2 text-gray-600">DOBLE CARA</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-xl font-bold text-gray-900">$30.000</span>
+              <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center">
+                <!-- SVG Icon here -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff" class="mr-2">
+                  <path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+                </svg>
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+        </div>
 
 </div>
 
