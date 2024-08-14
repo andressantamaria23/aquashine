@@ -20,7 +20,7 @@
             </div>
             <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
                 <div class="text-sm lg:flex-grow">
-                    <a href="Index.html" class="px-4 py-2 rounded-md inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200    hover:bg-blue-600 mr-4">
+                    <a href="Index.php" class="px-4 py-2 rounded-md inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200    hover:bg-blue-600 mr-4">
                         HOME
                     </a>
                     <a href="#responsive-header" class="px-4 py-2 rounded-md inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200  hover:bg-blue-600 mr-4">
@@ -48,44 +48,51 @@
         <div class="my-3 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300 dark:before:border-neutral-500 dark:after:border-neutral-500">
         </div>
         <form action="agregarUsuario.php" method="POST" class="bg-gray-900 text-gray-200 justify-center mt-2">
-          <div class="mx-4 mb-4">
+          <div class=" grid grid-cols-2">
+            <div class="mx-4 mb-4">
               <div class="relative mb-6 hidden" data-twe-input-wrapper-init>
-                  <input type="number" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="idUsuario" name="idUsuario" placeholder="ID" oninput="handleInput(this)" />
-                  <label for="idUsuario" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">ID </label>
-              </div>
-              <div class="relative mb-6 mt-2" data-twe-input-wrapper-init>
-                  <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="nom_usuario" name="nom_usuario" placeholder="Nombre" oninput="handleInput(this)" />
-                  <label for="nom_usuario" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Nombre </label>
-              </div>
-      
-              <div class="relative mb-6" data-twe-input-wrapper-init>
-                  <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="apel_usuario" name="apel_usuario" placeholder="Apellido" oninput="handleInput(this)" />
-                  <label for="apel_usuario" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Apellido</label>
-              </div>
-              <div class="relative mb-6" data-twe-input-wrapper-init>
-                  <input type="date" class="peer block w-full appearance-none rounded border border-gray-200 bg-transparent px-3 py-2 leading-tight text-gray-700 outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-600" id="fecha_nacimiento" name="fecha_nacimiento" placeholder=" " oninput="handleInput(this)" />
-                  <label for="fecha_nacimiento" class="pointer-events-none absolute left-3 -top-3.5 bg-white px-1 text-gray-500 transition-all duration-200 ease-out origin-top-left transform scale-75 peer-focus:-top-3.5 peer-focus:scale-75 peer-focus:-translate-y-0 peer-placeholder-shown:top-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:text-blue-600">Fecha Nacimiento</label>
-              </div>
-      
-              <div class="relative mb-6" data-twe-input-wrapper-init>
-                  <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="email" name="email" placeholder="email" oninput="handleInput(this)" />
-                  <label for="email" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">email</label>
-              </div>
-              <div class="relative mb-6" data-twe-input-wrapper-init>
-                  <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="contraseña" name="contraseña" placeholder="contraseña" oninput="handleInput(this)" />
-                  <label for="contraseña" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">contraseña</label>
-              </div>
-              <div class="relative mb-6" data-twe-input-wrapper-init>
-                  <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="confirmar_contraseña" name="confirmar_contraseña" placeholder="confirmar contraseña" oninput="handleInput(this)" />
-                  <label for="confirmar_contraseña" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">confirmar contraseña</label>
-              </div>
-              <div class="relative mb-6" data-twe-input-wrapper-init>
-                  <input type="number" class="required peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="FK_rol" name="FK_rol" placeholder="rol" oninput="handleInput(this)" />
-                  <label for="FK_rol" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">rol</label>
-              </div>
-              <div class="">
-                  <button type="submit" class="font-bold block w-full rounded-full bg-purple-300 text-gray-900 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-transparent hover:border border-white hover:text-gray-200 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-blue-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-blue-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Registrarse</button>
-              </div>
+                <input type="number" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="idUsuario" name="idUsuario" placeholder="ID" oninput="handleInput(this)" />
+                <label for="idUsuario" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">ID </label>
+            </div>
+            <div class="relative mb-6 mt-2" data-twe-input-wrapper-init>
+                <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="nom_usuario" name="nom_usuario" placeholder="Nombre" oninput="handleInput(this)" />
+                <label for="nom_usuario" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Nombre </label>
+            </div>
+    
+            <div class="relative mb-6" data-twe-input-wrapper-init>
+                <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="apel_usuario" name="apel_usuario" placeholder="Apellido" oninput="handleInput(this)" />
+                <label for="apel_usuario" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Apellido</label>
+            </div>
+            <div class="relative mb-6" data-twe-input-wrapper-init>
+              <input type="date" class="peer block w-full appearance-none rounded border border-gray-200 bg-transparent px-3 py-2 leading-tight text-gray-700 outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-600" id="fecha_nacimiento" name="fecha_nacimiento" placeholder=" " oninput="handleInput(this)" />
+              <label for="fecha_nacimiento" class="pointer-events-none absolute left-3 -top-3.5 bg-white px-1 text-gray-500 transition-all duration-200 ease-out origin-top-left transform scale-75 peer-focus:-top-3.5 peer-focus:scale-75 peer-focus:-translate-y-0 peer-placeholder-shown:top-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:text-blue-600">Fecha Nacimiento</label>
+          </div>
+            </div>
+            <div class="mx-4 mb-4 mt-2">
+              
+    
+            <div class="relative mb-6" data-twe-input-wrapper-init>
+                <input type="text" class="required peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="email" name="email" placeholder="email" oninput="handleInput(this)" />
+                <label for="email" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">email</label>
+            </div>
+            <div class="relative mb-6" data-twe-input-wrapper-init>
+                <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="contraseña" name="contraseña" placeholder="contraseña" oninput="handleInput(this)" />
+                <label for="contraseña" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">contraseña</label>
+            </div>
+            <div class="relative mb-6" data-twe-input-wrapper-init>
+                <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="confirmar_contraseña" name="confirmar_contraseña" placeholder="confirmar contraseña" oninput="handleInput(this)" />
+                <label for="confirmar_contraseña" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">confirmar contraseña</label>
+            </div>
+            <div class="relative mb-6 hidden" data-twe-input-wrapper-init>
+                <input type="number" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="FK_rol" name="FK_rol" placeholder="rol" oninput="handleInput(this)" value="2" />
+                <label for="FK_rol" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">rol</label>
+            </div>
+            
+            </div>
+            <div class="col-span-2 mx-20 mb-5  ">
+              <button type="submit" class="font-bold block w-full rounded-full bg-purple-300 text-gray-900 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-transparent hover:border border-white hover:text-gray-200 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-blue-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-blue-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Registrarse</button>
+          </div>
+             
           </div>
       </form>
       
@@ -181,7 +188,7 @@
     <!--Copyright section-->
     <div class="w-full bg-gray-900 text-gray-200 p-4 text-center">
       © 2024 Copyright:
-      <a href="Index.html">AquaShine</a>
+      <a href="Index.php">AquaShine</a>
     </div>
     </footer>
 </body>

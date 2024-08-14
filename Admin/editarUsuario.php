@@ -7,9 +7,62 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <title>SERVICIOS</title>
+    <title>ADMINISTRADOR</title>
 </head>
 <body class="mx-auto font-[Poppins]">
+<?php
+  include("../conexion.php");
+  
+  $sql = "SELECT * FROM usuario
+        INNER JOIN rol ON rol.idRol = usuario.FK_rol";
+  
+  $resultado = mysqli_query($conectar, $sql);
+
+  if(isset($_POST['enviar'])){
+
+    $idUsuario = $_POST['idUsuario'];
+    $nom_usuario = $_POST['nom_usuario'];
+    $apel_usuario = $_POST['apel_usuario'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $email = $_POST['email'];
+    $contraseña = $_POST['contraseña'];
+    $FK_rol = $_POST['FK_rol'];
+    $sql = "UPDATE usuario SET 
+    nom_usuario = '" . $nom_usuario . "',
+    apel_usuario = '" . $apel_usuario . "',
+    fecha_nacimiento = '" . $fecha_nacimiento . "',
+    email = '" . $email . "',
+    contraseña = '" . $contraseña . "'
+    WHERE idUsuario = '" . $idUsuario . "'";
+
+    $resultado = mysqli_query($conectar, $sql);
+    if($resultado){
+        echo '<script>alert("Se actualizaron los datos correctamente");
+        location.assign("");
+        </script>';
+    }else{
+        echo '<script>alert("Error al conectarse a la BD");
+        location.assign("editarUsuario.html");
+        </script>';
+    }
+    mysqli_close($conectar);
+} else {
+
+        $idUsuario = $_GET['idUsuario'];
+    $sql = "SELECT * FROM usuario WHERE idUsuario='". $idUsuario ."'";
+    $resultado = mysqli_query($conectar, $sql);
+    $fila = mysqli_fetch_assoc($resultado);
+    $nom_usuario = $fila['nom_usuario'];
+    $apel_usuario = $fila['apel_usuario'];
+    $fecha_nacimiento = $fila['fecha_nacimiento'];
+    $email = $fila['email'];
+    $contraseña = $fila['contraseña'];
+    $FK_rol = $fila['FK_rol'];
+    mysqli_close($conectar);
+}
+
+
+  ?>
     <!-- Contenedor principal de la navegación -->
     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">
         <div class="flex w-full flex-wrap items-center justify-between px-3 text-blue-600">
@@ -40,15 +93,15 @@
                 <ul class="list-style-none me-auto flex flex-col ps-0 lg:flex-row" data-twe-navbar-nav-ref>
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
                         <!-- Enlace al Dashboard -->
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>Servicios</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>Usuarios</a>
                     </li>
                     <!-- Enlace al Equipo -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>productos</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>ROLES</a>
                     </li>
                     <!-- Enlace a Proyectos -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref></a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>.</a>
                     </li>
                 </ul>
             </div>
@@ -90,10 +143,10 @@
                     <div class="text-gray-100 text-xl">
                         <div class="p-2.5 mt-1 flex items-center rounded-md">
                             <i class="bi px-2 py-1 bg-blue-600 rounded-md"></i>
-                            <a class="text-[15px]  ml-3 text-xl text-gray-200 font-bold">Servicios</a>
+                            <a class="text-[10px]  ml-3 text-xl text-gray-200 font-bold">Administrador</a>
                             <i class="bi bi-x ml-20 cursor-pointer lg:hidden" onclick="Openbar()"></i>
                             <!-- Botón de cerrar el menú -->
-                        <li class="flex justify-end px-4 py-2">
+                        <li class="flex justify-end pr-10 py-2">
                             <button  class="text-4xl text-white-700 hover:text-blue-900 dark:text-neutral-200 dark:hover:text-neutral-400 ml-20" onclick="Openbar()">
                                 <i class="bi bi-x"></i>
                             </button>
@@ -103,14 +156,12 @@
 
 
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
-                                <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17s3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
-                              </svg>
-                            <span class="text-[15px] ml-4 text-gray-200">Vehículos</span>
+                        <i class="bi bi-person-fill"></i>
+                            <span class="text-[15px] ml-4 text-gray-200">Usuarios</span>
                         </div>
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                             <i class="bi bi-bookmark-fill"></i>
-                            <span class="text-[15px] ml-4 text-gray-200">Servicios realizados</span>
+                            <span class="text-[15px] ml-4 text-gray-200"></span>
                         </div>
                         <hr class="my-4 text-gray-600">
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
@@ -157,5 +208,53 @@
             document.querySelector(`[aria-labelledby="${buttonId}"]`).classList.add('hidden')
         }
     </script>
+
+
+<div class="container mx-auto text-center">
+    <div class="mt-2 text-4xl font-bold text-gray-900">
+        <p class="my-2">EDITAR USUARIO</p>
+    </div>
+    <div class="my-3 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300 dark:before:border-neutral-500 dark:after:border-neutral-500"></div>
+    <form action="<?=$_SERVER['PHP_SELF']?>" method="POST" class="text-gray-200 justify-center mt-2">
+        <div class="grid grid-cols-2">
+            <div class="mx-4 mb-4">
+               
+                <div class="mb-6 mt-2" data-twe-input-wrapper-init>
+                    <label for="nom_usuario" class="block mb-2 text-neutral-500">Nombre</label>
+                    <input type="text" class="block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none text-gray-900" id="nom_usuario" name="nom_usuario" placeholder="Nombre" oninput="handleInput(this)" value="<?php echo $nom_usuario;?>" readonly />
+                </div>
+                <div class="mb-6" data-twe-input-wrapper-init>
+                    <label for="apel_usuario" class="block mb-2 text-neutral-500">Apellido</label>
+                    <input type="text" class="block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none text-gray-900" id="apel_usuario" name="apel_usuario" placeholder="Apellido" oninput="handleInput(this)" value="<?php echo $apel_usuario;?>" readonly />
+                </div>
+                <div class="mb-6" data-twe-input-wrapper-init>
+                    <label for="fecha_nacimiento" class="block mb-2 text-neutral-500">Fecha Nacimiento</label>
+                    <input type="date" class="block w-full rounded border border-gray-200 bg-transparent px-3 py-2 leading-tight text-gray-900 outline-none" id="fecha_nacimiento" name="fecha_nacimiento" placeholder=" " oninput="handleInput(this)" value="<?php echo $fecha_nacimiento;?>" readonly />
+                </div>
+            </div>
+            <div class="mx-4 mb-4 mt-2">
+                <div class="mb-6" data-twe-input-wrapper-init>
+                    <label for="email" class="block mb-2 text-neutral-500">Email</label>
+                    <input type="text" class="block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none text-gray-900" id="email" name="email" placeholder="email" oninput="handleInput(this)" value="<?php echo $email;?>" readonly />
+                </div>
+                <div class="mb-6" data-twe-input-wrapper-init>
+                    <label for="contraseña" class="block mb-2 text-neutral-500">Contraseña</label>
+                    <input type="password" class="block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none text-gray-900" id="contraseña" name="contraseña" placeholder="contraseña" oninput="handleInput(this)" value="<?php echo $contraseña;?>" readonly />
+                </div>
+                <div class="mb-6" data-twe-input-wrapper-init>
+                    <label for="FK_rol" class="block mb-2 text-neutral-500">Rol</label>
+                    <input type="number" class="block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none text-gray-900" id="FK_rol" name="FK_rol" placeholder="rol" oninput="handleInput(this)" value="<?php echo $FK_rol;?>" />
+                </div>
+            </div>
+            <div class="col-span-2 mx-20 mb-5">
+                <button type="submit" name="enviar" class="font-bold block w-full rounded-full bg-gray-900 text-gray-200 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-600 hover:border border-white hover:text-gray-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-blue-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-blue-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Editar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+      
+
 </body>
 </html>

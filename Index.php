@@ -1,3 +1,11 @@
+<?php
+  include("Conexion.php");
+  
+  $sql = "SELECT * FROM servicios";
+  
+  $resultado = mysqli_query($conectar, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,7 +36,7 @@
             </div>
             <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
                 <div class="text-sm lg:flex-grow">
-                    <a href="Index.html" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600  mr-4">
+                    <a href="Index.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600  mr-4">
                         HOME
                     </a>
                     <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
@@ -65,51 +73,18 @@
       </div>
       
         <div class="container swiper-container relative">
-            <div class="swiper-wrapper">
-                <!-- Slide 1 -->
+            <div class="swiper-wrapper container mx-auto">
+            <?php while ($fila = mysqli_fetch_assoc($resultado)): ?>
                 <div class="swiper-slide bg-gray-900 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 bg-gray-900 mx-auto mt-2 mb-2">
-                    <img src="img/istockphoto-1171355962-640_adpp_is.gif" class="w-full">
                     <div class="text-2xl text-center text-gray-200">
-                        SERVICIO 1
+                    <?php echo $fila['nom_servicio']; ?>
                     </div>
-                    <p class="text-gray-200">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
+                    <p class="text-gray-200"> <?php echo $fila['descripcion']; ?></p>
                     <div class="text-center justify-center mx-auto mt-3">
                       <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
                     </div>
                   </div>
-                <!-- Slide 2 -->
-                <div class="swiper-slide bg-gray-900 text-gray-200 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
-                    <img src="img/istockphoto-1171355962-640_adpp_is.gif" class="w-full">
-                    <div class="text-2xl text-center">
-                        SERVICIO 2
-                    </div>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
-                    <div class="text-center justify-center mx-auto mt-3">
-                      <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
-                    </div>
-                  </div>
-                <!-- Slide 3 -->
-                <div class="swiper-slide bg-gray-900 text-gray-200 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
-                    <img src="img/istockphoto-1171355962-640_adpp_is.gif" class="w-full">
-                    <div class="text-2xl text-center">
-                        SERVICIO 3
-                    </div>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
-                    <div class="text-center justify-center mx-auto mt-3">
-                      <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
-                    </div>
-                  </div>
-                <!-- Slide 4 -->
-                <div class="swiper-slide bg-gray-900 text-gray-200 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 mx-auto mt-2 mb-2">
-                    <img src="img/istockphoto-1171355962-640_adpp_is.gif" class="w-full">
-                    <div class="text-2xl text-center">
-                        SERVICIO 4
-                    </div>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam provident tenetur sapiente quam laborum exercitationem dolorem saepe perspiciatis, repudiandae repellendus cupiditate aperiam voluptas harum delectus. Laborum omnis aliquid exercitationem fuga?</p>
-                    <div class="text-center justify-center mx-auto mt-3">
-                      <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
-                    </div>
-                  </div>
+                  <?php endwhile; ?>
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>

@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <title>SERVICIOS</title>
+    <title>ADMINISTRADOR</title>
 </head>
 <body class="mx-auto font-[Poppins]">
+<?php
+  include("../conexion.php");
+  
+  $sql = "SELECT * FROM usuario
+        INNER JOIN rol ON rol.idRol = usuario.FK_rol";
+  
+  $resultado = mysqli_query($conectar, $sql);
+  ?>
     <!-- Contenedor principal de la navegación -->
     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">
         <div class="flex w-full flex-wrap items-center justify-between px-3 text-blue-600">
@@ -40,15 +48,15 @@
                 <ul class="list-style-none me-auto flex flex-col ps-0 lg:flex-row" data-twe-navbar-nav-ref>
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
                         <!-- Enlace al Dashboard -->
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>Servicios</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>Usuarios</a>
                     </li>
                     <!-- Enlace al Equipo -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>productos</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>ROLES</a>
                     </li>
                     <!-- Enlace a Proyectos -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref></a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>.</a>
                     </li>
                 </ul>
             </div>
@@ -90,10 +98,10 @@
                     <div class="text-gray-100 text-xl">
                         <div class="p-2.5 mt-1 flex items-center rounded-md">
                             <i class="bi px-2 py-1 bg-blue-600 rounded-md"></i>
-                            <a class="text-[15px]  ml-3 text-xl text-gray-200 font-bold">Servicios</a>
+                            <a class="text-[10px]  ml-3 text-xl text-gray-200 font-bold">Administrador</a>
                             <i class="bi bi-x ml-20 cursor-pointer lg:hidden" onclick="Openbar()"></i>
                             <!-- Botón de cerrar el menú -->
-                        <li class="flex justify-end px-4 py-2">
+                        <li class="flex justify-end pr-10 py-2">
                             <button  class="text-4xl text-white-700 hover:text-blue-900 dark:text-neutral-200 dark:hover:text-neutral-400 ml-20" onclick="Openbar()">
                                 <i class="bi bi-x"></i>
                             </button>
@@ -103,14 +111,12 @@
 
 
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
-                                <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17s3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
-                              </svg>
-                            <span class="text-[15px] ml-4 text-gray-200">Vehículos</span>
+                        <i class="bi bi-person-fill"></i>
+                            <span class="text-[15px] ml-4 text-gray-200">Usuarios</span>
                         </div>
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                             <i class="bi bi-bookmark-fill"></i>
-                            <span class="text-[15px] ml-4 text-gray-200">Servicios realizados</span>
+                            <span class="text-[15px] ml-4 text-gray-200"></span>
                         </div>
                         <hr class="my-4 text-gray-600">
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
@@ -157,5 +163,67 @@
             document.querySelector(`[aria-labelledby="${buttonId}"]`).classList.add('hidden')
         }
     </script>
+
+        <div class="container mx-auto mt-10">
+        <!-- Table responsive wrapper -->
+<div class="overflow-x-auto bg-white dark:bg-neutral-700">
+
+<!-- Table -->
+<table class="min-w-full text-left text-sm whitespace-nowrap">
+
+  <!-- Table head -->
+  <thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 border-t">
+    <tr>
+      <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+        ID
+      </th>
+      <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+        nombre
+      </th>
+      <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+        apellido
+      </th>
+      <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+        fecha Nacimiento
+      </th>
+      <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+        email
+      </th>
+      <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+        Rol
+      </th>
+      <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+        Editar
+      </th>
+      <th scope="col" class="mx-auto px-6 py-5 border-x dark:border-neutral-600">
+        Eliminar
+      </th>
+    </tr>
+  </thead>
+
+  <!-- Table body -->
+  <tbody>
+  <?php
+         while ($fila = mysqli_fetch_assoc($resultado)) {
+            echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
+            echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['idUsuario'] .'</th>';
+            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_usuario'] . '</td>';
+            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['apel_usuario'] .'</td>';
+            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['fecha_nacimiento'] .'</td>';
+            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['email'] .'</td>';
+            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_rol'] .'</td>';
+            echo "<td><a class='mx-auto inline-block rounded bg-indigo-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-indigo-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='editarUsuario.php?idUsuario=" . $fila['idUsuario'] . "'>Editar</a></td>";
+             echo "<td><a class='inline-block rounded bg-red-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-red-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='eliminar.php?idUsuario=" . $fila['idUsuario'] . "' onclick='return confirmar()'>Eliminar</a></td>";
+            echo '</tr>';
+        }
+    ?>
+</tbody>
+
+
+</table>
+
+</div>
+        </div>
+
 </body>
 </html>
