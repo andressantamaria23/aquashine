@@ -11,15 +11,11 @@
 </head>
 <body class="mx-auto font-[Poppins]">
 <?php
-  include("../conexion.php");
-  
-  $sql = "SELECT * FROM usuario
-        INNER JOIN rol ON rol.idRol = usuario.FK_rol";
-  
-  $resultado = mysqli_query($conectar, $sql);
+include("../conexion.php");
 
-  if(isset($_POST['enviar'])){
-
+// Comprobar si se ha enviado el formulario
+if (isset($_POST['enviar'])) {
+    // Obtener los datos enviados por POST
     $idUsuario = $_POST['idUsuario'];
     $nom_usuario = $_POST['nom_usuario'];
     $apel_usuario = $_POST['apel_usuario'];
@@ -27,42 +23,64 @@
     $email = $_POST['email'];
     $contraseña = $_POST['contraseña'];
     $FK_rol = $_POST['FK_rol'];
+
+    // Consulta para actualizar los datos del usuario
     $sql = "UPDATE usuario SET 
-    nom_usuario = '" . $nom_usuario . "',
-    apel_usuario = '" . $apel_usuario . "',
-    fecha_nacimiento = '" . $fecha_nacimiento . "',
-    email = '" . $email . "',
-    contraseña = '" . $contraseña . "'
-    WHERE idUsuario = '" . $idUsuario . "'";
+                nom_usuario = '$nom_usuario',
+                apel_usuario = '$apel_usuario',
+                fecha_nacimiento = '$fecha_nacimiento',
+                email = '$email',
+                contraseña = '$contraseña',
+                FK_rol = '$FK_rol'
+            WHERE idUsuario = '$idUsuario'";
 
+    // Ejecutar la consulta
     $resultado = mysqli_query($conectar, $sql);
-    if($resultado){
+
+    // Verificar si la actualización fue exitosa
+    if ($resultado) {
         echo '<script>alert("Se actualizaron los datos correctamente");
-        location.assign("");
-        </script>';
-    }else{
-        echo '<script>alert("Error al conectarse a la BD");
-        location.assign("editarUsuario.html");
-        </script>';
+        location.assign("indexAdmin.php");</script>';
+    } else {
+        echo '<script>alert("Error al actualizar los datos");
+        location.assign("editarUsuario.php?idUsuario='.$idUsuario.'");</script>';
     }
+
+    // Cerrar la conexión
     mysqli_close($conectar);
+
 } else {
-
+    // Comprobar si se ha pasado un ID de usuario por GET
+    if (isset($_GET['idUsuario'])) {
         $idUsuario = $_GET['idUsuario'];
-    $sql = "SELECT * FROM usuario WHERE idUsuario='". $idUsuario ."'";
-    $resultado = mysqli_query($conectar, $sql);
-    $fila = mysqli_fetch_assoc($resultado);
-    $nom_usuario = $fila['nom_usuario'];
-    $apel_usuario = $fila['apel_usuario'];
-    $fecha_nacimiento = $fila['fecha_nacimiento'];
-    $email = $fila['email'];
-    $contraseña = $fila['contraseña'];
-    $FK_rol = $fila['FK_rol'];
-    mysqli_close($conectar);
+
+        // Consulta para obtener los datos del usuario
+        $sql = "SELECT * FROM usuario WHERE idUsuario='$idUsuario'";
+        $resultado = mysqli_query($conectar, $sql);
+
+        // Verificar si el usuario existe
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            // Obtener los datos del usuario
+            $fila = mysqli_fetch_assoc($resultado);
+            $nom_usuario = $fila['nom_usuario'];
+            $apel_usuario = $fila['apel_usuario'];
+            $fecha_nacimiento = $fila['fecha_nacimiento'];
+            $email = $fila['email'];
+            $contraseña = $fila['contraseña'];
+            $FK_rol = $fila['FK_rol'];
+        } else {
+            echo '<script>alert("Usuario no encontrado"); location.assign("indexAdmin.php");</script>';
+            exit();
+        }
+
+        // Cerrar la conexión
+        mysqli_close($conectar);
+    } else {
+        echo '<script>alert("ID de usuario no proporcionado"); location.assign("indezAdmin.php");</script>';
+        exit();
+    }
 }
-
-
-  ?>
+?>
     <!-- Contenedor principal de la navegación -->
     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">
         <div class="flex w-full flex-wrap items-center justify-between px-3 text-blue-600">
@@ -218,7 +236,10 @@
     <form action="<?=$_SERVER['PHP_SELF']?>" method="POST" class="text-gray-200 justify-center mt-2">
         <div class="grid grid-cols-2">
             <div class="mx-4 mb-4">
-               
+            <div class="mb-6 mt-2" data-twe-input-wrapper-init>
+                    <label for="idUsuario" class="  block mb-2 text-neutral-500">ID Usuario</label>
+                    <input type="text" class="block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none text-gray-900" id="idUsuario" name="" placeholder="Nombre" oninput="handleInput(this)" value="<?php echo $idUsuario;?>" readonly />
+                </div>
                 <div class="mb-6 mt-2" data-twe-input-wrapper-init>
                     <label for="nom_usuario" class="block mb-2 text-neutral-500">Nombre</label>
                     <input type="text" class="block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none text-gray-900" id="nom_usuario" name="nom_usuario" placeholder="Nombre" oninput="handleInput(this)" value="<?php echo $nom_usuario;?>" readonly />
