@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Producto</title>
+    <link rel="stylesheet" href="añadirProducto.php">
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <style>
+        body {
+            background-color: black;
+            background-size: cover;
+            background-position: center;
+        }
+   
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+            width: 300px;
+            margin: auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Registrar Proveedor</h2>
+        <form action="#" method="POST" class="space-y-4">
+            
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ingrese el nombre del producto" required>
+            </div>
+
+            <div>
+                <label for="price" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="number" id="price" name="price" step="0.01" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ingrese el precio" required>
+            </div>
+
+            <div>
+                <label for="quantity" class="block text-sm font-medium text-gray-700">Telefono</label>
+                <input type="number" id="quantity" name="quantity" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ingrese la cantidad" required>
+            </div>
+
+            <div>
+                <label for="registration_date" class="block text-sm font-medium text-gray-700">Fecha de Registro</label>
+                <input type="date" id="registration_date" name="registration_date" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" required>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Guardar Producto
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

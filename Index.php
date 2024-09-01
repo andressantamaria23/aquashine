@@ -1,5 +1,5 @@
 <?php
-  include("Conexion.php");
+  include("config/Conexion.php");
   
   $sql = "SELECT * FROM servicios";
   
@@ -39,10 +39,10 @@
                     <a href="Index.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600  mr-4">
                         HOME
                     </a>
-                    <a href="#responsive-header" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
+                    <a href="views/servicios/indexP.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
                         SERVICIOS
                     </a>
-                    <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
+                    <a href="/ventas.html" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
                         TIENDA
                     </a>
                     <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600">
@@ -63,7 +63,7 @@
         Vive la Mejor Experiencia de Lavado para tu vehiculo
       </div>
         <div>
-            <img class="mr-4" src="./img/auto.gif">
+            <img class="mr-4" src="static/img/auto.gif">
         </div>
     </div>
 
@@ -80,6 +80,9 @@
                     <?php echo $fila['nom_servicio']; ?>
                     </div>
                     <p class="text-gray-200"> <?php echo $fila['descripcion']; ?></p>
+                    <br>
+                    
+                    <p class="text-center text-gray-200">PRECIO: $<?php echo $fila['precio']; ?></p>
                     <div class="text-center justify-center mx-auto mt-3">
                       <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
                     </div>
@@ -117,7 +120,7 @@
       <p class="text-gray-200 font-bold">¿Quienes somos?</p>
     </div>
     <div class=" grid grid-cols-2 p-6 gap-4 bg-gray-900">
-      <div class=""><img src="img/pexels-pixabay-372810.jpg" alt=""></div>
+      <div class=""><img src="static/img/pexels-pixabay-372810.jpg" alt=""></div>
       <blockquote>
         <p class="text-xl text-gray-200">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ducimus saepe soluta ipsum earum ipsa, sequi hic omnis accusamus iste quod eius fuga aut sed autem voluptatum, nam temporibus neque. 
