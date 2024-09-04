@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="static/img/aquashine.png" image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com/3.2.7"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
+    <title>LOGIN AquaShine</title>
+    <style>
+        .bg-primary {
+            background-color: #3490dc;
+        }
+        .hover\:bg-primary-accent-300:hover {
+            background-color: #3b82f6;
+        }
+        .active\:bg-primary-600:active {
+            background-color: #1e40af; 
+        }
+        .text-danger {
+            color: #e3342f; 
+        }
+        .hover\:text-danger-600:hover {
+            color: #cc1f1a; 
+        }
+        .active\:text-danger-700:active {
+            color: #a51e16;
+        }
+    </style>
+</head>
+<body class="mx-auto bg-zinc-50 font-[Poppins]">
+
+    <header class="mx-auto mt-3">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-900 border-inset border-2 border-zinc-200 p-6">
+            <div class="text-6xl flex items-center flex-shrink-0 text-blue-600 mr-6">
+                <span class="font-semibold text-xl tracking-tight">Aqua Shine</span>
+            </div>
+            <div class="block lg:hidden">
+                <button id="boton" class="flex items-center px-3 py-2 border rounded-md text-teal-200 border-teal-400 hover:text-white hover:border-white">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                </button>
+            </div>
+            <div id="menu" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
+                <div class="text-sm lg:flex-grow">
+                    <a href="Index.php" class="px-4 py-2 rounded-md inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-gray-200 hover:bg-blue-600 mr-4">
+                        HOME
+                    </a>
+                    <a href="views/servicios/indexP.php" class="px-4 py-2 rounded-md inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-gray-200 hover:bg-blue-600 mr-4">
+                        SERVICIOS
+                    </a>
+                    <a href="views/ventas/ventas.html" class="px-4 py-2 rounded-md block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-gray-200 hover:bg-blue-600">
+                        TIENDA
+                    </a>
+                    <a href="ayuda/ayuda.php" class="px-4 py-2 rounded-md block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-gray-200 hover:bg-blue-600">
+                      AYUDA
+                    </a>
+                </div>
+                <div>
+                    <a href="register.html" class="inline-block text-gray-200 text-sm px-4 py-2 leading-none border rounded border-white hover:border-transparent hover:text-gray-900 hover:bg-purple-300 mt-4 lg:mt-0">REGISTRATE</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="relative h-screen bg-cover bg-center" style="background-image: url('static/img/pexels-pixabay-372810.jpg');">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="relative z-10 flex items-center justify-center h-full">
+            <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+                <form>
+                    <div class="flex flex-row items-center justify-center lg:justify-start">
+                        <p class="mb-0 me-4 text-lg">Regístrate con</p>
+                        <!-- Facebook -->
+                        <button id="fb-login-btn" type="button" class="mx-1 inline-block h-9 w-9 rounded-full bg-blue-600 text-white p-2">
+                        <span class="block mx-auto h-3.5 w-3.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor">
+                        <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+                        </svg>
+                        </span>
+                        </button>
+
+                        <!-- X -->
+                        <button type="button" class="mx-1 inline-block h-9 w-9 rounded-full bg-primary text-white p-2">
+                            <span class="block mx-auto h-3.5 w-3.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                                    <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+                                </svg>
+                            </span>
+                        </button>
+                        <!-- Linkedin -->
+                        <button type="button" class="mx-1 inline-block h-9 w-9 rounded-full bg-primary text-white p-2">
+                            <span class="block mx-auto h-3.5 w-3.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                                    <path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="relative flex w-full flex-col flex-wrap items-stretch mb-3 mt-8">
+                        <input type="email" placeholder="Correo electrónico" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
+                    </div>
+                    <div class="relative flex w-full flex-col flex-wrap items-stretch mb-3">
+                        <input type="password" placeholder="Contraseña" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
+                    </div>
+                    
+                    <div class="text-center mb-6 mt-6 flex justify-center">
+                        <button type="button" class="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-accent-300 active:bg-primary-600">Iniciar sesión</button>
+                    </div>
+
+                    <p class="text-center text-gray-600">¿No tienes cuenta? <a href="register.html" class="text-primary hover:text-primary-accent-300">Regístrate</a></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-200 py-4">
+        <div class="container mx-auto flex flex-wrap items-center justify-center">
+            <a href="https://www.facebook.com" class="mx-3 text-gray-200 hover:text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 0H1.46C.65 0 0 .65 0 1.46v21.08c0 .81.65 1.46 1.46 1.46h11.5V14.63h-3.1v-3.1h3.1v-2.29c0-3.08 1.88-4.76 4.63-4.76 1.31 0 2.43.1 2.76.14v3.21h-1.9c-1.5 0-1.79.72-1.79 1.76v2.29h3.6l-.46 3.1h-3.14V24h6.16c.81 0 1.46-.65 1.46-1.46V1.46C24 .65 23.35 0 22.54 0z"/></svg></a>
+            <a href="https://twitter.com" class="mx-3 text-gray-200 hover:text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557a9.936 9.936 0 0 1-2.828.775A4.974 4.974 0 0 0 23.337 3a9.948 9.948 0 0 1-3.127 1.195A4.927 4.927 0 0 0 16.616 1a4.928 4.928 0 0 0-4.92 4.92c0 .386.043.762.127 1.124A13.975 13.975 0 0 1 1.671 2.758a4.918 4.918 0 0 0 1.522 6.558A4.923 4.923 0 0 1 .964 9v.062a4.929 4.929 0 0 0 3.952 4.826A4.929 4.929 0 0 1 3 14.982v.062a4.93 4.93 0 0 0 4.604 4.92A9.879 9.879 0 0 1 0 20.84a13.936 13.936 0 0 0 7.548 2.211c9.056 0 14.016-7.515 14.016-14.016 0-.213-.005-.425-.015-.637A9.981 9.981 0 0 0 24 4.557z"/></svg></a>
+            <a href="https://www.instagram.com" class="mx-3 text-gray-200 hover:text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.875 2.625H16.125a4.875 4.875 0 0 1 4.875 4.875v9.75a4.875 4.875 0 0 1-4.875 4.875H7.875A4.875 4.875 0 0 1 3 17.25V7.5a4.875 4.875 0 0 1 4.875-4.875zm0-1.5a6.375 6.375 0 0 0-6.375 6.375v9.75a6.375 6.375 0 0 0 6.375 6.375h9.75a6.375 6.375 0 0 0 6.375-6.375V7.5a6.375 6.375 0 0 0-6.375-6.375H7.875zM12 8.25a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm0 6a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5zm4.125-6.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg></a>
+            <a href="https://www.linkedin.com" class="mx-3 text-gray-200 hover:text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></a>
+        </div>
+    </footer>
+</body>
+</html>
