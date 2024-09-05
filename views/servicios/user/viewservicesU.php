@@ -7,16 +7,22 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <title>ADMINISTRADOR</title>
+    <title>SERVICIOS</title>
 </head>
+
 <body class="mx-auto font-[Poppins]">
 <?php
-include("../../config/conexion.php");
+include("../../../config/conexion.php");
+
 
   
-  $sql = "SELECT * FROM vehiculo";
+  $sql = "SELECT * FROM reservas
+  INNER JOIN usuario ON usuario.idUsuario = reservas.FK_usuario
+  INNER JOIN servicios ON servicios.idServicios = reservas.FK_servicios";
+  
   
   $resultado = mysqli_query($conectar, $sql);
+
   ?>
     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">
         <div class="flex w-full flex-wrap items-center justify-between px-3 text-blue-600">
@@ -122,7 +128,7 @@ include("../../config/conexion.php");
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="submenu">
                                 <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar vehiculo</h1>
-                                <a href="viewCar.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar Vehiculo</a>
+                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar vehiculos</h1>
                                 <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Estado vehiculo</h1>
                             </div>
                             <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
@@ -174,105 +180,69 @@ include("../../config/conexion.php");
             }
         </script>
 
-<div class="text-center text-4xl font-bold text-gray-900 mt-2 ">REGISTAR VEHÍCULO  </div>
-        <!-- Table responsive wrapper -->
-        <hr class="my-4 text-gray-600">
+<div class="container mx-auto mt-10">
 
-        <form action="../../controller/servicios/agregarVe.php" method="POST" class="text-gray-200  mt-2">
-  <div class="flex justify-center grid ">
-    <div class="mx-4 mb-4">
-      <div class="relative mb-6 hidden" data-twe-input-wrapper-init>
-        <input type="number" class="text-black peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="idVehiculo" name="idVehiculo" placeholder="ID" oninput="handleInput(this)" />
-        <label for="idVehiculo" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">ID</label>
-      </div>
-      <div class="relative mb-6 mt-2" data-twe-input-wrapper-init>
-        <input type="text" class="text-black peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="Placa" name="Placa" placeholder="Placa" oninput="handleInput(this)" />
-        <label for="Placa" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Placa</label>
-      </div>
+<div class="text-center text-4xl font-bold text-gray-900 "> SERVICIOS   </div>
+<!-- Table responsive wrapper -->
+<hr class="my-4 text-gray-600">
 
-      <div class="relative mb-6" data-twe-input-wrapper-init>
-        <select id="tipo_vehiculo" name="tipo_vehiculo" class="text-black peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" onchange="updateMarcaOptions()" oninput="handleInput(this)">
-          <option value=""></option>
-          <option value="carro">Carro</option>
-          <option value="moto">Moto</option>
-        </select>
-        <label for="tipo_vehiculo" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Tipo de vehículo</label>
-      </div>
+<a href="agendarservicio.php" role="button" class="mb-7 inline-block rounded-full bg-emerald-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-emerald-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-emerald-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-emerald-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Agendar servicio<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+</svg>
 
-      <div class="relative mb-6" data-twe-input-wrapper-init>
-        <select id="color_vehiculo" name="color_vehiculo" class="text-black peer block w-full appearance-none rounded border border-gray-200 bg-transparent px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-600" oninput="handleInput(this)">
-          <option value=""></option>
-          <option value="blanco">Blanco</option>
-          <option value="negro">Negro</option>
-          <option value="gris">Gris</option>
-          <option value="rojo">Rojo</option>
-          <option value="azul">Azul</option>
-          <option value="plateado">Plateado</option>
-          <option value="verde">Verde</option>
-          <option value="amarillo">Amarillo</option>
-        </select>
-        <label for="color_vehiculo" class="pointer-events-none absolute left-3 -top-3.5 bg-white px-1 text-gray-500 transition-all duration-200 ease-out origin-top-left transform scale-75 peer-focus:-top-3.5 peer-focus:scale-75 peer-focus:-translate-y-0 peer-placeholder-shown:top-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:text-blue-600">Color del vehículo</label>
-      </div>
-    </div>
+</a>
+<div class="overflow-x-auto bg-white dark:bg-neutral-700">
 
-    <div class="mx-4 mb-4 mt-2">
-      <div class="relative mb-6" data-twe-input-wrapper-init>
-        <select id="marca" name="marca" class="text-black peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" oninput="handleInput(this)">
-          <option value=""></option>
-        </select>
-        <label for="marca" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Marca</label>
-      </div>
+<!-- Table -->
+<table class="min-w-full text-left text-sm whitespace-nowrap mb-3" >
 
-      <div class="hidden relative mb-6 mt-2" data-twe-input-wrapper-init>
-                <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="FK_usuario" name="FK_usuario" placeholder="" oninput="handleInput(this)" value="2 "/>
-                <label for="FK_usuario" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Usuario </label>
-            </div>
-    </div>
+<!-- Table head -->
+<thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 border-t">
+<tr>
+<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+ID 
+</th>
+<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+Fecha reserva
+</th>
+<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+hora reserva
+</th>
+<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+estado
+</th>
+<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+servicio
+</th>
+<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+Editar
+</th>
+</tr>
+</thead>
 
-    <div class=" mx-20 mb-5">
-      <button type="submit" class="font-bold block w-full rounded-full bg-gray-900 text-gray-200 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-600 hover:border border-white hover:text-gray-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-blue-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-blue-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">REGISTRAR</button>
-    </div>
-  </div>
-</form>
+<!-- Table body -->
+<tbody>
+<?php
+ while ($fila = mysqli_fetch_assoc($resultado)) {
+    echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
+    echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['idReservas'] .'</th>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['fecha_reserva'] . '</td>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['hora_reserva'] .'</td>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['estado'] .'</td>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_servicio'] .'</td>';
+    echo "<td><a class='mx-auto inline-block rounded bg-indigo-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-indigo-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='editVe.php?idReservas=" . $fila['idReservas'] . "''>Editar</a></td>";
+    echo '</tr>';
+}
+?>
+</tbody>
 
-<script>
-  function updateMarcaOptions() {
-    const tipoVehiculo = document.getElementById('tipo_vehiculo').value;
-    const marcaSelect = document.getElementById('marca');
 
-    // Limpiar opciones actuales
-    marcaSelect.innerHTML = '';
+</table>
 
-    if (tipoVehiculo === 'carro') {
-      const marcasCarro = ['Toyota', 'Ford', 'Chevrolet', 'Honda', 'Nissan', 'Volkswagen'];
-      marcasCarro.forEach(marca => {
-        const option = document.createElement('option');
-        option.value = marca;
-        option.text = marca;
-        marcaSelect.appendChild(option);
-      });
-    } else if (tipoVehiculo === 'moto') {
-      const marcasMoto = ['Yamaha', 'Honda', 'Suzuki', 'Kawasaki', 'Harley-Davidson', 'Ducati','Pulsar','TVS'];
-      marcasMoto.forEach(marca => {
-        const option = document.createElement('option');
-        option.value = marca;
-        option.text = marca;
-        marcaSelect.appendChild(option);
-      });
-    }
-  }
+</div>
+</div>
 
-  function handleInput(input) {
-    const label = input.nextElementSibling;
-    if (input.value.trim() !== "") {
-      label.style.display = "none";
-      input.placeholder = "";
-    } else {
-      label.style.display = "block";
-      input.placeholder = label.innerText;
-    }
-  }
-</script>
-
+            
 </body>
 </html>

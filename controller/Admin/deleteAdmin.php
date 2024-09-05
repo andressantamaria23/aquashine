@@ -7,7 +7,7 @@ $resultado = mysqli_query($conectar, $sql);
 
 if ($resultado) {
     echo '<script>alert("Se eliminaron los datos correctamente");
-    location.assign("indexAdmin.php");
+    location.assign("../../views/admin/user/indexAdmin.php");
     </script>';
 } else {
     echo '<script>alert("Error al eliminar los datos");

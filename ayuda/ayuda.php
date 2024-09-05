@@ -1,10 +1,3 @@
-<?php
-  include("./config/conexion.php");
-  
-  $sql = "SELECT * FROM servicios";
-  
-  $resultado = mysqli_query($conectar, $sql);
-?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -58,101 +51,12 @@
         </nav>
     </header>
 
-    <div class="container bg-gray-900 grid grid-cols-2 mx-auto flex items-center justify-center min-h-screen mt-6">
-      <div class="text-center text-4xl text-gray-100 my-10">
-        VIVE LA MEJOR EXPERIENCIA 
-        <br>
-        DE NUESTROS SERVICIOS
-        <br>
-        PARA TU VEHÍCULO
-      </div>
-      <div>
-        <img class="mr-4 w-120 h-100" src="./static/img/car.gif" alt="Coche">
-    </div>
-    </div>
-    <hr>
-
-    <br>
-    <br>
-
-    <div class="relative mx-auto grid grid-cols-1 gap-3 max-w-5xl">
-      <div class="text-center text-6xl font-bold text-blue-800 my-5 shadow-lg">
-          <h1 class="my-5">SERVICIOS ESPECIALES</h1>
-      </div>
-  </div>
-  
-  <div class="container swiper-container relative">
-    <div class="swiper-wrapper container mx-auto">
-    <?php while ($fila = mysqli_fetch_assoc($resultado)): ?>
-        <div class="swiper-slide bg-gray-900 max-w-sm rounded shadow-lg overflow-hidden px-2 py-6 bg-gray-900 mx-auto mt-2 mb-2">
-            <div class="text-2xl text-center text-gray-200">
-            <?php echo $fila['nom_servicio']; ?>
-            </div>
-            <p class="text-gray-200"><?php echo $fila['descripcion']; ?></p>
-            <br>
-            
-            <p class="text-center text-gray-200">PRECIO: $<?php echo $fila['precio']; ?></p>
-            <div class="text-center justify-center mx-auto mt-3">
-              <button type="button" class="inline-block rounded-full bg-blue-600 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-cyan-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">AGENDA</button>
-            </div>
-          </div>
-          <?php endwhile; ?>
-    </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-</div>
-</div>
-
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-var swiper = new Swiper('.swiper-container', {
-    loop: true,
-    slidesPerView: 3,
-    spaceBetween: 15,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-});
-</script>
-      
-<section id="quienes-somos" class="py-12 px-4">
-  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-8">
-      <h1 class="text-3xl font-bold text-gray-800 mb-6">Quiénes Somos</h1>
-      <p class="text-lg text-gray-700 mb-4">
-          En <strong>AquaShine</strong> nos dedicamos a transformar la manera en que los lavaderos gestionan sus operaciones diarias. Fundados con el objetivo de ofrecer soluciones innovadoras y eficientes, nuestro software está diseñado para simplificar la administración de tu negocio de lavado de vehículos, mejorando la experiencia tanto para los clientes como para los empleados.
-      </p>
-      
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Nuestra Misión</h2>
-      <p class="text-lg text-gray-700 mb-4">
-          Proveer una plataforma integral que optimice la gestión de citas, el control de inventario y las operaciones de ventas y servicios. Buscamos ayudar a los lavaderos a alcanzar sus metas mediante herramientas intuitivas y un soporte técnico excepcional.
-      </p>
-
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Nuestra Visión</h2>
-      <p class="text-lg text-gray-700 mb-4">
-          Ser líderes en soluciones tecnológicas para el sector de lavado de vehículos, promoviendo la eficiencia, la satisfacción del cliente y el crecimiento sostenido de nuestros socios.
-      </p>
-
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Nuestros Valores</h2>
-      <ul class="list-disc list-inside text-lg text-gray-700">
-          <li>Innovación: Siempre buscamos nuevas maneras de mejorar y adaptarnos a las necesidades del mercado.</li>
-          <li>Compromiso: Nos dedicamos a brindar un servicio de calidad y a apoyar a nuestros clientes en cada paso del camino.</li>
-          <li>Transparencia: Operamos con honestidad y claridad en todas nuestras interacciones.</li>
-          <li>Excelencia: Nos esforzamos por superar las expectativas y ofrecer soluciones de alta calidad.</li>
-      </ul>
-  </div>
-</section>
-
-<footer class="bg-gray-900 text-gray-200 py-6">
+    
+    <footer class="bg-gray-900 text-gray-200 py-6">
     <div class="container mx-auto text-center">
         <p class="text-lg mb-4">&copy; 2024 AquaShine. Todos los derechos reservados.</p>
         <div class="flex justify-center">
-            <a href="https://www.facebook.com/" class="mx-2 text-gray-200 hover:text-white">
+            <a href="https://www.facebook.com/profile.php?id=61564508919321" class="mx-2 text-gray-200 hover:text-white">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.04c-5.3 0-9.63 4.33-9.63 9.63 0 4.7 3.48 8.6 8.02 9.4v-6.63h-2.4v-2.67h2.4v-1.9c0-2.4 1.44-3.76 3.61-3.76 1.03 0 2.1.08 2.1.08v2.31h-1.18c-1.16 0-1.52.71-1.52 1.45v1.74h2.61l-.42 2.67h-2.19v6.63c4.53-.8 8.01-4.7 8.01-9.4 0-5.3-4.32-9.63-9.62-9.63z"/></svg>
             </a>
             <a href="https://twitter.com/" class="mx-2 text-gray-200 hover:text-white">
@@ -164,5 +68,7 @@ var swiper = new Swiper('.swiper-container', {
         </div>
     </div>
 </footer>
-</body>
-</html>
+    </body>
+
+    </html>
+    
