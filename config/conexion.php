@@ -1,18 +1,17 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "aquashine1";
 
-$host = 'localhost';
-$user = 'root';
-$clave = ''; // Contraseña vacía si no estás usando una
-$bd = 'AquaShine';
-$puerto = '3306';
-
-// Conectar a la base de datos
-$conectar = mysqli_connect($host, $user, $clave, $bd, $puerto);
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar la conexión
-if (!$conectar) {
-    die("Error de conexión: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
 
-// La conexión se deja abierta para su uso posterior
+// Línea de depuración
+echo "Conexión establecida correctamente";
 ?>
