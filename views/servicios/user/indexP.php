@@ -1,5 +1,5 @@
 <?php
-  include("../../config/Conexion.php");
+  include("../../../config/Conexion.php");
   
   $sql = "SELECT * FROM servicios";
   

@@ -1,3 +1,12 @@
+<?php
+session_start();
+$varsesion = $_SESSION['email'];
+if ($varsesion == null || $varsesion == '') {
+    header('location:../../../Index.php');
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -140,7 +149,7 @@
     
                             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-box-arrow-in-right"></i>
-                                <span class="text-[15px] ml-4 text-gray-200">Logout</span>
+                                <a href="../../../config/cerrarsesion.php" class="text-[15px] ml-4 text-gray-200">Logout</a>
                             </div>
     
                         </div>

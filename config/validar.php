@@ -1,9 +1,10 @@
 <?php
-require "../config/conexion.php";
+require "conexion.php";
 
 $email = $_POST['email'];
 $contraseña = $_POST['contraseña'];
-
+session_start();
+$_SESSION['email']= $email; 
 // Consulta para validar el usuario
 $consulta = "SELECT * FROM usuario 
 INNER JOIN rol on rol.idRol = usuario.FK_rol
@@ -18,9 +19,9 @@ if ($filas) {
     if ($filas['FK_rol'] == 1) { // Admin
         header("location:../views/admin/roles/indexR.php");
     } elseif ($filas['FK_rol'] == 2) { // User
-        header("location:../views/servicios/user/index.html");
+        header("location:../views/servicios/user/index.php");
     } elseif ($filas['FK_rol'] == 3) { // Servicio
-        header("location:../views/servicios/user/index.html");
+        header("location:../views/servicios/empleyoee/indexServicesE.php");
     } elseif ($filas['FK_rol'] == 4) { // Vendedor
         header("location:../views/inventario/inventario.html");
     } else {

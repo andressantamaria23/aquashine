@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 <?php endif; ?>
 
-                <form method="POST" action="controller/validar.php">
+                <form method="POST" action="config/validar.php">
                     <div class="relative flex w-full flex-col flex-wrap items-stretch mb-4">
                         <input type="email" name="email" placeholder="Correo electrónico" class="px-4 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
                     </div>

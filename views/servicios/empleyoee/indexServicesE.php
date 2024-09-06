@@ -1,3 +1,12 @@
+<?php
+session_start();
+$varsesion = $_SESSION['email'];
+if ($varsesion == null || $varsesion == '') {
+    header('location:../../../Index.php');
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,21 +18,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <title>SERVICIOS</title>
 </head>
-
 <body class="mx-auto font-[Poppins]">
-<?php
-include("../../../config/conexion.php");
-
-
-  
-  $sql = "SELECT * FROM vehiculo
-  INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario
-  WHERE usuario.idUsuario = 2";
-  
-  
-  $resultado = mysqli_query($conectar, $sql);
-
-  ?>
+    <!-- Contenedor principal de la navegación -->
     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">
         <div class="flex w-full flex-wrap items-center justify-between px-3 text-blue-600">
             <!-- Botón de hamburguesa para vista móvil -->
@@ -57,7 +53,6 @@ include("../../../config/conexion.php");
                     </li>
                     <!-- Enlace al Equipo -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>productos</a>
                     </li>
                     <!-- Enlace a Proyectos -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
@@ -127,13 +122,7 @@ include("../../../config/conexion.php");
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="submenu">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar vehiculo</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar vehiculos</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Estado vehiculo</h1>
-                            </div>
-                            <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
-                                <i class="bi bi-cart2"></i>
-                                <span class="text-[15px] ml-4 text-gray-200">Compras</span>
+                                <a href="viewCar.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar Vehiculo</a>
                             </div>
                             <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-layers-fill"></i>
@@ -145,7 +134,7 @@ include("../../../config/conexion.php");
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="Roles">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">adquirir servicio</h1>
+                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">añadir servicio</h1>
                                 <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar servicios</h1>
                             
                             </div>
@@ -153,7 +142,7 @@ include("../../../config/conexion.php");
     
                             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-box-arrow-in-right"></i>
-                                <span class="text-[15px] ml-4 text-gray-200">Logout</span>
+                                <a href="../../../config/cerrarsesion.php" class="text-[15px] ml-4 text-gray-200">Logout</a>
                             </div>
     
                         </div>
@@ -179,82 +168,51 @@ include("../../../config/conexion.php");
                 document.querySelector(`[aria-labelledby="${buttonId}"]`).classList.add('hidden')
             }
         </script>
-
-<div class="container mx-auto mt-10">
-
-<div class="text-center text-4xl font-bold text-gray-900 "> VEHICULOS  </div>
-<!-- Table responsive wrapper -->
-<hr class="my-4 text-gray-600">
-
-<a href="agregarCar.php" role="button" class="mb-7 inline-block rounded-full bg-emerald-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-emerald-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-emerald-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-emerald-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Registar
-<svg
-xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 24 24"
-fill="currentColor"
-class="inline ml-1 pb-[2px] w-4 h-4"
->
-<path
-fill-rule="evenodd"
-d="M10.5 3.75a6 6 0 00-5.98 6.496A5.25 5.25 0 006.75 20.25H18a4.5 4.5 0 002.206-8.423 3.75 3.75 0 00-4.133-4.303A6.001 6.001 0 0010.5 3.75zm2.25 6a.75.75 0 00-1.5 0v4.94l-1.72-1.72a.75.75 0 00-1.06 1.06l3 3a.75.75 0 001.06 0l3-3a.75.75 0 10-1.06-1.06l-1.72 1.72V9.75z"
-clip-rule="evenodd"
-/>
+<div class="flex justify-center mt-10 ml-10">
+    <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow-lg border">
+        <a href="viewcar.php" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
+          <div class="mb-2 flex justify-center">
+            <span class="text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-car-front" viewBox="0 0 16 16">
+                <path d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0m10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM4.862 4.276 3.906 6.19a.51.51 0 0 0 .497.731c.91-.073 2.35-.17 3.597-.17s2.688.097 3.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 10.691 4H5.309a.5.5 0 0 0-.447.276"/>
+                <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM4.82 3a1.5 1.5 0 0 0-1.379.91l-.792 1.847a1.8 1.8 0 0 1-.853.904.8.8 0 0 0-.43.564L1.03 8.904a1.5 1.5 0 0 0-.03.294v.413c0 .796.62 1.448 1.408 1.484 1.555.07 3.786.155 5.592.155s4.037-.084 5.592-.155A1.48 1.48 0 0 0 15 9.611v-.413q0-.148-.03-.294l-.335-1.68a.8.8 0 0 0-.43-.563 1.8 1.8 0 0 1-.853-.904l-.792-1.848A1.5 1.5 0 0 0 11.18 3z"/>
+              </svg>
+            </span>
+          </div>
+          <h5 class="mb-6 font-bold text-primary text-center"> VEHICULOS</h5>
+        </a>
+      </div>
+  
+      <div class="bg-white p-4 rounded-lg shadow-lg border">
+        <a href="viewServicesE.php" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
+          <div class="mb-2 flex justify-center">
+            <span class="text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">
+                <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882z"/>
+                <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0z"/>
+              </svg>
+            </span>
+          </div>
+          <h5 class="mb-6 font-bold text-primary text-center">SERVICIOS</h5>
+        </a>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-lg border">
+        <a href="viewReservas.php" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
+          <div class="mb-2 flex justify-center">
+            <span class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
 </svg>
-</a>
-<div class="overflow-x-auto bg-white dark:bg-neutral-700">
-
-<!-- Table -->
-<table class="min-w-full text-left text-sm whitespace-nowrap mb-3" >
-
-<!-- Table head -->
-<thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 border-t">
-<tr>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-Placa
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-Tipo vehiculo
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-color
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-marca
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-usuario
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-Editar
-</th>
-<th scope="col" class="mx-auto px-6 py-5 border-x dark:border-neutral-600">
-Eliminar
-</th>
-</tr>
-</thead>
-
-<!-- Table body -->
-<tbody>
-<?php
- while ($fila = mysqli_fetch_assoc($resultado)) {
-    echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
-    echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['Placa'] .'</th>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['tipo_vehiculo'] . '</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['color_vehiculo'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['marca'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_usuario'] .'</td>';
-    echo "<td><a class='mx-auto inline-block rounded bg-indigo-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-indigo-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='editVe.php?idVehiculo=" . $fila['idVehiculo'] . "''>Editar</a></td>";
-     echo "<td><a class='inline-block rounded bg-red-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-red-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='../../controller/servicios/deleteVe.php?idVehiculo=" . $fila['idVehiculo'] . "''>Eliminar</a></td>";
-    echo '</tr>';
-}
-?>
-</tbody>
-
-
-</table>
-
-</div>
-</div>
-
-            
+          </div>
+          <h5 class="mb-6 font-bold text-primary text-center">RESERVAS</h5>
+        </a>
+      </div>
+    </div>
+  </div>
+   
+  
+    
 </body>
 </html>
