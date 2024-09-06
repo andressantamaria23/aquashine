@@ -23,7 +23,7 @@ if ($filas) {
     } elseif ($filas['FK_rol'] == 3) { // Servicio
         header("location:../views/servicios/empleyoee/indexServicesE.php");
     } elseif ($filas['FK_rol'] == 4) { // Vendedor
-        header("location:../views/inventario/inventario.html");
+        header("location:../controller/trabajador/vistaTrabajador.html");
     } else {
         echo '<h1 class="bad">Datos incorrectos</h1>';
     }
