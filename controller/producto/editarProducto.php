@@ -1,7 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+<<<<<<< HEAD
 require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+=======
+require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 if (isset($_GET['id'])) {
     $idProductos = $_GET['id'];
@@ -25,15 +29,25 @@ if (isset($_GET['id'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener los datos del formulario
         $nom_producto = $_POST['nom_producto'];
+<<<<<<< HEAD
         $prod_descrp = $_POST['prod_descrp'];
+=======
+        $prod_descrip = $_POST['prod_descrip'];
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         $precio = $_POST['precio'];
         $categoria_prod_idcat = $_POST['categoria_prod_idcat'];
         $FK_proveedores = $_POST['FK_proveedores'];
 
         // Crear la consulta SQL para actualizar el producto
+<<<<<<< HEAD
         $sql = "UPDATE productos SET nom_producto = ?, prod_descrp = ?, precio = ?, categoria_prod_idcat = ?, FK_proveedores = ? WHERE idProductos = ?";
         if ($stmt = mysqli_prepare($conectar, $sql)) {
             mysqli_stmt_bind_param($stmt, "ssssii", $nom_producto, $prod_descrp, $precio, $categoria_prod_idcat, $FK_proveedores, $idProductos);
+=======
+        $sql = "UPDATE productos SET nom_producto = ?, prod_descrip = ?, precio = ?, categoria_prod_idcat = ?, FK_proveedores = ? WHERE idProductos = ?";
+        if ($stmt = mysqli_prepare($conectar, $sql)) {
+            mysqli_stmt_bind_param($stmt, "ssssii", $nom_producto, $prod_descrip, $precio, $categoria_prod_idcat, $FK_proveedores, $idProductos);
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
             if (mysqli_stmt_execute($stmt)) {
                 // Redirigir a la página de productos con un mensaje de éxito
                 header("Location: producto.php?msg=Producto actualizado correctamente");
@@ -83,7 +97,11 @@ if (isset($_GET['id'])) {
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="prod_descrip">
                         Descripción del Producto
                     </label>
+<<<<<<< HEAD
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="prod_descrp" name="prod_descrp" value="<?php echo htmlspecialchars($producto['prod_descrp']); ?>" required>
+=======
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="prod_descrip" name="prod_descrip" value="<?php echo htmlspecialchars($producto['prod_descrip']); ?>" required>
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="precio">

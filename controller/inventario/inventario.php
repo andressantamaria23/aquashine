@@ -96,7 +96,11 @@
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
+<<<<<<< HEAD
                         <img class="h-8 w-auto" src="../../static/img/aquashine.png" alt="Your Company">
+=======
+                        <img class="h-8 w-auto" src="../img/aquashine.png" alt="Your Company">
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
@@ -135,8 +139,11 @@
 <br>
     <div class="container">
         <a href="añadirInventario.php" class="btn green">+ Añadir al inventario</a>
+<<<<<<< HEAD
         <a href="visualizarInventario.php" class="btn blue">Visualizar inventario</a>
 
+=======
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         <input type="text" placeholder="Buscar..." class="search">
 
         <table class="min-w-full divide-y divide-gray-200">

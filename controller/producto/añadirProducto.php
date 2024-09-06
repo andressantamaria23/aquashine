@@ -4,18 +4,30 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Incluir el archivo de conexión
+<<<<<<< HEAD
 require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
+=======
+require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtener los datos del formulario y sanitizarlos
     $nom_producto = $_POST['name'];
     $categoria_prod_idcat = $_POST['categoria']; // Esto es un array por el multiple select
     $precio = $_POST['precio'];
+<<<<<<< HEAD
     $prod_descrp = $_POST['descripcion'];
     $proveedor_id = $_POST['proveedor_id']; // Este es el FK_proveedores
 
     // Verificar que los campos no estén vacíos
     if (empty($nom_producto) || empty($categoria_prod_idcat) || empty($precio) || empty($prod_descrp) || empty($proveedor_id)) {
+=======
+    $prod_descrip = $_POST['descripcion'];
+    $proveedor_id = $_POST['proveedor_id']; // Este es el FK_proveedores
+
+    // Verificar que los campos no estén vacíos
+    if (empty($nom_producto) || empty($categoria_prod_idcat) || empty($precio) || empty($prod_descrip) || empty($proveedor_id)) {
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         echo '<script>alert("Por favor, complete todos los campos.");
         location.assign("añadirProducto.php");
         </script>';
@@ -23,7 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Manejo de la imagen
+<<<<<<< HEAD
     $upload_dir = realpath('../../uploads');
+=======
+    $upload_dir = realpath('../uploads');
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
     $image_name = null;
 
     if ($_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
@@ -45,8 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Preparar la consulta SQL para evitar inyección SQL
+<<<<<<< HEAD
     $stmt = $conectar->prepare("INSERT INTO productos (nom_producto, prod_descrp, categoria_prod_idcat, precio, img_producto, FK_proveedores) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssisi", $nom_producto, $prod_descrp, implode(',', $categoria_prod_idcat), $precio, $image_name, $proveedor_id);
+=======
+    $stmt = $conectar->prepare("INSERT INTO productos (nom_producto, prod_descrip, categoria_prod_idcat, precio, img_producto, FK_proveedores) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssisi", $nom_producto, $prod_descrip, implode(',', $categoria_prod_idcat), $precio, $image_name, $proveedor_id);
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
     // Ejecutar la consulta
     if ($stmt->execute()) {

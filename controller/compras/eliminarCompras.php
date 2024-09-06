@@ -1,7 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+<<<<<<< HEAD
 require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+=======
+require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 if (isset($_GET['id'])) {
     $idCompras = $_GET['id'];

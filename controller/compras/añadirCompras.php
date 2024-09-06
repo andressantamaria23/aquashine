@@ -1,7 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+<<<<<<< HEAD
 require "../../config/conexion.php";
+=======
+require "../conexion.php";
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 // Verificar la conexión a la base de datos
 if (!$conectar) {
@@ -22,12 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cantidad = $_POST['cantidad'];
     $precioUnitario = $_POST['precioUnitario'];
     $precioTotal = $_POST['precioTotal'];
+<<<<<<< HEAD
+=======
+    $estado = $_POST['estado'];
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
     $observaciones = !empty($_POST['observaciones']) ? $_POST['observaciones'] : NULL;
     $fk_proveedores = $_POST['fk_proveedores']; 
     $fk_producto = $_POST['fk_producto']; 
 
     // Verificar que los campos obligatorios no estén vacíos
+<<<<<<< HEAD
     if (empty($fechaCompra) || empty($cantidad) || empty($precioUnitario) || empty($precioTotal) || empty($fk_proveedores) || empty($fk_producto)) {
+=======
+    if (empty($fechaCompra) || empty($cantidad) || empty($precioUnitario) || empty($precioTotal) || empty($estado) || empty($fk_proveedores) || empty($fk_producto)) {
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         echo '<script>alert("Por favor, complete todos los campos obligatorios.");
         location.assign("añadirCompras.php");
         </script>';
@@ -35,10 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Preparar la consulta SQL para evitar inyección SQL
+<<<<<<< HEAD
     $stmt = $conectar->prepare("INSERT INTO compras (fechaCompra, cantidad, precioUnitario, precioTotal, observaciones, FK_proveedores, FK_producto) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     // Vincular parámetros, teniendo en cuenta que observaciones puede ser NULL
     $stmt->bind_param("sisssii", $fechaCompra, $cantidad, $precioUnitario, $precioTotal, $observaciones, $fk_proveedores, $fk_producto);
+=======
+    $stmt = $conectar->prepare("INSERT INTO compras (fechaCompra, cantidad, precioUnitario, precioTotal, estado, observaciones, FK_proveedores, FK_producto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+    // Vincular parámetros, teniendo en cuenta que observaciones puede ser NULL
+    $stmt->bind_param("sissssii", $fechaCompra, $cantidad, $precioUnitario, $precioTotal, $estado, $observaciones, $fk_proveedores, $fk_producto);
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
@@ -173,6 +192,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="number" id="precioTotal" name="precioTotal" placeholder="Ingrese el precio total" required>
             </div>
 
+<<<<<<< HEAD
+=======
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <input type="text" id="estado" name="estado" placeholder="Ingrese el estado" required>
+            </div>
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
             <div class="form-group">
                 <label for="observaciones">Observaciones</label>

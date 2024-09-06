@@ -1,7 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+<<<<<<< HEAD
 require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+=======
+require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 if (isset($_GET['id'])) {
     $idCompras = $_GET['id'];
@@ -33,20 +37,34 @@ if (isset($_GET['id'])) {
         $cantidad = $_POST['cantidad'];
         $precioUnitario = $_POST['precioUnitario'];
         $precioTotal = $_POST['precioTotal'];
+<<<<<<< HEAD
+=======
+        $estado = $_POST['estado'];
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         $observaciones = $_POST['observaciones'];
         $FK_producto = $_POST['FK_producto'];
         $FK_proveedores = $_POST['FK_proveedores'];
 
         // Verificar los datos del formulario
+<<<<<<< HEAD
         if (empty($fechaCompra) || empty($cantidad) || empty($precioUnitario) || empty($precioTotal) || empty($FK_producto) || empty($FK_proveedores)) {
+=======
+        if (empty($fechaCompra) || empty($cantidad) || empty($precioUnitario) || empty($precioTotal) || empty($estado) || empty($FK_producto) || empty($FK_proveedores)) {
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
             echo "Error: Todos los campos son obligatorios.";
             exit();
         }
 
         // Crear la consulta SQL para actualizar la compra
+<<<<<<< HEAD
         $sql = "UPDATE compras SET fechaCompra = ?, cantidad = ?, precioUnitario = ?, precioTotal = ?, observaciones = ?, FK_producto = ?, FK_proveedores = ? WHERE idCompras = ?";
         if ($stmt = mysqli_prepare($conectar, $sql)) {
             mysqli_stmt_bind_param($stmt, "sisssiii", $fechaCompra, $cantidad, $precioUnitario, $precioTotal, $observaciones, $FK_producto, $FK_proveedores, $idCompras);
+=======
+        $sql = "UPDATE compras SET fechaCompra = ?, cantidad = ?, precioUnitario = ?, precioTotal = ?, estado = ?, observaciones = ?, FK_producto = ?, FK_proveedores = ? WHERE idCompras = ?";
+        if ($stmt = mysqli_prepare($conectar, $sql)) {
+            mysqli_stmt_bind_param($stmt, "sissssiii", $fechaCompra, $cantidad, $precioUnitario, $precioTotal, $estado, $observaciones, $FK_producto, $FK_proveedores, $idCompras);
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
             if (mysqli_stmt_execute($stmt)) {
                 // Verificar si se actualizaron filas
                 if (mysqli_stmt_affected_rows($stmt) > 0) {
@@ -109,7 +127,15 @@ if (isset($_GET['id'])) {
                            type="text" id="precioTotal" name="precioTotal" value="<?php echo htmlspecialchars($compra['precioTotal']); ?>" required>
                 </div>
 
+<<<<<<< HEAD
            
+=======
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="estado">Estado</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                           type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($compra['estado']); ?>" required>
+                </div>
+>>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="observaciones">Observaciones</label>
