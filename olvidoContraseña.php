@@ -65,11 +65,11 @@
         <div class="relative z-10 flex items-center justify-center h-full">
             <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h2 class="text-2xl font-semibold text-center mb-6">INICIO DE SESIÓN</h2>
-                <form action="reset_password_request.php" method="post">
+                <form action="email/index.php" method="post">
                     <div class="relative flex w-full flex-col flex-wrap items-stretch mb-4">
                         <input type="email" name="email" placeholder="Correo electrónico" class="px-4 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
                     </div>
-                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-md hover:bg-primary-accent-300 active:bg-primary-600 transition duration-300">Enviar enlace de restablecimiento</button>
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-md hover:bg-primary-accent-300 active:bg-primary-600 transition duration-300">Enviar </button>
                 </form>
                 <div class="text-center mt-4">
                     <a href="login.php" class="text-sm text-gray-500 hover:text-gray-700">Volver al inicio de sesión</a>
