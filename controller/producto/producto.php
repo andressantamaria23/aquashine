@@ -11,7 +11,6 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-image: url('../img/fondo.jpg'); /* Ruta a la imagen de fondo */
             background-size: cover;
             background-position: center;
             color: #333;
@@ -111,7 +110,7 @@
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-            <img class="h-8 w-auto" src="../img/aquashine.png" alt="Your Company">
+            <img class="h-8 w-auto" src="../../static/img/aquashine.png" alt="Your Company">
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
@@ -175,7 +174,7 @@
             <?php
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
-            require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+            require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
 
             $sql = "SELECT * FROM productos";
             $result = mysqli_query($conectar, $sql);
@@ -187,7 +186,7 @@
                         <td class='px-6 py-4'>{$row['nom_producto']}</td>
                         <td class='px-6 py-4'>{$row['categoria_prod_idcat']}</td>
                         <td class='px-6 py-4'>{$row['precio']}</td>
-                        <td class='px-6 py-4'>{$row['prod_descrip']}</td>
+                        <td class='px-6 py-4'>{$row['prod_descrp']}</td>
                         <td class='px-6 py-4'>{$row['img_producto']}</td>
 
                         <td class='px-6 py-4 actions'>

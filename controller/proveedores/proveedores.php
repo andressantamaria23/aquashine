@@ -111,7 +111,7 @@
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-            <img class="h-8 w-auto" src="../img/aquashine.png" alt="Your Company">
+            <img class="h-8 w-auto" src="../../static/img/aquashine.png" alt="Your Company">
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
@@ -171,7 +171,7 @@
             <?php
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
-            require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+            require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
 
             $sql = "SELECT * FROM proveedores";
             $result = mysqli_query($conectar, $sql);

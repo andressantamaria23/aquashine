@@ -1,4 +1,3 @@
-
 <?php
 include("../../../config/conexion.php");
 
@@ -10,29 +9,38 @@ if (isset($_POST['enviar'])) {
     $apel_usuario = $_POST['apel_usuario'];
     $fecha_nacimiento = $_POST['fecha_nacimiento'];
     $email = $_POST['email'];
-    $contraseña = $_POST['contraseña'];
+    $contrasena = $_POST['contrasena'];
     $FK_rol = $_POST['FK_rol'];
 
-    // Consulta para actualizar los datos del usuario
-    $sql = "UPDATE usuario SET 
-                nom_usuario = '$nom_usuario',
-                apel_usuario = '$apel_usuario',
-                fecha_nacimiento = '$fecha_nacimiento',
-                email = '$email',
-                contraseña = '$contraseña',
-                FK_rol = '$FK_rol'
-            WHERE idUsuario = '$idUsuario'";
+    // Verificar si FK_rol existe en la tabla rol
+    $checkRolSql = "SELECT COUNT(*) as count FROM rol WHERE idRol = '$FK_rol'";
+    $checkRolResult = mysqli_query($conectar, $checkRolSql);
+    $rolCount = mysqli_fetch_assoc($checkRolResult)['count'];
 
-    // Ejecutar la consulta
-    $resultado = mysqli_query($conectar, $sql);
+    if ($rolCount > 0) {
+        // Consulta para actualizar los datos del usuario
+        $sql = "UPDATE usuario SET 
+                    nom_usuario = '$nom_usuario',
+                    apel_usuario = '$apel_usuario',
+                    fecha_nacimiento = '$fecha_nacimiento',
+                    email = '$email',
+                    contrasena = '$contrasena',
+                    FK_rol = '$FK_rol'
+                WHERE idUsuario = '$idUsuario'";
 
-    // Verificar si la actualización fue exitosa
-    if ($resultado) {
-        echo '<script>alert("Se actualizaron los datos correctamente");
-        location.assign("indexAdmin.php");</script>';
+        // Ejecutar la consulta
+        $resultado = mysqli_query($conectar, $sql);
+
+        // Verificar si la actualización fue exitosa
+        if ($resultado) {
+            echo '<script>alert("Se actualizaron los datos correctamente");
+            location.assign("indexAdmin.php");</script>';
+        } else {
+            echo '<script>alert("Error al actualizar los datos");
+            location.assign("editarUsuario.php?idUsuario='.$idUsuario.'");</script>';
+        }
     } else {
-        echo '<script>alert("Error al actualizar los datos");
-        location.assign("editarUsuario.php?idUsuario='.$idUsuario.'");</script>';
+        echo '<script>alert("Rol no válido"); location.assign("editarUsuario.php?idUsuario='.$idUsuario.'");</script>';
     }
 
     // Cerrar la conexión
@@ -55,7 +63,7 @@ if (isset($_POST['enviar'])) {
             $apel_usuario = $fila['apel_usuario'];
             $fecha_nacimiento = $fila['fecha_nacimiento'];
             $email = $fila['email'];
-            $contraseña = $fila['contraseña'];
+            $contrasena = $fila['contrasena'];
             $FK_rol = $fila['FK_rol'];
         } else {
             echo '<script>alert("Usuario no encontrado"); location.assign("indexAdmin.php");</script>';
@@ -70,6 +78,7 @@ if (isset($_POST['enviar'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -118,9 +127,9 @@ if (isset($_POST['enviar'])) {
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="contraseña">Contraseña</label>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="contrasena">Contraseña</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="password" id="contraseña" name="contraseña" value="<?php echo $contraseña;?>" readonly>
+                           type="password" id="contrasena" name="contrasena" value="<?php echo $contrasena;?>" readonly>
                 </div>
 
                 <div class="mb-4">

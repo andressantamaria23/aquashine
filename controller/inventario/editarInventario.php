@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
 
 if (isset($_GET['id'])) {
     $idInventario = $_GET['id'];

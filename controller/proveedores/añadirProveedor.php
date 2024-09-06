@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
+require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtener los datos del formulario y sanitizarlos
@@ -157,6 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="submit" class="btn">
                     Añadir Proveedor
                 </button>
+                <a href="proveedores.php" class="btn-cancel">
+                    Cancelar
+                </a>
             </div>
         </form>
     </div>

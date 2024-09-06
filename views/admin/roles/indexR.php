@@ -127,16 +127,23 @@ include("../../../config/conexion.php");
                                 </span>
                             </div>
                         </div>
-                        <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="Roles">
-                            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar</h1>
-                            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar</h1>
-                        
-                        </div>
+                        <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="submenu">
+    <a href="agregarRol.php" class="block cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
+        Agregar
+    </a>
+    <a href="indexRol.php" class="block cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
+        Visualizar
+    </a>
+</div>
+
                         <hr class="my-4 text-gray-600">
 
                         <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                             <i class="bi bi-box-arrow-in-right"></i>
-                            <span class="text-[15px] ml-4 text-gray-200">Logout</span>
+                            <a href="../../../Index.php" class="text-[15px] ml-4 text-gray-200 hover:text-gray-400 no-underline">
+    <span>Logout</span>
+</a>
+
                         </div>
 
                     </div>

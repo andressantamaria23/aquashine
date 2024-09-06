@@ -1,5 +1,5 @@
 <?php
-  include("../../config/Conexion.php");
+  include("../../../config/conexion.php");
   
   $sql = "SELECT * FROM servicios";
   
@@ -23,7 +23,7 @@
 .hero-section {
             position: relative;
             height: 300px; 
-            background-image: url('../../static/img/c111.jpg'); 
+            background-image: url('../../../static/img/c111.jpg'); 
             background-size: cover;
             background-position: center;
             color: white;
@@ -131,22 +131,22 @@
       </div>
       <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
           <div class="text-sm lg:flex-grow">
-              <a href="../../index.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600  mr-4">
-                  HOME
+              <a href="../../../index.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600  mr-4">
+                  INICIO
               </a>
-              <a href="index.html" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
+              <a href="indexP.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
                   SERVICIOS
               </a>
-              <a href="../ventas.html" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
+              <a href="../../ventas/ventas.html" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
                   TIENDA
               </a>
-              <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600">
-                SOBRE NOSOTROS
+              <a href="../../../ayuda/ayuda.php" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600">
+                AYUDA
             </a>
             
           </div>
           <div>
-              <a href="login.html" class="inline-block text-gray-200  text-sm px-4 py-2 leading-none border rounded  hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
+              <a href="../../../login.php" class="inline-block text-gray-200  text-sm px-4 py-2 leading-none border rounded  hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
           </div>
       </div>
   
@@ -269,20 +269,7 @@ class=" mt-1">
         </svg>
       </a>
     </div>
-    <div class=" p-6 flex flex-col items-center bg-gray-900 text-center text-white">
-      <div class="">
-        <p class="flex items-center justify-center">
-          <span class="me-4">REGISTRATE ES GRATIS  </span>
-          <a href="register.html"
-            type="button"
-            class="inline-block rounded-full border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-300 hover:text-gray-900 focus:border-neutral-300 focus:text-neutral-200 focus:outline-none focus:ring-0 active:border-neutral-300 active:text-neutral-200 hover:bg-purple-300 dark:focus:bg-neutral-600"
-            data-twe-ripple-init
-            data-twe-ripple-color="light">
-            REGISTRATE! 
-        </a>
-        </p>
-      </div>
-    </div>
+   
   </div>
 
 

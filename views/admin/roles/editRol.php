@@ -70,7 +70,7 @@ if (isset($_POST['enviar'])) {
     <div class="container mx-auto px-4 py-12">
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
             <h1 class="text-2xl font-semibold text-center mb-4 text-blue-600">Editar Rol</h1>
-            <form action="editarRol.php?idRol=<?php echo $fila['idRol']; ?>" method="POST">
+            <form action="editRol.php?idRol=<?php echo $fila['idRol']; ?>" method="POST">
                 <input type="hidden" name="idRol" value="<?php echo htmlspecialchars($fila['idRol']); ?>">
 
                 <div class="mb-4">

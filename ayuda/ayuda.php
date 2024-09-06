@@ -30,26 +30,117 @@
             </div>
             <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
                 <div class="text-sm lg:flex-grow">
-                    <a href="Index.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600 mr-4">
+                    <a href="../Index.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600 mr-4">
                         INICIO
                     </a>
-                    <a href="./views/servicios/indexP.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600 mr-4">
+                    <a href="../views/servicios/user/indexP.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600 mr-4">
                         SERVICIOS
                     </a>
-                    <a href="./views/ventas/ventas.html" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
+                    <a href="../views/ventas/ventas.html" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
                         TIENDA
                     </a>
-                    <a href="./ayuda/ayuda.php" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
+                    <a href="ayuda.php" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
                       AYUDA
                   </a>
                   
                 </div>
                 <div>
-                    <a href="login.html" class="inline-block text-gray-200 text-sm px-4 py-2 leading-none border rounded hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
+                    <a href="../login.php" class="inline-block text-gray-200 text-sm px-4 py-2 leading-none border rounded hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
                 </div>
             </div>
         </nav>
     </header>
+
+
+<body class="bg-gray-100">
+  <div class="flex h-screen">
+    <div class="bg-white w-64 p-4 shadow-md">
+      <div class="mb-6">
+        <a href="#" class="flex items-center">
+          <img src="../static/img/aquashine.png" alt="Logo" class="h-8">
+          <span class="ml-2 text-xl font-semibold">Servicio de ayuda</span>
+        </a>
+      </div>
+      <ul class="space-y-4">
+        <li>
+          <a href="#" class="flex items-center p-3 rounded-md bg-gray-50 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13.059m0-13.059l-7.495 7.495m7.495-7.495L21 12m-7.495 7.495L12 21" />
+            </svg>
+            <span class="ml-3 font-medium">Funciones de AquaShine</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-3 rounded-md bg-gray-50 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 01-8 0 4 4 0 01-8 0V5.25m8 12.5V15m-8 0V5.25m8 12.5V15m-8 0V5.25" />
+            </svg>
+            <span class="ml-3 font-medium">Administrar tu cuenta</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-3 rounded-md bg-gray-50 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V5a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2z" />
+            </svg>
+            <span class="ml-3 font-medium">Seguridad</span>
+          </a>
+        </li>
+     
+        <li>
+          <a href="#" class="flex items-center p-3 rounded-md bg-gray-50 hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-gray-500">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="ml-3 font-medium">Condiciones y políticas</span>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+    <div class="flex-grow p-4">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold mb-4">¿En qué podemos ayudarte?</h2>
+        <div class="flex items-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-gray-500">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="text" placeholder="Buscar..." class="ml-3 flex-grow rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Temas destacados</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#" class="text-blue-500 hover:underline">Inicio de sesión</a>
+          </li>
+          <li>
+            <a href="#" class="text-blue-500 hover:underline">Registro de usuario</a>
+          </li>
+          <li>
+            <a href="#" class="text-blue-500 hover:underline">Proceso de reserva</a>
+          </li>
+          <li>
+            <a href="#" class="text-blue-500 hover:underline">Compras, carrito y productos</a>
+          </li>
+          <li>
+            <a href="#" class="text-blue-500 hover:underline">Servicios</a>
+          </li>
+          <li>
+            <a href="#" class="text-blue-500 hover:underline">Mi perfil de AquaShine</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-gray-200 p-4 w-64">
+      <div class="flex justify-between items-center">
+        <span class="text-gray-600 font-medium">Español (España)</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-gray-500">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
 
     
     <footer class="bg-gray-900 text-gray-200 py-6">
