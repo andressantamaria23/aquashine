@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+  
+
+
+
     <title>ADMINISTRADOR</title>
 </head>
 <body class="mx-auto font-[Poppins]">
@@ -189,8 +195,7 @@ include("../../../config/conexion.php");
 <div class="overflow-x-auto bg-white dark:bg-neutral-700">
 
 <!-- Table -->
-<table class="min-w-full text-left text-sm whitespace-nowrap mb-3" >
-
+<table class="min-w-full text-left text-sm whitespace-nowrap mb-3" id="myTable">
   <!-- Table head -->
   <thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 border-t">
     <tr>
@@ -198,52 +203,58 @@ include("../../../config/conexion.php");
         ID
       </th>
       <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-        nombre
+        Nombre
       </th>
       <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-        apellido
+        Apellido
       </th>
       <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-        fecha Nacimiento
+        Fecha Nacimiento
       </th>
       <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-        email
+        Email
       </th>
       <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
         Rol
       </th>
       <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-        Editar
-      </th>
-      <th scope="col" class="mx-auto px-6 py-5 border-x dark:border-neutral-600">
-        Eliminar
+        Acciones
       </th>
     </tr>
   </thead>
 
   <!-- Table body -->
   <tbody>
-  <?php
-         while ($fila = mysqli_fetch_assoc($resultado)) {
-            echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
-            echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['idUsuario'] .'</th>';
-            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_usuario'] . '</td>';
-            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['apel_usuario'] .'</td>';
-            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['fecha_nacimiento'] .'</td>';
-            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['email'] .'</td>';
-            echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_rol'] .'</td>';
-            echo "<td><a class='mx-auto inline-block rounded bg-indigo-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-indigo-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='editarUsuario.php?idUsuario=" . $fila['idUsuario'] . "''>Editar</a></td>";
-             echo "<td><a class='inline-block rounded bg-red-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-red-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='../../../controller/Admin/deleteAdmin.php?idUsuario=" . $fila['idUsuario'] . "''>Eliminar</a></td>";
-            echo '</tr>';
-        }
+    <?php
+      while ($fila = mysqli_fetch_assoc($resultado)) {
+        echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
+        echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['idUsuario'] .'</th>';
+        echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_usuario'] . '</td>';
+        echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['apel_usuario'] .'</td>';
+        echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['fecha_nacimiento'] .'</td>';
+        echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['email'] .'</td>';
+        echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_rol'] .'</td>';
+        echo '<td class="px-6 py-5 border-x dark:border-neutral-600 text-center">'; // Ajuste en la clase
+        echo '<div class="flex justify-center space-x-4">'; // Contenedor para centrar y espaciado
+        echo "<a class='bi bi-pencil-square text-blue-500 p-1 rounded' href='editarUsuario.php?idUsuario=" . $fila['idUsuario'] . "'></a>";
+        echo "<a class='bi bi-trash text-red-600  p-1 rounded' href='../../../controller/Admin/deleteAdmin.php?idUsuario=" . $fila['idUsuario'] . "'></a>";
+        echo '</div>';
+        echo '</td>';
+        echo '</tr>';
+      }
     ?>
-</tbody>
-
-
+  </tbody>
 </table>
+
 
 </div>
         </div>
-
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+    </body>
 </html>

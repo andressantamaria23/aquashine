@@ -1,7 +1,8 @@
 
 <?php
 include("../../../config/conexion.php");
-
+$sql = "SELECT idRol, nom_rol FROM rol";
+    $result = mysqli_query($conectar, $sql);
 // Comprobar si se ha enviado el formulario
 if (isset($_POST['enviar'])) {
     // Obtener los datos enviados por POST
@@ -13,7 +14,7 @@ if (isset($_POST['enviar'])) {
     $contraseña = $_POST['contraseña'];
     $FK_rol = $_POST['FK_rol'];
 
-    // Consulta para actualizar los datos del usuario
+
     $sql = "UPDATE usuario SET 
                 nom_usuario = '$nom_usuario',
                 apel_usuario = '$apel_usuario',
@@ -35,7 +36,7 @@ if (isset($_POST['enviar'])) {
         location.assign("editarUsuario.php?idUsuario='.$idUsuario.'");</script>';
     }
 
-    // Cerrar la conexión
+    
     mysqli_close($conectar);
 
 } else {
@@ -84,7 +85,7 @@ if (isset($_POST['enviar'])) {
     <div class="container mx-auto px-4 py-12">
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
             <h1 class="text-2xl font-semibold text-center mb-4 text-blue-600">Editar Usuario</h1>
-            <form action="<?=$_SERVER['PHP_SELF']?>" method="POST">
+            <form action="<?=$_SERVER['PHP_SELF']?>" method="POST" class="grid grid-cols-2 gap-x-6 gap-y-4">
                 <input type="hidden" name="idUsuario" value="<?php echo htmlspecialchars($idUsuario); ?>">
 
                 <div class="mb-4">
@@ -125,10 +126,18 @@ if (isset($_POST['enviar'])) {
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="FK_rol">Rol</label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="number" id="FK_rol" name="FK_rol" value="<?php echo $FK_rol;?>">
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="FK_rol" name="FK_rol" required>
+                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <option value="<?php echo $row['idRol']; ?>">
+                                <?php echo htmlspecialchars($row['nom_rol']); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
                 </div>
+                
 
+                <div class="col-span-2">
                 <div class="flex items-center justify-between">
                     <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="enviar">
                         Guardar Cambios
@@ -136,6 +145,7 @@ if (isset($_POST['enviar'])) {
                     <a href="indexAdmin.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
                         Cancelar
                     </a>
+                </div>
                 </div>
             </form>
         </div>

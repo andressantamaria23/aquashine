@@ -103,15 +103,15 @@ include("../../../config/conexion.php");
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                         <i class="bi bi-person-fill"></i>
                             <div class="flex justify-between w-full items-center" onclick="dropDown()">
-                                <span class="text-[15px] ml-4 text-gray-200">USUARIOS</span>
+                                <a  class="text-[15px] ml-4 text-gray-200">USUARIOS</a>
                                 <span class="text-sm rotate-180" id="arrow">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
                             </div>
                         </div>
                         <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="submenu">
-                            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar</h1>
-                            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar</h1>
+                            <a href="../user/agregarU.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar</a> <br> 
+                            <a href="../user/indexAdmin.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar</a>
                         
                         </div>
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">

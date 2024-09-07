@@ -104,6 +104,15 @@
     </style>
 </head>
 <body>
+
+<?php
+include("../../../config/conexion.php");
+
+
+  
+$sql = "SELECT idRol, nom_rol FROM rol";
+$result = mysqli_query($conectar, $sql);
+  ?>
     <div class="form-container mx-auto">
         <h2>Registrar Usuario</h2>
         <form action="../../../controller/Admin/agregarUAd.php" method="POST">
@@ -134,13 +143,28 @@
             </div>
 
             <div class="form-group">
-                <input type="number" id="FK_rol" name="FK_rol" placeholder=" " required>
-                <label for="FK_rol">Rol</label>
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="FK_rol" name="FK_rol" required>
+                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <option value="<?php echo $row['idRol']; ?>">
+                                <?php echo htmlspecialchars($row['nom_rol']); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                <label for="FK_rol  ">Rol</label>
             </div>
 
-            <div class="btn-container">
-                <button type="submit" class="btn">Registrar</button>
-            </div>
+            <div class="col-span-2">
+                <div class="flex items-center justify-between">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="enviar">
+                        Registrar
+                    </button>
+                    <a href="indexAdmin.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
+                        Cancelar
+                    </a>
+                </div>
+                </div>
+            
         </form>
     </div>
 </body>
