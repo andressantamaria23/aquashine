@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Rol</title>
+    <title>Agendar Servicio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -104,25 +104,61 @@
     </style>
 </head>
 <body>
+<?php
+include("../../../config/conexion.php");
+
+
+  
+  $sql = "SELECT idServicios, nom_servicio, precio FROM servicios ";
+  
+  
+  $resultado = mysqli_query($conectar, $sql);
+
+  ?>
     <div class="form-container mx-auto">
-        <h2>Registrar Rol</h2>
-        <form action="../../../controller/Admin/agregarRol.php" method="POST">
+        <h2>Agendar  Servicio</h2>
+        <form action="../../../controller/servicios/agendarservicio.php" method="POST">
             <div class="form-group">
-                <input type="text" id="nom_rol" name="nom_rol" placeholder=" " required>
-                <label for="nom_rol">Nombre Rol</label>
+                <input type="date" id="fecha_reserva" name="fecha_reserva" placeholder=" " required>
+                <label for="fecha_reserva"> fecha Reserva</label>
             </div>
 
             <div class="form-group">
-                <input type="text" id="descripcion" name="descripcion" placeholder=" " required>
-                <label for="descripcion">Descripción</label>
+                <input type="time" id="hora_reserva" name="hora_reserva" placeholder=" " required>
+                <label for="hora_reserva">Hora reserva</label>
             </div>
 
-            <div class="col-span-2">
+            <div class="form-group hidden">
+                <input type="estado" id="estado" name="estado" placeholder=" " required value="Pendiente">
+                <label for="estado"> estado</label>
+            </div>
+
+            <div class="form-group hidden">
+                <input type="estado" id="estado" name="estado" placeholder=" " required value="Pendiente">
+                <label for="estado"> estado</label>
+            </div>
+
+            <div class="form-group hidden">
+                <input type="usuario" id="FK_usuario" name="FK_usuario" placeholder=" " required value="2">
+                <label for="usuario"> usuario</label>
+            </div>
+            <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="FK_servicios">Servicios</label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="FK_servicios" name="FK_servicios" required>
+                        <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+                            <option value="<?php echo $row['idServicios']; ?>">
+                                <?php echo htmlspecialchars($row['nom_servicio']); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="col-span-2">
                 <div class="flex items-center justify-between">
                     <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="enviar">
                         Registrar
                     </button>
-                    <a href="indexR.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
+                    <a href="viewReservas.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
                         Cancelar
                     </a>
                 </div>

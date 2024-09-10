@@ -16,7 +16,7 @@ $query = mysqli_query($conectar,$insert);
 if($query){
 
     echo '<script>alert("Usuario Registrado");
-    location.assign("../../login.php");
+    location.assign("../../login.html");
     </script>';
 
 }else{

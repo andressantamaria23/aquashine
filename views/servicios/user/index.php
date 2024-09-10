@@ -49,7 +49,7 @@ if ($varsesion == null || $varsesion == '') {
                 <ul class="list-style-none me-auto flex flex-col ps-0 lg:flex-row" data-twe-navbar-nav-ref>
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
                         <!-- Enlace al Dashboard -->
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>Servicios</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="viewservicesU.php" data-twe-nav-link-ref>Servicios</a>
                     </li>
                     <!-- Enlace al Equipo -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
@@ -57,7 +57,7 @@ if ($varsesion == null || $varsesion == '') {
                     </li>
                     <!-- Enlace a Proyectos -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>Vehículos</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="viewCar.php" data-twe-nav-link-ref>Vehículos</a>
                     </li>
                 </ul>
             </div>
@@ -68,7 +68,7 @@ if ($varsesion == null || $varsesion == '') {
                 <!-- Primer contenedor desplegable -->
                 <div class="relative" data-twe-dropdown-ref data-twe-dropdown-alignment="start">
                     <!-- Primer desencadenante del desplegable -->
-                    <a class="me-4 flex items-center text-gray-200 dark:text-white" href="#" id="dropdownMenuButton1" role="button" data-twe-dropdown-toggle-ref aria-expanded="false">
+                    <a class="me-4 flex items-center text-gray-200 dark:text-white" href="perfil.php" id="dropdownMenuButton1" role="button" data-twe-dropdown-toggle-ref aria-expanded="false">
                         <!-- Icono del desencadenante del desplegable -->
                         <span class="[&>svg]:w-5">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -123,9 +123,9 @@ if ($varsesion == null || $varsesion == '') {
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="submenu">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar vehiculo</h1>
-                                <a href="viewCar.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar Vehiculo</a>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Estado vehiculo</h1>
+                            <a href="agregarCar.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar Vehiculos</a> <br> 
+                                <a href="viewCar.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">visualizar Vehiculos</a> <br> 
+                                <a  class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">estado Vehiculos</a> <br> 
                             </div>
                             <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-cart2"></i>
@@ -141,8 +141,8 @@ if ($varsesion == null || $varsesion == '') {
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="Roles">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">adquirir servicio</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar servicios</h1>
+                            <a href="agendarservicio.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Adquirir Servicio</a> <br> 
+                            <a href="viewservicesU.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar Servicios</a> <br> 
                             
                             </div>
                             <hr class="my-4 text-gray-600">
@@ -178,7 +178,7 @@ if ($varsesion == null || $varsesion == '') {
 <div class="flex justify-center mt-10 ml-10">
     <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div class="bg-white p-4 rounded-lg shadow-lg border">
-        <a href="#" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
+        <a href="viewCar.php" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
           <div class="mb-2 flex justify-center">
             <span class="text-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-car-front" viewBox="0 0 16 16">
@@ -192,7 +192,7 @@ if ($varsesion == null || $varsesion == '') {
       </div>
   
       <div class="bg-white p-4 rounded-lg shadow-lg border">
-        <a href="#" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
+        <a href="viewservicesU.php" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
           <div class="mb-2 flex justify-center">
             <span class="text-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">

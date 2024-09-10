@@ -118,8 +118,8 @@ include("../../../config/conexion.php");
                             </div>
                         </div>
                         <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="submenu">
-                            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar</h1>
-                            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar</h1>
+                            <a href="agregarU.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar</a> <br> 
+                            <a href="indexAdmin.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar</a>
                         
                         </div>
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
@@ -136,8 +136,8 @@ include("../../../config/conexion.php");
                             </div>
                         </div>
                         <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="Roles">
-                            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar</h1>
-                            <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar</h1>
+                            <a href="../roles/agregarRol.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar</a> <br> 
+                            <a href="../roles/indexR.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar</a>
                         
                         </div>
                         <hr class="my-4 text-gray-600">

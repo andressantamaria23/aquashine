@@ -25,10 +25,14 @@ if ($filas) {
     } elseif ($filas['FK_rol'] == 4) { // Vendedor
         header("location:../controller/trabajador/vistaTrabajador.html");
     } else {
-        echo '<h1 class="bad">Datos incorrectos</h1>';
+        echo '<script>alert("usuario no encontrado");
+    location.assign("../login.php");
+    </script>';
     }
 } else {
-    echo '<h1 class="bad">Datos incorrectos</h1>';
+    echo '<script>alert("DATOS INCORRECTOS");
+    location.assign("../login.php");
+    </script>';
 }
 
 mysqli_free_result($resultado);

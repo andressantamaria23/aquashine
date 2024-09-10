@@ -72,7 +72,7 @@ include("../../../config/conexion.php");
                 <!-- Primer contenedor desplegable -->
                 <div class="relative" data-twe-dropdown-ref data-twe-dropdown-alignment="start">
                     <!-- Primer desencadenante del desplegable -->
-                    <a class="me-4 flex items-center text-gray-200 dark:text-white" href="#" id="dropdownMenuButton1" role="button" data-twe-dropdown-toggle-ref aria-expanded="false">
+                    <a class="me-4 flex items-center text-gray-200 dark:text-white" href="perfil.php" id="dropdownMenuButton1" role="button" data-twe-dropdown-toggle-ref aria-expanded="false">
                         <!-- Icono del desencadenante del desplegable -->
                         <span class="[&>svg]:w-5">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -127,9 +127,9 @@ include("../../../config/conexion.php");
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="submenu">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar vehiculo</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar vehiculos</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Estado vehiculo</h1>
+                                <a href="agregarCar.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar Vehiculos</a> <br> 
+                                <a href="viewCar.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">visualizar Vehiculos</a> <br> 
+                                <a  class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">estado Vehiculos</a> <br> 
                             </div>
                             <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-cart2"></i>
@@ -145,15 +145,15 @@ include("../../../config/conexion.php");
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="Roles">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">adquirir servicio</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar servicios</h1>
+                            <a href="agendarservicio.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Adquirir Servicio</a> <br> 
+                            <a href="viewservicesU.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar Servicios</a> <br> 
                             
                             </div>
                             <hr class="my-4 text-gray-600">
     
                             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-box-arrow-in-right"></i>
-                                <span class="text-[15px] ml-4 text-gray-200">Logout</span>
+                                <a href="../../../config/cerrarsesion.php" class="text-[15px] ml-4 text-gray-200">Logout</a>
                             </div>
     
                         </div>

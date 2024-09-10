@@ -53,14 +53,14 @@ include("../../../config/conexion.php");
                 <ul class="list-style-none me-auto flex flex-col ps-0 lg:flex-row" data-twe-navbar-nav-ref>
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
                         <!-- Enlace al Dashboard -->
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>Servicios</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="vierwServicesE.php" data-twe-nav-link-ref>Servicios</a>
                     </li>
                     <!-- Enlace al Equipo -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
                     </li>
                     <!-- Enlace a Proyectos -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>Vehículos</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="viewCar.php" data-twe-nav-link-ref>Vehículos</a>
                     </li>
                 </ul>
             </div>
@@ -138,8 +138,8 @@ include("../../../config/conexion.php");
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="Roles">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">añadir servicio</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar servicios</h1>
+                            <a href="agendarservicio.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Añadir servicio</a> <br> 
+                            <a href="viewServicesE.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar servicio</a>
                             
                             </div>
                             <hr class="my-4 text-gray-600">

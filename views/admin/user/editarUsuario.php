@@ -52,12 +52,12 @@ if (isset($_POST['enviar'])) {
         if ($resultado && mysqli_num_rows($resultado) > 0) {
             // Obtener los datos del usuario
             $fila = mysqli_fetch_assoc($resultado);
-            $nom_usuario = $fila['nom_usuario'];
-            $apel_usuario = $fila['apel_usuario'];
-            $fecha_nacimiento = $fila['fecha_nacimiento'];
-            $email = $fila['email'];
-            $contraseña = $fila['contraseña'];
-            $FK_rol = $fila['FK_rol'];
+                $nom_usuario = $fila['nom_usuario'];
+                $apel_usuario = $fila['apel_usuario'];
+                $fecha_nacimiento = $fila['fecha_nacimiento'];
+                $email = $fila['email'];
+                $contraseña = $fila['contraseña'];
+                $FK_rol = $fila['FK_rol'];
         } else {
             echo '<script>alert("Usuario no encontrado"); location.assign("indexAdmin.php");</script>';
             exit();

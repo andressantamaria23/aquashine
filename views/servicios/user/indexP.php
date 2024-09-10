@@ -19,107 +19,104 @@
     <title>SERVICIOS</title>
 </head>
 <style>
+  .hero-section {
+    position: relative;
+    height: 300px;
+    background-image: url('../../static/img/c111.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 
-.hero-section {
-            position: relative;
-            height: 300px; 
-            background-image: url('../../static/img/c111.jpg'); 
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(255, 0, 0, 0.6);
+    z-index: 1;
+  }
 
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: rgba(255, 0, 0, 0.6); /* Filtro rojo semitransparente */
-            z-index: 1;
-        }
+  .hero-text {
+    z-index: 2;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 
-        .hero-text {
-            z-index: 2;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+  .hero-button {
+    z-index: 2;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: yellow;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
 
-        .hero-button {
-            z-index: 2;
-            font-size: 18px;
-            padding: 10px 20px;
-            background-color: yellow; /* Color del botón */
-            color: black; /* Color del texto del botón */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none; /* Para remover el subrayado si es un enlace */
-        }
-   .logo-container {
-      position: fixed; /* Fija el contenedor en la pantalla */
-      bottom: 20px; /* Espacio desde la parte inferior */
-      right: 20px; /* Espacio desde la parte derecha */
-      width: 60px; /* Diámetro del círculo verde */
-      height: 60px;
-      background-color: #25D366; /* Color verde de WhatsApp */
-      border-radius: 50%; /* Hace que el fondo sea circular */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000; /* Asegura que esté sobre otros elementos */
-    }
-    svg {
-      width: 50px; /* Tamaño del logo de WhatsApp */
-      height: 50px;
-    }
-    a {
-      text-decoration: none; /* Elimina el subrayado de los enlaces */
-    }
+  .logo-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
 
-    .product-cards {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-top: 20px;
-        }
-        .card {
-            flex: 1;
-            margin: 5px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            height: 200px;
-        }
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: sepia(60%);
-        }
-        .card-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+  svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .product-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 10px; /* Espacio entre tarjetas */
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .card {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    height: 200px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+
+  .card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
 </style>
 
-  <link rel="icon" type="image" href="img/aquashine.png">
-</head>
-<body class=" mx-auto mt-5 bg-zinc-50 font-[Poppins] ">
-<header>
+<body class="mx-auto mt-5 bg-zinc-50 font-[Poppins]">
+  <header>
   <nav class="flex items-center justify-between flex-wrap bg-gray-900 border-inset border-2 border-zinc-200 p-6">
       <div class="text-6xl flex items-center flex-shrink-0 text-blue-600 mr-6">
           <span class="font-semibold text-xl tracking-tight">Aqua Shine</span>
@@ -134,57 +131,50 @@
               <a href="../../../index.php" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600  mr-4">
                   HOME
               </a>
-              <a href="index.html" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
+              <a href="indexP.html" class="px-4 py-2 rounded-full inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600 mr-4">
                   SERVICIOS
               </a>
-              <a href="../ventas.html" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
+              <a href="../../ventas/ventas.html" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md hover:bg-blue-600">
                   TIENDA
               </a>
-              <a href="#responsive-header" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600">
-                SOBRE NOSOTROS
+              <a href="../../../ayuda/ayuda" class="px-4 py-2 rounded-full block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white rounded-md  hover:bg-blue-600">
+                AYUDA
             </a>
             
           </div>
           <div>
-              <a href="login.html" class="inline-block text-gray-200  text-sm px-4 py-2 leading-none border rounded  hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
+              <a href="../../../login.php" class="inline-block text-gray-200  text-sm px-4 py-2 leading-none border rounded  hover:border-transparent hover:text-sky-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
           </div>
       </div>
   
   </nav>
- 
-  <div class="hero-section">
-    <div class="hero-text">Bienvenido a AquaShine<br>¡Servicio profesional </div>
-    <button class="hero-button">Agenda tu cita</button>
-</div>
 
+    <div class="hero-section">
+      <div class="hero-text">Bienvenido a AquaShine<br>¡Servicio profesional</div>
+      <a href="agendarservicio.php" class="hero-button">Agenda tu cita</a>
+    </div>
+  </header>
 
-  <br>
   <div class="flex justify-center items-center h-full">
     <h1 class="text-4xl font-bold mb-4">BIENVENIDOS, QUEREMOS QUE CONOZCAN NUESTROS SERVICIOS</h1>
   </div>
 
-
-
-<div class="product-cards">
-  <div class="card grid grid-cols-6">
-  <?php while ($fila = mysqli_fetch_assoc($resultado)): ?>
-    <div class="card-info">
-    <?php echo $fila['nom_servicio']; ?>
-        <br>
-        <?php echo $fila['descripcion']; ?>
-        <br>
-        <?php echo $fila['precio']; ?>
-        <hr>
-        <a href="servicio.html" class="text-blue-500 underline">¡Aparta tu cita!</a>
-    </div>
+  <div class="product-cards">
+    <?php while ($fila = mysqli_fetch_assoc($resultado)): ?>
+      <div class="card">
+        <div class="card-info">
+          <?php echo $fila['nom_servicio']; ?>
+          <br>
+          <?php echo $fila['descripcion']; ?>
+          <br>
+          <?php echo $fila['precio']; ?>
+          <hr>
+          <a href="servicio.html" class="text-blue-500 underline">¡Aparta tu cita!</a>
+        </div>
+      </div>
     <?php endwhile; ?>
-</div>
-
-    </div>
-
-
-
-</div>
+  </div>
+</body>
 
 
 
@@ -273,7 +263,7 @@ class=" mt-1">
       <div class="">
         <p class="flex items-center justify-center">
           <span class="me-4">REGISTRATE ES GRATIS  </span>
-          <a href="register.html"
+          <a href="../../../register.html"
             type="button"
             class="inline-block rounded-full border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-300 hover:text-gray-900 focus:border-neutral-300 focus:text-neutral-200 focus:outline-none focus:ring-0 active:border-neutral-300 active:text-neutral-200 hover:bg-purple-300 dark:focus:bg-neutral-600"
             data-twe-ripple-init
