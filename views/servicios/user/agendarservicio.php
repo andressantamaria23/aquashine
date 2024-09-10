@@ -112,7 +112,7 @@ include("../../../config/conexion.php");
   $sql = "SELECT idServicios, nom_servicio, precio FROM servicios ";
   
   
-  $resultado = mysqli_query($conectar, $sql);
+  $resultado = mysqli_query($conn, $sql);
 
   ?>
     <div class="form-container mx-auto">

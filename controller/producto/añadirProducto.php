@@ -4,42 +4,25 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Incluir el archivo de conexión
-<<<<<<< HEAD
-require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
-=======
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
+require "../../config/conexion.php"; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtener los datos del formulario y sanitizarlos
     $nom_producto = $_POST['name'];
     $categoria_prod_idcat = $_POST['categoria']; // Esto es un array por el multiple select
     $precio = $_POST['precio'];
-<<<<<<< HEAD
     $prod_descrp = $_POST['descripcion'];
     $proveedor_id = $_POST['proveedor_id']; // Este es el FK_proveedores
 
     // Verificar que los campos no estén vacíos
     if (empty($nom_producto) || empty($categoria_prod_idcat) || empty($precio) || empty($prod_descrp) || empty($proveedor_id)) {
-=======
-    $prod_descrip = $_POST['descripcion'];
-    $proveedor_id = $_POST['proveedor_id']; // Este es el FK_proveedores
-
-    // Verificar que los campos no estén vacíos
-    if (empty($nom_producto) || empty($categoria_prod_idcat) || empty($precio) || empty($prod_descrip) || empty($proveedor_id)) {
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         echo '<script>alert("Por favor, complete todos los campos.");
         location.assign("añadirProducto.php");
         </script>';
         exit();
     }
 
-    // Manejo de la imagen
-<<<<<<< HEAD
     $upload_dir = realpath('../../uploads');
-=======
-    $upload_dir = realpath('../uploads');
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
     $image_name = null;
 
     if ($_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
@@ -61,13 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Preparar la consulta SQL para evitar inyección SQL
-<<<<<<< HEAD
-    $stmt = $conectar->prepare("INSERT INTO productos (nom_producto, prod_descrp, categoria_prod_idcat, precio, img_producto, FK_proveedores) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO productos (nom_producto, prod_descrp, categoria_prod_idcat, precio, img_producto, FK_proveedores) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssisi", $nom_producto, $prod_descrp, implode(',', $categoria_prod_idcat), $precio, $image_name, $proveedor_id);
-=======
-    $stmt = $conectar->prepare("INSERT INTO productos (nom_producto, prod_descrip, categoria_prod_idcat, precio, img_producto, FK_proveedores) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssisi", $nom_producto, $prod_descrip, implode(',', $categoria_prod_idcat), $precio, $image_name, $proveedor_id);
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
@@ -82,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Cerrar la conexión
     $stmt->close();
-    $conectar->close();
+    $conn->close();
 }
 ?>
 
@@ -94,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Registrar Producto</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <style>
         body {
             background-color: #e2e8f0; /* Fondo gris claro para contraste */
@@ -220,7 +197,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <select id="proveedor_id" name="proveedor_id" required>
                     <?php
                     // Obtener los proveedores desde la base de datos
-                    $result = $conectar->query("SELECT idProveedores, Nombre FROM proveedores");
+                    $result = $conn->query("SELECT idProveedores, Nombre FROM proveedores");
+                    if (!$result) {
+                        die("Error en la consulta: " . $conn->error);
+                    }
                     while ($row = $result->fetch_assoc()) {
                         echo '<option value="' . $row['idProveedores'] . '">' . $row['Nombre'] . '</option>';
                     }

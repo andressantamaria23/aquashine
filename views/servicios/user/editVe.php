@@ -21,7 +21,7 @@ if (isset($_POST['enviar'])) {
             WHERE idVehiculo = '$idVehiculo'";
 
     // Ejecutar la consulta
-    $resultado = mysqli_query($conectar, $sql);
+    $resultado = mysqli_query($conn, $sql);
 
     // Verificar si la actualización fue exitosa
     if ($resultado) {

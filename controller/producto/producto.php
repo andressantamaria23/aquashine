@@ -11,10 +11,6 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-<<<<<<< HEAD
-=======
-            background-image: url('../img/fondo.jpg'); /* Ruta a la imagen de fondo */
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
             background-size: cover;
             background-position: center;
             color: #333;
@@ -114,11 +110,7 @@
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-<<<<<<< HEAD
             <img class="h-8 w-auto" src="../../static/img/aquashine.png" alt="Your Company">
-=======
-            <img class="h-8 w-auto" src="../img/aquashine.png" alt="Your Company">
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
@@ -182,14 +174,12 @@
             <?php
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
-<<<<<<< HEAD
-            require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
-=======
-            require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
+
+            require "../../config/conexion.php"; 
+
 
             $sql = "SELECT * FROM productos";
-            $result = mysqli_query($conectar, $sql);
+            $result = mysqli_query($conn, $sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -198,13 +188,8 @@
                         <td class='px-6 py-4'>{$row['nom_producto']}</td>
                         <td class='px-6 py-4'>{$row['categoria_prod_idcat']}</td>
                         <td class='px-6 py-4'>{$row['precio']}</td>
-<<<<<<< HEAD
                         <td class='px-6 py-4'>{$row['prod_descrp']}</td>
-=======
-                        <td class='px-6 py-4'>{$row['prod_descrip']}</td>
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
                         <td class='px-6 py-4'>{$row['img_producto']}</td>
-
                         <td class='px-6 py-4 actions'>
                             <i class='fas fa-edit' onclick=\"window.location.href='editarProducto.php?id={$row['idProductos']}'\" title='Editar'></i>
                             <i class='fas fa-trash' onclick=\"if(confirm('¿Estás seguro de que quieres eliminar este producto?')) window.location.href='eliminarProducto.php?id={$row['idProductos']}'\" title='Eliminar'></i>
@@ -217,11 +202,32 @@
                 }
     
                 // Cerrar la conexión
-                mysqli_close($conectar);
+                mysqli_close($conn);
                 ?>
             </tbody>
         </table>
- 
+        <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const userMenuButton = document.getElementById('user-menu-button');
+    const userMenu = document.querySelector('[role="menu"]');
+    
+    userMenuButton.addEventListener('click', function () {
+      // Toggle the 'hidden' class to show/hide the dropdown
+      userMenu.classList.toggle('hidden');
+    });
+
+    // Optional: Close the dropdown if clicked outside
+    document.addEventListener('click', function (event) {
+      if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+        userMenu.classList.add('hidden');
+      }
+    });
+  });
+</script>
+
+<div class="footer">
+            <a href="../Trabajador/vistaTrabajador.php" class="btn blue">Volver</a>
+        </div>
     </body>
     </html>
     

@@ -1,23 +1,20 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-<<<<<<< HEAD
+
 require "../../config/conexion.php";
-=======
-require "../conexion.php";
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 // Verificar la conexión a la base de datos
-if (!$conectar) {
+if (!$conn) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
 
 // Verificar que la tabla 'productos' existe y tiene datos
 $queryProductos = "SELECT idProductos, nom_producto FROM productos";
-$resultProductos = $conectar->query($queryProductos);
+$resultProductos = $conn->query($queryProductos);
 
 if (!$resultProductos) {
-    die("Error en la consulta de productos: " . $conectar->error);
+    die("Error en la consulta de productos: " . $conn->error);
 }
 
 // Manejo del formulario
@@ -26,20 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cantidad = $_POST['cantidad'];
     $precioUnitario = $_POST['precioUnitario'];
     $precioTotal = $_POST['precioTotal'];
-<<<<<<< HEAD
-=======
     $estado = $_POST['estado'];
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
     $observaciones = !empty($_POST['observaciones']) ? $_POST['observaciones'] : NULL;
     $fk_proveedores = $_POST['fk_proveedores']; 
     $fk_producto = $_POST['fk_producto']; 
 
     // Verificar que los campos obligatorios no estén vacíos
-<<<<<<< HEAD
-    if (empty($fechaCompra) || empty($cantidad) || empty($precioUnitario) || empty($precioTotal) || empty($fk_proveedores) || empty($fk_producto)) {
-=======
     if (empty($fechaCompra) || empty($cantidad) || empty($precioUnitario) || empty($precioTotal) || empty($estado) || empty($fk_proveedores) || empty($fk_producto)) {
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         echo '<script>alert("Por favor, complete todos los campos obligatorios.");
         location.assign("añadirCompras.php");
         </script>';
@@ -47,17 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Preparar la consulta SQL para evitar inyección SQL
-<<<<<<< HEAD
-    $stmt = $conectar->prepare("INSERT INTO compras (fechaCompra, cantidad, precioUnitario, precioTotal, observaciones, FK_proveedores, FK_producto) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO compras (fechaCompra, cantidad, precioUnitario, precioTotal, observaciones, FK_proveedores, FK_producto) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     // Vincular parámetros, teniendo en cuenta que observaciones puede ser NULL
     $stmt->bind_param("sisssii", $fechaCompra, $cantidad, $precioUnitario, $precioTotal, $observaciones, $fk_proveedores, $fk_producto);
-=======
-    $stmt = $conectar->prepare("INSERT INTO compras (fechaCompra, cantidad, precioUnitario, precioTotal, estado, observaciones, FK_proveedores, FK_producto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-
-    // Vincular parámetros, teniendo en cuenta que observaciones puede ser NULL
-    $stmt->bind_param("sissssii", $fechaCompra, $cantidad, $precioUnitario, $precioTotal, $estado, $observaciones, $fk_proveedores, $fk_producto);
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
@@ -72,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Cerrar la conexión
     $stmt->close();
-    $conectar->close();
+    $conn->close();
 }
 ?>
 
@@ -191,15 +174,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="precioTotal">Precio Total</label>
                 <input type="number" id="precioTotal" name="precioTotal" placeholder="Ingrese el precio total" required>
             </div>
-
-<<<<<<< HEAD
-=======
-            <div class="form-group">
-                <label for="estado">Estado</label>
-                <input type="text" id="estado" name="estado" placeholder="Ingrese el estado" required>
-            </div>
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
-
             <div class="form-group">
                 <label for="observaciones">Observaciones</label>
                 <input type="text" id="observaciones" name="observaciones" placeholder="Ingrese las observaciones">
@@ -211,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <option value="">Seleccione un proveedor</option>
                     <?php
                     // Obtener la lista de proveedores desde la base de datos
-                    $resultProveedores = $conectar->query("SELECT idProveedores, nombre FROM proveedores");
+                    $resultProveedores = $conn->query("SELECT idProveedores, nombre FROM proveedores");
                     if ($resultProveedores) {
                         while ($row = $resultProveedores->fetch_assoc()) {
                             echo "<option value='" . $row['idProveedores'] . "'>" . $row['nombre'] . "</option>";

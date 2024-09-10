@@ -12,19 +12,18 @@
 
 <body class="mx-auto font-[Poppins]">
 <?php
-include("../../config/conexion.php");
+include("../../../config/conexion.php");
 
 
   
-  $sql = "SELECT * FROM ventas_servicios
-  INNER JOIN ventas ON ventas.idVentas = ventas_servicios.FK_ventas
-  INNER JOIN servicios ON servicios.idServicios = ventas_servicios.FK_servicios";
+  $sql = "SELECT * FROM vehiculo
+  INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario";
   
   
-  $resultado = mysqli_query($conectar, $sql);
+  $resultado = mysqli_query($conn, $sql);
 
   ?>
-    <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">
+     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">
         <div class="flex w-full flex-wrap items-center justify-between px-3 text-blue-600">
             <!-- Botón de hamburguesa para vista móvil -->
             <button
@@ -57,7 +56,6 @@ include("../../config/conexion.php");
                     </li>
                     <!-- Enlace al Equipo -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="#" data-twe-nav-link-ref>productos</a>
                     </li>
                     <!-- Enlace a Proyectos -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
@@ -127,13 +125,7 @@ include("../../config/conexion.php");
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="submenu">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Agregar vehiculo</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar vehiculos</h1>
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Estado vehiculo</h1>
-                            </div>
-                            <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
-                                <i class="bi bi-cart2"></i>
-                                <span class="text-[15px] ml-4 text-gray-200">Compras</span>
+                                <a href="viewCar.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar Vehiculo</a>
                             </div>
                             <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-layers-fill"></i>
@@ -145,7 +137,7 @@ include("../../config/conexion.php");
                                 </div>
                             </div>
                             <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="Roles">
-                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">adquirir servicio</h1>
+                                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">añadir servicio</h1>
                                 <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar servicios</h1>
                             
                             </div>
@@ -153,7 +145,7 @@ include("../../config/conexion.php");
     
                             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-box-arrow-in-right"></i>
-                                <span class="text-[15px] ml-4 text-gray-200">Logout</span>
+                                <a href="../../../config/cerrarsesion.php" class="text-[15px] ml-4 text-gray-200">Logout</a>
                             </div>
     
                         </div>
@@ -179,27 +171,12 @@ include("../../config/conexion.php");
                 document.querySelector(`[aria-labelledby="${buttonId}"]`).classList.add('hidden')
             }
         </script>
-
 <div class="container mx-auto mt-10">
 
-<div class="text-center text-4xl font-bold text-gray-900 "> SERVICIOS   </div>
+<div class="text-center text-4xl font-bold text-gray-900 "> VEHICULOS  </div>
 <!-- Table responsive wrapper -->
 <hr class="my-4 text-gray-600">
 
-<a href="" role="button" class="mb-7 inline-block rounded-full bg-emerald-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-emerald-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-emerald-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-emerald-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Agendar servicio
-<svg
-xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 24 24"
-fill="currentColor"
-class="inline ml-1 pb-[2px] w-4 h-4"
->
-<path
-fill-rule="evenodd"
-d="M10.5 3.75a6 6 0 00-5.98 6.496A5.25 5.25 0 006.75 20.25H18a4.5 4.5 0 002.206-8.423 3.75 3.75 0 00-4.133-4.303A6.001 6.001 0 0010.5 3.75zm2.25 6a.75.75 0 00-1.5 0v4.94l-1.72-1.72a.75.75 0 00-1.06 1.06l3 3a.75.75 0 001.06 0l3-3a.75.75 0 10-1.06-1.06l-1.72 1.72V9.75z"
-clip-rule="evenodd"
-/>
-</svg>
-</a>
 <div class="overflow-x-auto bg-white dark:bg-neutral-700">
 
 <!-- Table -->
@@ -209,22 +186,22 @@ clip-rule="evenodd"
 <thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 border-t">
 <tr>
 <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-Estado servicio
+Placa
 </th>
 <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-Fecha servicio
+Tipo vehiculo
 </th>
 <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-tiempo servicio
+color
 </th>
 <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-tipo de servicio
+marca
 </th>
 <th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-Editar
+nombre usuario
 </th>
-<th scope="col" class="mx-auto px-6 py-5 border-x dark:border-neutral-600">
-Eliminar
+<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+apellido usuario
 </th>
 </tr>
 </thead>
@@ -234,11 +211,12 @@ Eliminar
 <?php
  while ($fila = mysqli_fetch_assoc($resultado)) {
     echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
-    echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['estado_servicio'] .'</th>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['fecha_servicio'] . '</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['tiempo_servicio'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_servicio'] .'</td>';
-    echo "<td><a class='mx-auto inline-block rounded bg-indigo-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-indigo-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='editVe.php?idVehiculo=" . $fila['idVehiculo'] . "''>Editar</a></td>";
+    echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['Placa'] .'</th>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['tipo_vehiculo'] . '</td>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['color_vehiculo'] .'</td>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['marca'] .'</td>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_usuario'] .'</td>';
+    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['apel_usuario'] .'</td>';
     echo '</tr>';
 }
 ?>

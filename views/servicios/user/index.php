@@ -1,3 +1,12 @@
+<?php
+session_start();
+$varsesion = $_SESSION['email'];
+if ($varsesion == null || $varsesion == '') {
+    header('location:../../../Index.php');
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,77 +16,10 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <title>ADMINISTRADOR</title>
+    <title>SERVICIOS</title>
 </head>
 <body class="mx-auto font-[Poppins]">
-<?php
-include("../../config/conexion.php");
-
-// Comprobar si se ha enviado el formulario
-if (isset($_POST['enviar'])) {
-    // Obtener los datos enviados por POST
-    $idVehiculo = $_POST['idVehiculo'];
-    $Placa = $_POST['Placa'];
-    $tipo_vehiculo = $_POST['tipo_Vehiculo'];
-    $color_vehiculo = $_POST['color_vehiculo'];
-    $marca = $_POST['marca'];
-    $FK_usuario = $_POST['FK_usuario'];
-
-    // Consulta para actualizar los datos del usuario
-    $sql = "UPDATE vehiculo SET 
-                Placa = '$Placa',
-                tipo_vehiculo = '$tipo_vehiculo',
-                color_vehiculo = '$color_vehiculo',
-                marca = '$marca',
-                FK_usuario = '$FK_usuario'
-            WHERE idVehiculo = '$idVehiculo'";
-
-    // Ejecutar la consulta
-    $resultado = mysqli_query($conectar, $sql);
-
-    // Verificar si la actualización fue exitosa
-    if ($resultado) {
-        echo '<script>alert("Se actualizaron los datos correctamente");
-        location.assign("viewCar.php");</script>';
-    } else {
-        echo '<script>alert("Error al actualizar los datos");
-        location.assign("editVe.php?idVehiculo ='.$idVehiculo.'");</script>';
-    }
-
-    // Cerrar la conexión
-    mysqli_close($conectar);
-
-} else {
-    // Comprobar si se ha pasado un ID de usuario por GET
-    if (isset($_GET['idVehiculo'])) {
-        $idVehiculo = $_GET['idVehiculo'];
-
-        // Consulta para obtener los datos del usuario
-        $sql = "SELECT * FROM vehiculo WHERE idVehiculo ='$idVehiculo'";
-        $resultado = mysqli_query($conectar, $sql);
-
-        // Verificar si el usuario existe
-        if ($resultado && mysqli_num_rows($resultado) > 0) {
-            // Obtener los datos del usuario
-            $fila = mysqli_fetch_assoc($resultado);
-            $Placa = $fila['Placa'];
-            $tipo_vehiculo = $fila['tipo_vehiculo'];
-            $color_vehiculo = $fila['color_vehiculo'];
-            $marca = $fila['marca'];
-            $FK_usuario = $fila['FK_usuario'];
-        } else {
-            echo '<script>alert("Vehiculo no encontrado"); location.assign("viewCar.php");</script>';
-            exit();
-        }
-
-        // Cerrar la conexión
-        mysqli_close($conectar);
-    } else {
-        echo '<script>alert("ID de vehiculo no proporcionado"); location.assign("viewCar.php");</script>';
-        exit();
-    }
-}
-  ?>
+    <!-- Contenedor principal de la navegación -->
     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">
         <div class="flex w-full flex-wrap items-center justify-between px-3 text-blue-600">
             <!-- Botón de hamburguesa para vista móvil -->
@@ -207,7 +149,7 @@ if (isset($_POST['enviar'])) {
     
                             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-box-arrow-in-right"></i>
-                                <span class="text-[15px] ml-4 text-gray-200">Logout</span>
+                                <a href="../../../config/cerrarsesion.php" class="text-[15px] ml-4 text-gray-200">Logout</a>
                             </div>
     
                         </div>
@@ -233,109 +175,50 @@ if (isset($_POST['enviar'])) {
                 document.querySelector(`[aria-labelledby="${buttonId}"]`).classList.add('hidden')
             }
         </script>
-
-<div class="text-center text-4xl font-bold text-gray-900 mt-2 ">EDITAR VEHÍCULO  </div>
-        <!-- Table responsive wrapper -->
-        <hr class="my-4 text-gray-600">
-
-        <form action="../../controller/servicios/editarVe.php" method="POST" class="text-gray-200 mt-2">
-  <div class="flex justify-center grid">
-    <div class="mx-4 mb-4">
-      <!-- Input for Placa -->
-      <div class="relative mb-6 mt-2" data-twe-input-wrapper-init>
-        <input type="text" class="text-black peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" id="Placa" name="Placa" placeholder="Placa" value="<?php echo htmlspecialchars($Placa); ?>" oninput="handleInput(this)" readonly />
-        <label for="Placa" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Placa</label>
+<div class="flex justify-center mt-10 ml-10">
+    <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow-lg border">
+        <a href="#" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
+          <div class="mb-2 flex justify-center">
+            <span class="text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-car-front" viewBox="0 0 16 16">
+                <path d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0m10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM4.862 4.276 3.906 6.19a.51.51 0 0 0 .497.731c.91-.073 2.35-.17 3.597-.17s2.688.097 3.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 10.691 4H5.309a.5.5 0 0 0-.447.276"/>
+                <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM4.82 3a1.5 1.5 0 0 0-1.379.91l-.792 1.847a1.8 1.8 0 0 1-.853.904.8.8 0 0 0-.43.564L1.03 8.904a1.5 1.5 0 0 0-.03.294v.413c0 .796.62 1.448 1.408 1.484 1.555.07 3.786.155 5.592.155s4.037-.084 5.592-.155A1.48 1.48 0 0 0 15 9.611v-.413q0-.148-.03-.294l-.335-1.68a.8.8 0 0 0-.43-.563 1.8 1.8 0 0 1-.853-.904l-.792-1.848A1.5 1.5 0 0 0 11.18 3z"/>
+              </svg>
+            </span>
+          </div>
+          <h5 class="mb-6 font-bold text-primary text-center">TUS VEHICULOS</h5>
+        </a>
       </div>
-
-      <!-- Select for Tipo de Vehículo -->
-      <div class="relative mb-6" data-twe-input-wrapper-init>
-        <select id="tipo_vehiculo" name="tipo_vehiculo" class="text-black peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" onchange="updateMarcaOptions()" oninput="handleInput(this)">
-          <option value=""></option>
-          <option value="carro" <?php echo ($tipo_vehiculo == 'carro') ? 'selected' : ''; ?>>Carro</option>
-          <option value="moto" <?php echo ($tipo_vehiculo == 'moto') ? 'selected' : ''; ?>>Moto</option>
-        </select>
-        <label for="tipo_vehiculo" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Tipo de vehículo</label>
+  
+      <div class="bg-white p-4 rounded-lg shadow-lg border">
+        <a href="#" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
+          <div class="mb-2 flex justify-center">
+            <span class="text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">
+                <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882z"/>
+                <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0z"/>
+              </svg>
+            </span>
+          </div>
+          <h5 class="mb-6 font-bold text-primary text-center">TUS SERVICIOS</h5>
+        </a>
       </div>
-
-      <!-- Select for Color del Vehículo -->
-      <div class="relative mb-6" data-twe-input-wrapper-init>
-        <select id="color_vehiculo" name="color_vehiculo" class="text-black peer block w-full appearance-none rounded border border-gray-200 bg-transparent px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-600" oninput="handleInput(this)">
-          <option value=""></option>
-          <option value="blanco" <?php echo ($color_vehiculo == 'blanco') ? 'selected' : ''; ?>>Blanco</option>
-          <option value="negro" <?php echo ($color_vehiculo == 'negro') ? 'selected' : ''; ?>>Negro</option>
-          <option value="gris" <?php echo ($color_vehiculo == 'gris') ? 'selected' : ''; ?>>Gris</option>
-          <option value="rojo" <?php echo ($color_vehiculo == 'rojo') ? 'selected' : ''; ?>>Rojo</option>
-          <option value="azul" <?php echo ($color_vehiculo == 'azul') ? 'selected' : ''; ?>>Azul</option>
-          <option value="plateado" <?php echo ($color_vehiculo == 'plateado') ? 'selected' : ''; ?>>Plateado</option>
-          <option value="verde" <?php echo ($color_vehiculo == 'verde') ? 'selected' : ''; ?>>Verde</option>
-          <option value="amarillo" <?php echo ($color_vehiculo == 'amarillo') ? 'selected' : ''; ?>>Amarillo</option>
-        </select>
-        <label for="color_vehiculo" class="pointer-events-none absolute left-3 -top-3.5 bg-white px-1 text-gray-500 transition-all duration-200 ease-out origin-top-left transform scale-75 peer-focus:-top-3.5 peer-focus:scale-75 peer-focus:-translate-y-0 peer-placeholder-shown:top-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:text-blue-600">Color del vehículo</label>
+      <div class="bg-white p-4 rounded-lg shadow-lg border">
+        <a href="#" class="relative mb-12 px-3 lg:mb-0 hover:text-blue-600 text-gray-900">
+          <div class="mb-2 flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+              </svg>
+            </span>
+          </div>
+          <h5 class="mb-6 font-bold text-primary text-center">TUS COMPRAS</h5>
+        </a>
       </div>
-    </div>
-
-    <div class="mx-4 mb-4 mt-2">
-      
-      <div class="relative mb-6" data-twe-input-wrapper-init>
-        <select id="marca" name="marca" class="text-black peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary" oninput="handleInput(this)">
-          <option value="">Seleccione la marca</option>
-          <?php
-          // Populate the brands dynamically based on the vehicle type
-          $marcasCarro = ['Toyota', 'Ford', 'Chevrolet', 'Honda', 'Nissan', 'Volkswagen'];
-          $marcasMoto = ['Yamaha', 'Honda', 'Suzuki', 'Kawasaki', 'Harley-Davidson', 'Ducati', 'Pulsar', 'TVS'];
-          $marcas = ($tipo_vehiculo == 'carro') ? $marcasCarro : $marcasMoto;
-
-          foreach ($marcas as $marcaOption) {
-            $selected = ($marca == $marcaOption) ? 'selected' : '';
-            echo "<option value=\"$marcaOption\" $selected>$marcaOption</option>";
-          }
-          ?>
-        </select>
-        <label for="marca" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-[0.8] peer-focus:text-primary">Marca</label>
-      </div>
-    </div>
-
-    <div class="mx-20 mb-5">
-      <!-- Submit button -->
-      <button type="submit" class="font-bold block w-full rounded-full bg-gray-900 text-gray-200 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-blue-600 hover:border border-white hover:text-gray-900 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-blue-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-blue-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Actualizar</button>
     </div>
   </div>
-</form>
-
-<script>
-  // JavaScript to handle changes in tipo_vehiculo and update marca options dynamically
-  function updateMarcaOptions() {
-    const tipoVehiculo = document.getElementById('tipo_vehiculo').value;
-    const marcaSelect = document.getElementById('marca');
-
-    // Clear current options
-    marcaSelect.innerHTML = '<option value="">Seleccione la marca</option>';
-
-    // Add options based on the vehicle type
-    const marcasCarro = ['Toyota', 'Ford', 'Chevrolet', 'Honda', 'Nissan', 'Volkswagen'];
-    const marcasMoto = ['Yamaha', 'Honda', 'Suzuki', 'Kawasaki', 'Harley-Davidson', 'Ducati', 'Pulsar', 'TVS'];
-    const marcas = (tipoVehiculo === 'carro') ? marcasCarro : marcasMoto;
-
-    marcas.forEach(marca => {
-      const option = document.createElement('option');
-      option.value = marca;
-      option.text = marca;
-      marcaSelect.appendChild(option);
-    });
-  }
-
-  function handleInput(input) {
-    const label = input.nextElementSibling;
-    if (input.value.trim() !== "") {
-      label.style.transform = "scale(0.8) translateY(-1.80rem)";
-      label.style.opacity = "0.7";
-    } else {
-      label.style.transform = "scale(1) translateY(0)";
-      label.style.opacity = "1";
-    }
-  }
-</script>
-
-
+   
+  
+    
 </body>
 </html>

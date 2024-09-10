@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 <?php
-require "../../config/conexion.php";
+require "../../config/conexion.php"; // Asegúrate de que este archivo define $conn, no $conectar
 
 $nom_usuario = $_POST['nom_usuario'];
 $apel_usuario = $_POST['apel_usuario'];
@@ -9,25 +8,23 @@ $email = $_POST['email'];
 $contrasena = $_POST['contrasena'];
 $FK_rol = $_POST['FK_rol'];
 
-$insert = "INSERT INTO usuario(nom_usuario,apel_usuario,fecha_nacimiento,email,contrasena,FK_rol) 
-VALUES('$nom_usuario','$apel_usuario','$fecha_nacimiento','$email','$contrasena','$FK_rol')";
-  
-$query = mysqli_query($conectar,$insert);
+// Cambia $conectar a $conn si esa es la variable que usas para la conexión
+$insert = "INSERT INTO usuario(nom_usuario, apel_usuario, fecha_nacimiento, email, contrasena, FK_rol) 
+           VALUES('$nom_usuario','$apel_usuario','$fecha_nacimiento','$email','$contrasena','$FK_rol')";
 
-if($query){
+$query = mysqli_query($conn, $insert);
 
+if($query) {
     echo '<script>alert("Usuario Registrado");
     location.assign("../../Index.php");
     </script>';
-
-}else{
+} else {
     echo '<script>alert("Error al conectarse a la BD");
     location.assign("../../register.html");
     </script>';
 }
-
 ?>
-=======
+
 <?php
 require "../../config/conexion.php";
 
@@ -94,4 +91,3 @@ if ($stmt) {
 // Cerrar la conexión
 $conn->close();
 ?>
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7

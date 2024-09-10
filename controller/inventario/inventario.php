@@ -30,24 +30,26 @@
             border-radius: 5px;
             margin: 5px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            color: white;
         }
         .green {
             background-color: #4CAF50;
-            color: white;
         }
         .blue {
             background-color: #2196F3;
-            color: white;
         }
         .red {
             background-color: #f44336;
-            color: white;
         }
         .search {
             float: right;
             padding: 8px;
             margin: 5px;
             width: 20%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
         table {
             width: 100%;
@@ -96,11 +98,9 @@
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
-<<<<<<< HEAD
-                        <img class="h-8 w-auto" src="../../static/img/aquashine.png" alt="Your Company">
-=======
-                        <img class="h-8 w-auto" src="../img/aquashine.png" alt="Your Company">
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
+                        <a href="../Trabajador/vistaTrabajador.php" target="_blank">
+                            <img class="h-8 w-auto" src="../../static/img/aquashine.png" alt="Your Company">
+                        </a>
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
@@ -128,22 +128,18 @@
                             </button>
                         </div>
                         <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <a href="../perfilUsuario.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Mi perfil</a>
-                            <a href="../login.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Cerrar sesión</a>
+                            <a href="../../../perfilUsuario.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Mi perfil</a>
+                            <a href="../../login.php" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Cerrar sesión</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-<br>
+    <br>
     <div class="container">
         <a href="añadirInventario.php" class="btn green">+ Añadir al inventario</a>
-<<<<<<< HEAD
         <a href="visualizarInventario.php" class="btn blue">Visualizar inventario</a>
-
-=======
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         <input type="text" placeholder="Buscar..." class="search">
 
         <table class="min-w-full divide-y divide-gray-200">
@@ -151,17 +147,15 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Inventario</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cantidad</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Producto</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre Producto</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proveedor</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 <?php
-                // Conexión a la base de datos
-                $conn = new mysqli('localhost', 'root', '', 'aquashine');
+                $conn = new mysqli('localhost', 'root', '', 'aquashine1');
 
-                // Verificar conexión
                 if ($conn->connect_error) {
                     die("Conexión fallida: " . $conn->connect_error);
                 }
@@ -173,8 +167,11 @@
                         JOIN proveedores s ON p.FK_proveedores = s.idProveedores";
                 $result = $conn->query($sql);
 
+                if (!$result) {
+                    die("Error en la consulta: " . $conn->error);
+                }
+
                 if ($result->num_rows > 0) {
-                    // Mostrar los datos en la tabla
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['idInventario']) . "</td>";
@@ -195,12 +192,31 @@
                 ?>
             </tbody>
         </table>
-
+        <br>
         <div class="footer">
-            <p>&copy; 2024 AquaShine. Todos los derechos reservados.</p>
+            <a href="../Trabajador/vistaTrabajador.php" class="btn blue">Volver</a>
         </div>
     </div>
-    <!-- Agrega el script de FontAwesome -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const userMenuButton = document.getElementById('user-menu-button');
+    const userMenu = document.querySelector('[role="menu"]');
+    
+    userMenuButton.addEventListener('click', function () {
+      // Toggle the 'hidden' class to show/hide the dropdown
+      userMenu.classList.toggle('hidden');
+    });
+
+    // Optional: Close the dropdown if clicked outside
+    document.addEventListener('click', function (event) {
+      if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+        userMenu.classList.add('hidden');
+      }
+    });
+  });
+</script>
+
+
 </body>
 </html>

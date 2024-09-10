@@ -12,7 +12,7 @@
 
 <body class="mx-auto font-[Poppins]">
 <?php
-include("../../config/conexion.php");
+include("../../../config/conexion.php");
 
 
   
@@ -21,7 +21,7 @@ include("../../config/conexion.php");
   WHERE usuario.idUsuario = 2";
   
   
-  $resultado = mysqli_query($conectar, $sql);
+  $resultado = mysqli_query($conn, $sql);
 
   ?>
     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">

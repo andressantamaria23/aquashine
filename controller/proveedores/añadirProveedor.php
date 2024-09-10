@@ -1,11 +1,9 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-<<<<<<< HEAD
+
+
 require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
-=======
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtener los datos del formulario y sanitizarlos
@@ -22,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Preparar la consulta SQL para evitar inyección SQL
-    $stmt = $conectar->prepare("INSERT INTO proveedores (Nombre, email, telefono) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO proveedores (Nombre, email, telefono) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $nombre, $email, $telefono);
 
     // Ejecutar la consulta
@@ -51,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdn.tailwindcss.com">
     <style>
         body {
-            background-image: url('../img/lavad.jpg'); /* Reemplaza con la URL de tu imagen */
+            background-image: url('../img/lavad.jpg'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -75,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .form-container h2 {
             font-size: 32px;
             margin-bottom: 20px;
-            color: #1e3a8a; /* Azul oscuro para el título */
+            color: #1e3a8a; 
             text-align: center;
             font-weight: 700;
         }
@@ -89,34 +87,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .form-group label {
             flex: 1;
             font-size: 16px;
-            color: #1e3a8a; /* Azul oscuro para las etiquetas */
+            color: #1e3a8a;
             font-weight: 600;
         }
 
         .form-group input {
             flex: 2;
             padding: 14px;
-            border: 1px solid #d1d5db; /* Borde gris claro */
+            border: 1px solid #d1d5db; 
             border-radius: 12px;
             font-size: 16px;
-            background-color: #f9fafb; /* Fondo gris claro para los campos */
+            background-color: #f9fafb; 
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-group input:focus {
-            border-color: #1e3a8a; /* Borde azul oscuro al enfocar */
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2); /* Sombra azul claro al enfocar */
-            outline: none; /* Elimina el contorno predeterminado */
+            border-color: #1e3a8a; 
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2); 
+            outline: none;
         }
 
         .btn-container {
             display: flex;
-            justify-content: center; /* Centrar el botón horizontalmente */
+            justify-content: center;
             margin-top: 20px;
         }
 
         .btn {
-            background-color: #1e3a8a; /* Fondo azul oscuro para el botón */
+            background-color: #1e3a8a; 
             color: white;
             border: none;
             padding: 14px 20px;
@@ -128,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         .btn:hover {
-            background-color: #1e40af; /* Azul más oscuro al pasar el ratón */
+            background-color: #1e40af;
         }
     </style>
 </head>
@@ -161,13 +159,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="submit" class="btn">
                     Añadir Proveedor
                 </button>
-<<<<<<< HEAD
-                <a href="proveedores.php" class="btn-cancel">
+
+              
+            </div>
+            <a href="proveedores.php" class="btn-cancel">
                     Cancelar
                 </a>
-=======
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
-            </div>
         </form>
     </div>
 </body>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 require "../../config/conexion.php";
 
@@ -26,7 +25,6 @@ if($query){
     </script>';
 }
 
-=======
 <?php
 require "../../config/conexion.php";
 
@@ -54,5 +52,4 @@ if($query){
     </script>';
 }
 
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 ?>

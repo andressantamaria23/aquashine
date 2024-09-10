@@ -47,63 +47,62 @@
         <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">Inventario de Productos</h2>
 
         <?php
-        // Datos de conexión
-        $host = 'localhost';
-        $user = 'root';
-        $clave = ''; // Contraseña vacía si no estás usando una
-        $bd = 'aquashine1';
-        $puerto = '3306';
+// Datos de conexión
+$host = 'localhost';
+$user = 'root';
+$clave = ''; // Contraseña vacía si no estás usando una
+$bd = 'aquashine1';
+$puerto = '3306';
 
-        // Conectar a la base de datos
-        $conectar = mysqli_connect($host, $user, $clave, $bd, $puerto);
+// Conectar a la base de datos
+$conectar = mysqli_connect($host, $user, $clave, $bd, $puerto);
 
-        // Verificar la conexión
-        if (!$conectar) {
-            die("Error de conexión: " . mysqli_connect_error());
-        }
+// Verificar la conexión
+if (!$conectar) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
 
-        // Consulta para obtener el stock de productos en el inventario
-        $sql = "SELECT p.nom_producto, p.precio, i.cantidad, i.FK_proveedores 
-                FROM inventario i
-                JOIN productos p ON i.FK_producto = p.idProductos
-                ORDER BY p.nom_producto ASC";
+// Consulta para obtener el stock de productos en el inventario, sumando las cantidades
+$sql = "SELECT p.nom_producto, p.precio, SUM(i.cantidad) AS cantidad_total, s.Nombre as proveedor 
+        FROM inventario i
+        JOIN productos p ON i.FK_producto = p.idProductos
+        JOIN proveedores s ON p.FK_proveedores = s.idProveedores
+        GROUP BY p.nom_producto, p.precio, s.Nombre
+        ORDER BY p.nom_producto ASC";
 
-        $resultado = mysqli_query($conectar, $sql);
+$resultado = mysqli_query($conectar, $sql);
 
-        // Verificar si la consulta tuvo resultados
-        if (mysqli_num_rows($resultado) > 0) {
-            echo "<div class='overflow-x-auto'>
-                    <table class='min-w-full bg-white border border-gray-300 rounded-lg shadow-lg'>
-                        <thead>
-                            <tr>
-                                <th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b'>Producto</th>
-                                <th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b'>Precio</th>
-                                <th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b'>Cantidad en Stock</th>
-                                <th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b'>Proveedor</th>
-                            </tr>
-                        </thead>
-                        <tbody class='bg-white divide-y divide-gray-200'>";
+// Verificar si la consulta tuvo resultados
+if (mysqli_num_rows($resultado) > 0) {
+    echo "<div class='overflow-x-auto'>
+            <table class='min-w-full bg-white border border-gray-300 rounded-lg shadow-lg'>
+                <thead>
+                    <tr>
+                        <th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b'>Producto</th>
+                        <th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b'>Precio</th>
+                        <th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b'>Cantidad en Stock</th>
+                        <th class='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b'>Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody class='bg-white divide-y divide-gray-200'>";
 
-            // Recorrer los resultados y mostrarlos en una tabla
-            while ($fila = mysqli_fetch_assoc($resultado)) {
-                echo "<tr>
-                        <td class='px-6 py-4 whitespace-nowrap'>" . $fila['nom_producto'] . "</td>
-                        <td class='px-6 py-4 whitespace-nowrap'>" . $fila['precio'] . "</td>
-                        <td class='px-6 py-4 whitespace-nowrap'>" . $fila['cantidad'] . "</td>
-                        <td class='px-6 py-4 whitespace-nowrap'>" . $fila['FK_proveedores'] . "</td>
-                    </tr>";
-            }
+    // Recorrer los resultados y mostrarlos en una tabla
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        echo "<tr>
+                <td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($fila['nom_producto']) . "</td>
+                <td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($fila['precio']) . "</td>
+                <td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($fila['cantidad_total']) . "</td>
+                <td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($fila['proveedor']) . "</td>
+            </tr>";
+    }
 
-            echo "</tbody>
-                </table>
-                </div>";
-        } else {
-            echo "<p class='text-center text-gray-600'>No hay productos en el inventario.</p>";
-        }
+    echo "</tbody>
+        </table>
+        </div>";
+} else {
+    echo "<p class='text-center text-gray-600'>No hay productos en el inventario.</p>";
+}
 
-        // Cerrar la conexión
-        mysqli_close($conectar);
-        ?>
-    </div>
-</body>
-</html>
+// Cerrar la conexión
+mysqli_close($conectar);
+?>

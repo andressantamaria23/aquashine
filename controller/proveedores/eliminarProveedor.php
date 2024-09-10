@@ -1,11 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-<<<<<<< HEAD
+
 require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
-=======
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 if (isset($_GET['id'])) {
     $idProveedores = $_GET['id'];
@@ -14,7 +11,7 @@ if (isset($_GET['id'])) {
     $sql = "DELETE FROM proveedores WHERE idProveedores = ?";
     
     // Preparar la declaración
-    if ($stmt = mysqli_prepare($conectar, $sql)) {
+    if ($stmt = mysqli_prepare($conn, $sql)) {
         // Vincular variables a la declaración preparada como parámetros
         mysqli_stmt_bind_param($stmt, "i", $idProveedores);
 
@@ -24,17 +21,17 @@ if (isset($_GET['id'])) {
             header("Location: proveedores.php?msg=Proveedor eliminado correctamente");
             exit();
         } else {
-            echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conectar);
+            echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conn);
         }
 
         // Cerrar la declaración
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
+        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
     }
 
     // Cerrar la conexión
-    mysqli_close($conectar);
+    mysqli_close($conn);
 } else {
     echo "Error: ID de proveedor no especificado.";
 }

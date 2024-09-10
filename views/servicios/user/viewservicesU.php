@@ -21,7 +21,7 @@ include("../../../config/conexion.php");
   INNER JOIN servicios ON servicios.idServicios = reservas.FK_servicios";
   
   
-  $resultado = mysqli_query($conectar, $sql);
+  $resultado = mysqli_query($conn, $sql);
 
   ?>
     <nav class="flex-no-wrap relative flex w-full items-center justify-between bg-clip-padding py-5 shadow-dark-mild bg-gray-900">

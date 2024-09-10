@@ -1,67 +1,54 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-<<<<<<< HEAD
-require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
-=======
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
+
+require "../../config/conexion.php"; 
 
 if (isset($_GET['id'])) {
     $idProductos = $_GET['id'];
 
     // Obtener los datos actuales del producto
     $sql = "SELECT * FROM productos WHERE idProductos = ?";
-    if ($stmt = mysqli_prepare($conectar, $sql)) {
+    if ($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "i", $idProductos);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $producto = mysqli_fetch_assoc($result);
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
+        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
     }
 
     // Obtener la lista de proveedores
     $sqlProveedores = "SELECT idProveedores, Nombre FROM proveedores";
-    $resultProveedores = mysqli_query($conectar, $sqlProveedores);
-    
+    $resultProveedores = mysqli_query($conn, $sqlProveedores);
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener los datos del formulario
         $nom_producto = $_POST['nom_producto'];
-<<<<<<< HEAD
         $prod_descrp = $_POST['prod_descrp'];
-=======
-        $prod_descrip = $_POST['prod_descrip'];
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
         $precio = $_POST['precio'];
         $categoria_prod_idcat = $_POST['categoria_prod_idcat'];
         $FK_proveedores = $_POST['FK_proveedores'];
 
         // Crear la consulta SQL para actualizar el producto
-<<<<<<< HEAD
         $sql = "UPDATE productos SET nom_producto = ?, prod_descrp = ?, precio = ?, categoria_prod_idcat = ?, FK_proveedores = ? WHERE idProductos = ?";
-        if ($stmt = mysqli_prepare($conectar, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssssii", $nom_producto, $prod_descrp, $precio, $categoria_prod_idcat, $FK_proveedores, $idProductos);
-=======
-        $sql = "UPDATE productos SET nom_producto = ?, prod_descrip = ?, precio = ?, categoria_prod_idcat = ?, FK_proveedores = ? WHERE idProductos = ?";
-        if ($stmt = mysqli_prepare($conectar, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssssii", $nom_producto, $prod_descrip, $precio, $categoria_prod_idcat, $FK_proveedores, $idProductos);
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
+        if ($stmt = mysqli_prepare($conn, $sql)) {
+            mysqli_stmt_bind_param($stmt, "sssisi", $nom_producto, $prod_descrp, $precio, $categoria_prod_idcat, $FK_proveedores, $idProductos);
             if (mysqli_stmt_execute($stmt)) {
                 // Redirigir a la página de productos con un mensaje de éxito
                 header("Location: producto.php?msg=Producto actualizado correctamente");
                 exit();
             } else {
-                echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conectar);
+                echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conn);
             }
             mysqli_stmt_close($stmt);
         } else {
-            echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
+            echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
         }
     }
 
-    mysqli_close($conectar);
+    mysqli_close($conn);
 } else {
     echo "Error: ID de producto no especificado.";
     exit();
@@ -94,14 +81,10 @@ if (isset($_GET['id'])) {
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="nom_producto" name="nom_producto" value="<?php echo htmlspecialchars($producto['nom_producto']); ?>" required>
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="prod_descrip">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="prod_descrp">
                         Descripción del Producto
                     </label>
-<<<<<<< HEAD
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="prod_descrp" name="prod_descrp" value="<?php echo htmlspecialchars($producto['prod_descrp']); ?>" required>
-=======
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="prod_descrip" name="prod_descrip" value="<?php echo htmlspecialchars($producto['prod_descrip']); ?>" required>
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="precio">
@@ -128,10 +111,9 @@ if (isset($_GET['id'])) {
                     </select>
                 </div>
                 <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-200" type="submit">
-    Guardar Cambios
-</button>
-
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-200" type="submit">
+                        Guardar Cambios
+                    </button>
                     <a href="producto.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
                         Cancelar
                     </a>

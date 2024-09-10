@@ -101,11 +101,8 @@
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
-<<<<<<< HEAD
+
                         <img class="h-8 w-auto" src="../../static/img/aquashine.png" alt="Your Company">
-=======
-                        <img class="h-8 w-auto" src="../img/aquashine.png" alt="Your Company">
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
@@ -155,10 +152,6 @@
                     <th>Cantidad</th>
                     <th>Precio Unitario</th>
                     <th>Precio Total</th>
-<<<<<<< HEAD
-=======
-                    <th>Estado</th>
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
                     <th>Observaciones</th>
                     <th>Acciones</th>
                 </tr>
@@ -168,20 +161,17 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-<<<<<<< HEAD
+
 require "../../config/conexion.php"; // Aquí se abre la conexión
-=======
-require "../conexion.php"; // Aquí se abre la conexión
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
 
 // Verificar que la conexión está abierta
-if (!$conectar) {
+if (!$conn) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
 
 // Ejecutar la consulta solo si la conexión está abierta
 $sql = "SELECT * FROM compras";
-$result = $conectar->query($sql);
+$result = $conn->query($sql);
 
 if ($result) {
     if ($result->num_rows > 0) {
@@ -192,10 +182,6 @@ if ($result) {
                 <td class='px-6 py-4'>{$row['cantidad']}</td>
                 <td class='px-6 py-4'>{$row['precioUnitario']}</td>
                 <td class='px-6 py-4'>{$row['precioTotal']}</td>
-<<<<<<< HEAD
-=======
-                <td class='px-6 py-4'>{$row['estado']}</td>
->>>>>>> 6e099628165d0e450fcdf0efb01c7406c331ccb7
                 <td class='px-6 py-4'>{$row['observaciones']}</td>
                 <td class='px-6 py-4 actions'>
                     <i class='fas fa-edit' onclick=\"window.location.href='editarCompras.php?id={$row['idCompras']}'\" title='Editar'></i>
@@ -208,16 +194,40 @@ if ($result) {
     }
     $result->free(); // Liberar el resultado
 } else {
-    echo "Error en la consulta: " . $conectar->error;
+    echo "Error en la consulta: " . $conn->error;
 }
 
 // Cerrar la conexión solo después de usarla
-$conectar->close();
+$conn->close();
 ?>
 
 
             </tbody>
+
+            
+<div class="footer">
+            <a href="../Trabajador/vistaTrabajador.php" class="btn blue">Volver</a>
+        </div>
         </table>
     </div>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const userMenuButton = document.getElementById('user-menu-button');
+    const userMenu = document.querySelector('[role="menu"]');
+    
+    userMenuButton.addEventListener('click', function () {
+      // Toggle the 'hidden' class to show/hide the dropdown
+      userMenu.classList.toggle('hidden');
+    });
+
+    // Optional: Close the dropdown if clicked outside
+    document.addEventListener('click', function (event) {
+      if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+        userMenu.classList.add('hidden');
+      }
+    });
+  });
+</script>
 </body>
 </html>
