@@ -1,3 +1,36 @@
+<?php
+session_start();
+$varsesion = $_SESSION['email'];
+if ($varsesion == null || $varsesion == '') {
+    header('location:../../../Index.php');
+    die();
+}
+
+include("../../../config/conexion.php");
+
+$email = $_SESSION['email'];
+$sql = "SELECT idUsuario, nom_usuario, apel_usuario, fecha_nacimiento, email, contrasena, FK_rol FROM usuario
+        INNER JOIN rol ON rol.idRol = usuario.FK_rol 
+        WHERE email = '".$email."'"; 
+
+$resultado = mysqli_query($conectar, $sql);
+
+if ($resultado && mysqli_num_rows($resultado) > 0) {
+    $fila = mysqli_fetch_assoc($resultado);
+    $idUsuario = $fila['idUsuario'];
+    $nom_usuario = $fila['nom_usuario'];
+    $apel_usuario = $fila['apel_usuario'];
+    $fecha_nacimiento = $fila['fecha_nacimiento'];
+    $email = $fila['email'];
+    $contrasena = $fila['contrasena'];
+    $FK_rol = $fila['FK_rol'];
+} else {
+    
+    echo "No se encontraron datos para el usuario.";
+   
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -105,9 +138,15 @@
     </style>
 </head>
 <body>
+<?php
+include("../../../config/conexion.php");
+  
+$sql = "SELECT idTipo_vehiculo, tipo_vehiculo FROM tipo_vehiculo";
+$result = mysqli_query($conectar, $sql);
+?>
     <div class="form-container">
         <h2>Registrar Vehículo</h2>
-        <form action="../../controller/servicios/agregarVe.php" method="POST">
+        <form action="../../../controller/servicios/agregarVe.php" method="POST">
 
             <div class="form-group">
                 <input type="text" id="Placa" name="Placa" placeholder=" ">
@@ -115,12 +154,16 @@
             </div>
 
             <div class="form-group">
-                <select id="tipo_vehiculo" name="tipo_vehiculo" required>
-                    <option value="">Seleccione un tipo de vehículo</option>
-                    <option value="carro">Carro</option>
-                    <option value="moto">Moto</option>
+                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                        id="tipo_vehiculo" name="FK_tipoVehiculo" required>
+                    <option value="">Seleccione el tipo de vehículo</option>
+                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                        <option value="<?php echo $row['idTipo_vehiculo']; ?>">
+                            <?php echo htmlspecialchars($row['tipo_vehiculo']); ?>
+                        </option>
+                    <?php } ?>
                 </select>
-                <label for="tipo_vehiculo">Tipo de vehículo</label>
+                <label for="FK_rol">Tipo vehículo</label>
             </div>
 
             <div class="form-group">
@@ -141,13 +184,12 @@
             <div class="form-group">
                 <select id="marca" name="marca" required>
                     <option value="">Seleccione una marca</option>
-                    <!-- Opciones serán actualizadas por JavaScript -->
                 </select>
                 <label for="marca">Marca</label>
             </div>
 
             <div class="form-group hidden">
-                <input type="text" id="FK_usuario" name="FK_usuario" placeholder=" " value="2">
+                <input type="text" id="FK_usuario" name="FK_usuario" placeholder=" " value="<?php echo $idUsuario;?>">
                 <label for="FK_usuario">Usuario</label>
             </div>
 
@@ -160,39 +202,41 @@
                         Cancelar
                     </a>
                 </div>
-                </div>
+            </div>
         </form>
     </div>
 
     <script>
-      function updateMarcaOptions() {
-        const tipoVehiculo = document.getElementById('tipo_vehiculo').value;
-        const marcaSelect = document.getElementById('marca');
+        function updateMarcaOptions() {
+            const tipoVehiculo = document.getElementById('tipo_vehiculo').value;
+            const marcaSelect = document.getElementById('marca');
 
-        // Limpiar opciones actuales
-        marcaSelect.innerHTML = '';
+            // Limpiar opciones actuales
+            marcaSelect.innerHTML = '';
 
-        if (tipoVehiculo === 'carro') {
-          const marcasCarro = ['Toyota', 'Ford', 'Chevrolet', 'Honda', 'Nissan', 'Volkswagen'];
-          marcasCarro.forEach(marca => {
-            const option = document.createElement('option');
-            option.value = marca;
-            option.text = marca;
-            marcaSelect.appendChild(option);
-          });
-        } else if (tipoVehiculo === 'moto') {
-          const marcasMoto = ['Yamaha', 'Honda', 'Suzuki', 'Kawasaki', 'Harley-Davidson', 'Ducati', 'Pulsar', 'TVS'];
-          marcasMoto.forEach(marca => {
-            const option = document.createElement('option');
-            option.value = marca;
-            option.text = marca;
-            marcaSelect.appendChild(option);
-          });
+            console.log("Tipo de Vehículo Seleccionado: ", tipoVehiculo); // Depuración
+
+            if (tipoVehiculo === '1') { // Asumimos que '1' es Carro
+                const marcasCarro = ['Toyota', 'Ford', 'Chevrolet', 'Honda', 'Nissan', 'Volkswagen'];
+                marcasCarro.forEach(marca => {
+                    const option = document.createElement('option');
+                    option.value = marca;
+                    option.text = marca;
+                    marcaSelect.appendChild(option);
+                });
+            } else if (tipoVehiculo === '3') { // Asumimos que '2' es Moto
+                const marcasMoto = ['Yamaha', 'Honda', 'Suzuki', 'Kawasaki', 'Harley-Davidson', 'Ducati', 'Pulsar', 'TVS'];
+                marcasMoto.forEach(marca => {
+                    const option = document.createElement('option');
+                    option.value = marca;
+                    option.text = marca;
+                    marcaSelect.appendChild(option);
+                });
+            }
         }
-      }
 
-      // Update marca options when the tipo_vehiculo select changes
-      document.getElementById('tipo_vehiculo').addEventListener('change', updateMarcaOptions);
+        // Actualizar opciones de marca cuando cambia el select de tipo de vehículo
+        document.getElementById('tipo_vehiculo').addEventListener('change', updateMarcaOptions);
     </script>
 </body>
 </html>

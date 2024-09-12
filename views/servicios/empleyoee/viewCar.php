@@ -7,17 +7,31 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <title>SERVICIOS</title>
 </head>
-
+<style>
+        .content {
+            transition: margin-left 0.3s ease-in-out;
+            padding-left: 0;
+        }
+        .sidebar-open .content {
+            padding-left: 300px;
+        }
+        .sidebar {
+            z-index: 50;
+        }
+    </style>
 <body class="mx-auto font-[Poppins]">
 <?php
 include("../../../config/conexion.php");
 
 
-  
-  $sql = "SELECT * FROM vehiculo
-  INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario";
+  $sql= "SELECT * 
+FROM vehiculo
+  INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario
+  INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo_vehiculo = vehiculo.FK_tipoVehiculo
+  LEFT JOIN reservas ON reservas.FK_usuario = usuario.idUsuario";
   
   
   $resultado = mysqli_query($conectar, $sql);
@@ -177,31 +191,34 @@ include("../../../config/conexion.php");
 <!-- Table responsive wrapper -->
 <hr class="my-4 text-gray-600">
 
-<div class="overflow-x-auto bg-white dark:bg-neutral-700">
+<div class="overflow-x-auto bg-white ">
 
 <!-- Table -->
-<table class="min-w-full text-left text-sm whitespace-nowrap mb-3" >
+<table id="myTable" class="min-w-full text-left text-sm whitespace-nowrap mb-3" >
 
 <!-- Table head -->
-<thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 border-t">
+<thead class="uppercase tracking-wider border-b-2  bg-neutral-50  border-t">
 <tr>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+<th scope="col" class="px-6 py-5 border-x">
 Placa
 </th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+<th scope="col" class="px-6 py-5 border-x ">
 Tipo vehiculo
 </th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+<th scope="col" class="px-6 py-5 border-x ">
 color
 </th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+<th scope="col" class="px-6 py-5 border-x ">
 marca
 </th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+<th scope="col" class="px-6 py-5 border-x ">
 nombre usuario
 </th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
+<th scope="col" class="px-6 py-5 border-x ">
 apellido usuario
+</th>
+<th scope="col" class="px-6 py-5 border-x ">
+estado 
 </th>
 </tr>
 </thead>
@@ -210,13 +227,14 @@ apellido usuario
 <tbody>
 <?php
  while ($fila = mysqli_fetch_assoc($resultado)) {
-    echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
-    echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['Placa'] .'</th>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['tipo_vehiculo'] . '</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['color_vehiculo'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['marca'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_usuario'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['apel_usuario'] .'</td>';
+    echo '<tr class="border-b  hover:bg-neutral-100 ">';
+    echo '<th scope="row" class="px-6 py-5 border-x ">'. $fila['Placa'] .'</th>';
+    echo '<td class="px-6 py-5 border-x ">'. $fila['tipo_vehiculo'] . '</td>';
+    echo '<td class="px-6 py-5 border-x ">'. $fila['color_vehiculo'] .'</td>';
+    echo '<td class="px-6 py-5 border-x ">'. $fila['marca'] .'</td>';
+    echo '<td class="px-6 py-5 border-x ">'. $fila['nom_usuario'] .'</td>';
+    echo '<td class="px-6 py-5 border-x ">'. $fila['apel_usuario'] .'</td>';
+    echo '<td class="px-6 py-5 border-x ">'. $fila['estado'] .'</td>';
     echo '</tr>';
 }
 ?>
@@ -227,7 +245,13 @@ apellido usuario
 
 </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
             
 </body>
 </html>

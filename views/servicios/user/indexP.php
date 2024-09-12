@@ -169,7 +169,7 @@
           <br>
           <?php echo $fila['precio']; ?>
           <hr>
-          <a href="servicio.html" class="text-blue-500 underline">¡Aparta tu cita!</a>
+          <a href="agendarservicio.php" class="text-blue-500 underline">¡Aparta tu cita!</a>
         </div>
       </div>
     <?php endwhile; ?>

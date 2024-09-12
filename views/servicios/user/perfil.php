@@ -4,29 +4,33 @@ $varsesion = $_SESSION['email'];
 if ($varsesion == null || $varsesion == '') {
     header('location:../../../Index.php');
     die();
+}
 
-    }
+include("../../../config/conexion.php");
 
-    include("../../../config/conexion.php");
+$email = $_SESSION['email'];
+$sql = "SELECT idUsuario, nom_usuario, apel_usuario, fecha_nacimiento, email, contrasena, FK_rol FROM usuario
+        INNER JOIN rol ON rol.idRol = usuario.FK_rol 
+        WHERE email = '".$email."'"; 
 
-    $user = $_SESSION['email'];
-    $sql = "SELECT idUsuario, nom_usuario, apel_usuario, fecha_nacimiento, email, contraseña, FK_rol FROM usuario
-            INNER JOIN rol on rol.idRol = usuario.FK_rol 
-            WHERE email = '".$user."'"; 
+$resultado = mysqli_query($conectar, $sql);
 
-    $resultado = mysqli_query($conectar, $sql);
-
-    while($fila = mysqli_fetch_assoc($resultado)){
-            $idUsuario = $fila['idUsuario'];
-            $nom_usuario = $fila['nom_usuario'];
-            $apel_usuario = $fila['apel_usuario'];
-            $fecha_nacimiento = $fila['fecha_nacimiento'];
-            $email = $fila['email'];
-            $contraseña = $fila['contraseña'];
-            $FK_rol = $fila['FK_rol'];
-    }
-
+if ($resultado && mysqli_num_rows($resultado) > 0) {
+    $fila = mysqli_fetch_assoc($resultado);
+    $idUsuario = $fila['idUsuario'];
+    $nom_usuario = $fila['nom_usuario'];
+    $apel_usuario = $fila['apel_usuario'];
+    $fecha_nacimiento = $fila['fecha_nacimiento'];
+    $email = $fila['email'];
+    $contrasena = $fila['contrasena'];
+    $FK_rol = $fila['FK_rol'];
+} else {
+    
+    echo "No se encontraron datos para el usuario.";
+   
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -199,8 +203,8 @@ if ($varsesion == null || $varsesion == '') {
             <h2 class="text-xl font-semibold text-gray-700">Información Personal</h2>
             <div class="text-sm text-gray-600">
                 <p><strong>Nombre:</strong><?php echo $fila['nom_usuario']; ?></p>
-                <p><strong>Apellido:</strong> [Apellido]</p>
-                <p><strong>Fecha de Nacimiento:</strong> [Fecha]</p>
+                <p><strong>Apellido:</strong> <?php echo $fila['apel_usuario']; ?></p>
+                <p><strong>Fecha de Nacimiento:</strong> <?php echo $fila['fecha_nacimiento']; ?></p>
             </div>
         </div>
         <div class="space-y-4">
@@ -208,11 +212,11 @@ if ($varsesion == null || $varsesion == '') {
             <div class="flex items-center space-x-4">
                 <img src="https://tecdn.b-cdn.net/img/new/avatars/2.jpg" alt="imagen perfil" class="w-20 h-20 rounded-full">
                 <div class="text-sm text-gray-600">
-                    <p><strong>Correo:</strong> [Correo]</p>
+                    <p><strong>Correo:</strong> <?php echo $fila['email']; ?></p>
                 </div>
             </div>
-            <a href="#" class="text-blue-500 hover:underline text-sm">Editar perfil</a>
-        </div>
+            <a href="editPerfil.php?idUsuario=<?php echo $idUsuario; ?>" class="text-blue-500 hover:underline text-sm">Editar perfil</a>
+            </div>
     </div>
 
     <!-- Calendario -->

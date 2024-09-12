@@ -1,14 +1,13 @@
 <?php
 require "../../config/conexion.php";
 
-$fecha_reserva = $_POST['fecha_reserva'];
-$hora_reserva = $_POST['hora_reserva'];
-$estado = $_POST['estado'];
-$FK_usuario = $_POST['FK_usuario'];
-$FK_servicios = $_POST['FK_servicios'];
+$nom_servicio = $_POST['nom_servicio'];
+$descripcion = $_POST['descripcion'];
+$precio = $_POST['precio'];
+$FK_tipoVehiculo = $_POST['FK_tipoVehiculo'];
 
-$insert = "INSERT INTO reservas(fecha_reserva,hora_reserva,estado,FK_usuario,FK_servicios) 
-VALUES('$fecha_reserva','$hora_reserva','$estado','$FK_usuario','$FK_servicios')";
+$insert = "INSERT INTO servicios(nom_servicio,descripcion,precio,FK_tipoVehiculo) 
+VALUES('$nom_servicio','$descripcion','$precio','$FK_tipoVehiculo')";
   
 $query = mysqli_query($conectar,$insert);
 
@@ -30,7 +29,7 @@ if($query){
                          text: 'Se agrego reserva correctamente.',
                          icon: 'success'
                      }).then(function() {
-                         window.location = '../../views/servicios/user/viewservicesU.php'; // Redirige después de cerrar el Swal
+                         window.location = '../../views/servicios/empleyoee/viewServicesE.php'; // Redirige después de cerrar el Swal
                      });
                  </script>
              </body>

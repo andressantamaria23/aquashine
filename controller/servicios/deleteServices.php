@@ -1,16 +1,11 @@
 <?php
-require "../../config/conexion.php";
+$idServicios = $_GET['idServicios'];
+include("../../config/conexion.php");
 
-$nom_rol = $_POST['nom_rol'];
-$descripcion = $_POST['descripcion'];
+$sql = "DELETE FROM servicios WHERE idServicios ='$idServicios'";
+$resultado = mysqli_query($conectar, $sql);
 
-$insert = "INSERT INTO rol(nom_rol,descripcion) 
-VALUES('$nom_rol','$descripcion')";
-  
-$query = mysqli_query($conectar,$insert);
-
-if($query){
-
+if ($resultado) {
     echo "<!DOCTYPE html>
     <html lang='es'>
     <head>
@@ -25,19 +20,19 @@ if($query){
         <script>
             Swal.fire({
                 title: '¡Excelente!',
-                text: 'La información se actualizo correctamente.',
-                icon: 'success'
+                text: 'Se elimino el servicio correctamente.',
+                icon: 'error'
             }).then(function() {
-                window.location = '../../views/Admin/roles/indexR.php'; // Redirige después de cerrar el Swal
+                window.location = '../../views/servicios/empleyoee/viewservicesE.php'; // Redirige después de cerrar el Swal
             });
         </script>
     </body>
     </html>";
-
-}else{
-    echo '<script>alert("Error al conectarse a la BD");
-    location.assign("../../views/admin/roles/agregarRol.php");
+} else {
+    echo '<script>alert("Error al eliminar los datos");
+    location.assign("../../views/servicios/employee/viewservicesE.php");
     </script>';
 }
 
+mysqli_close($conectar);
 ?>

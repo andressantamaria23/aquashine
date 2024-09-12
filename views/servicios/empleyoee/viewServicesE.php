@@ -7,9 +7,21 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <title>SERVICIOS</title>
 </head>
-
+<style>
+        .content {
+            transition: margin-left 0.3s ease-in-out;
+            padding-left: 0;
+        }
+        .sidebar-open .content {
+            padding-left: 300px;
+        }
+        .sidebar {
+            z-index: 50;
+        }
+    </style>
 <body class="mx-auto font-[Poppins]">
 <?php
 include("../../../config/conexion.php");
@@ -17,7 +29,7 @@ include("../../../config/conexion.php");
 
   
   $sql = "SELECT * FROM servicios
-  INNER JOIN vehiculo ON vehiculo.idVehiculo = servicios.FK_vehiculo";
+  INNER JOIN tipo_vehiculo on tipo_vehiculo.idTipo_vehiculo = servicios.FK_tipoVehiculo";
   
   
   $resultado = mysqli_query($conectar, $sql);
@@ -140,6 +152,19 @@ include("../../../config/conexion.php");
                             <a href="agendarservicio.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Añadir servicio</a> <br> 
                             <a href="viewServicesE.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar servicio</a>
                             
+                            <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
+                                <i class="bi bi-layers-fill"></i>
+                                <div class="flex justify-between w-full items-center" onclick="cerrar()">
+                                    <span class="text-[15px] ml-4 text-gray-200">Reservas</span>
+                                    <span class="text-sm rotate-180" id="reservas">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="reserva">
+                            <a href="viewReservas.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar reservas</a>
+                            </div>
+
                             </div>
                             <hr class="my-4 text-gray-600">
     
@@ -162,7 +187,10 @@ include("../../../config/conexion.php");
                 document.querySelector('#Roles').classList.toggle('hidden')
                 document.querySelector('#rol').classList.toggle('rotate-0')
             }
-    
+            function Cerrar() {
+                document.querySelector('#reserva').classList.toggle('hidden')
+                document.querySelector('#reservas').classList.toggle('rotate-0')
+            }
             function Openbar() {
                 document.querySelector('.sidebar').classList.toggle('hidden')
             }
@@ -176,58 +204,86 @@ include("../../../config/conexion.php");
 <div class="text-center text-4xl font-bold text-gray-900 "> SERVICIOS  </div>
 <!-- Table responsive wrapper -->
 <hr class="my-4 text-gray-600">
-
+<a href="agregarServicio.php" role="button" class="mb-7 inline-block rounded-full bg-emerald-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-emerald-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-emerald-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-emerald-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Agregar Servicio
+<svg
+xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 24 24"
+fill="currentColor"
+class="inline ml-1 pb-[2px] w-4 h-4"
+>
+<path
+fill-rule="evenodd"
+d="M10.5 3.75a6 6 0 00-5.98 6.496A5.25 5.25 0 006.75 20.25H18a4.5 4.5 0 002.206-8.423 3.75 3.75 0 00-4.133-4.303A6.001 6.001 0 0010.5 3.75zm2.25 6a.75.75 0 00-1.5 0v4.94l-1.72-1.72a.75.75 0 00-1.06 1.06l3 3a.75.75 0 001.06 0l3-3a.75.75 0 10-1.06-1.06l-1.72 1.72V9.75z"
+clip-rule="evenodd"
+/>
+</svg>
+</a>
 <div class="overflow-x-auto bg-white dark:bg-neutral-700">
 
 <!-- Table -->
-<table class="min-w-full text-left text-sm whitespace-nowrap mb-3" >
-
-<!-- Table head -->
-<thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 border-t">
-<tr>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-nom_servicio
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-Descripcion
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-precio
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-tipo_servicio
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-editar
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-eliminar
-</th>
-</tr>
-</thead>
-
-<!-- Table body -->
-<tbody>
-<?php
- while ($fila = mysqli_fetch_assoc($resultado)) {
-    echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
-    echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_servicio'] .'</th>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['descripcion'] . '</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['precio'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['tipo_servicio'] .'</td>';
-    echo "<td><a class='mx-auto inline-block rounded bg-indigo-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-indigo-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-indigo-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-indigo-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='#?idServicios=" . $fila['idServicios'] . "''>Editar</a></td>";
-    echo "<td><a class='inline-block rounded bg-red-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-red-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0' href='../../controller/?idServicios=" . $fila['idServicios'] . "''>Eliminar</a></td>";
-    echo '</tr>';
-}
-?>
-</tbody>
+<div class="table-responsive">
+            <table id="myTable" class="table table-hover table-striped mt-4 text-center">
+                <thead class="bg-gray-900 text-white text-center">
+                <tr>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Tipo de vehiculo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+                    <tr class="border-b border-gray-200 bg-white hover:bg-gray-100 " >
+                        <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_servicio']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['descripcion']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['precio']; ?></td>
+                        <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['tipo_vehiculo']; ?></td>
+                        <td class="text-center px-5 py-5 text-sm border-x border-y">
+                            <a href="editServicio.php?idServicios=<?php echo $row['idServicios']; ?>" class="bi bi-pencil text-blue-600 hover:text-blue-900"></a>
+                            <a href="#" onclick="openModal('<?php echo $row['idServicios']; ?>', '<?php echo $row['nom_servicio']; ?>')" class="bi bi-trash text-red-600 hover:text-red-900 ml-4"></a>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
-</table>
+<div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+    <div class="bg-white p-6 rounded shadow-lg text-center">
+        <h2 class="text-xl font-semibold mb-4">¿Desea eliminar el Servicio?</h2>
+        <p class="mb-6">Esta acción no se puede deshacer.</p>
+        <div class="flex justify-center space-x-4">
+            <a href="#" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">Eliminar</a>
+            <button onclick="closeModal()" class="bg-gray-500 hover:bg-gray-700 text-white px-4 py-2 rounded">Cancelar</button>
+        </div>
+    </div>
+</div>
+<script>
+
+    function openModal(id, nombre) {
+        document.querySelector("#deleteModal h2").textContent = `¿Desea eliminar el servicio? ${nombre}`;
+        document.querySelector("#deleteModal a").href = `../../../controller/servicios/deleteServices.php?idServicios=${id}`;
+        document.getElementById("deleteModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("deleteModal").style.display = "none";
+    }
+</script>
 
 </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
             
 </body>
 </html>

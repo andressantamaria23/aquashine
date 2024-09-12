@@ -138,7 +138,7 @@ $result = mysqli_query($conectar, $sql);
             </div>
 
             <div class="form-group">
-                <input type="password" id="contraseña" name="contraseña" placeholder=" " required>
+                <input type="password" id="contrasena" name="contrasena" placeholder=" " required>
                 <label for="contraseña">Contraseña</label>
             </div>
 

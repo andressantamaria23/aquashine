@@ -30,10 +30,10 @@ if (isset($_POST['enviar'])) {
     // Verificar si la actualización fue exitosa
     if ($resultado) {
         echo '<script>alert("Se actualizaron los datos correctamente");
-        location.assign("indexAdmin.php");</script>';
+        location.assign("perfil.php");</script>';
     } else {
         echo '<script>alert("Error al actualizar los datos");
-        location.assign("editarUsuario.php?idUsuario='.$idUsuario.'");</script>';
+        location.assign("editPerfil.php?idUsuario='.$idUsuario.'");</script>';
     }
 
     
@@ -59,14 +59,14 @@ if (isset($_POST['enviar'])) {
                 $contrasena = $fila['contrasena'];
                 $FK_rol = $fila['FK_rol'];
         } else {
-            echo '<script>alert("Usuario no encontrado"); location.assign("indexAdmin.php");</script>';
+            echo '<script>alert("Usuario no encontrado"); location.assign("perfil.php");</script>';
             exit();
         }
 
         // Cerrar la conexión
         mysqli_close($conectar);
     } else {
-        echo '<script>alert("ID de usuario no proporcionado"); location.assign("indexAdmin.php");</script>';
+        echo '<script>alert("ID de usuario no proporcionado"); location.assign("perfil.php");</script>';
         exit();
     }
 }
@@ -85,10 +85,10 @@ if (isset($_POST['enviar'])) {
     <div class="container mx-auto px-4 py-12">
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
             <h1 class="text-2xl font-semibold text-center mb-4 text-blue-600">Editar Usuario</h1>
-            <form action="<?=$_SERVER['PHP_SELF']?>" method="POST" class="grid grid-cols-2 gap-x-6 gap-y-4">
+            <form action="<?=$_SERVER['PHP_SELF']?>" method="POST" class="">
                 <input type="hidden" name="idUsuario" value="<?php echo htmlspecialchars($idUsuario); ?>">
 
-                <div class="mb-4">
+                <div class="mb-4 hidden">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="idUsuario">ID Usuario</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                            type="text" id="idUsuario" name="idUsuario" value="<?php echo $idUsuario;?>" readonly>
@@ -97,43 +97,37 @@ if (isset($_POST['enviar'])) {
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="nom_usuario">Nombre</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="text" id="nom_usuario" name="nom_usuario" value="<?php echo $nom_usuario;?>" readonly>
+                           type="text" id="nom_usuario" name="nom_usuario" value="<?php echo $nom_usuario;?>" >
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="apel_usuario">Apellido</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="text" id="apel_usuario" name="apel_usuario" value="<?php echo $apel_usuario;?>" readonly>
+                           type="text" id="apel_usuario" name="apel_usuario" value="<?php echo $apel_usuario;?>" >
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="fecha_nacimiento">Fecha Nacimiento</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" readonly>
+                           type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento;?>" >
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="email" id="email" name="email" value="<?php echo $email;?>" readonly>
+                           type="email" id="email" name="email" value="<?php echo $email;?>" >
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="contraseña">Contraseña</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                           type="password" id="contrasena" name="contrasena" value="<?php echo $contrasena;?>" readonly>
+                           type="password" id="contrasena" name="contrasena" value="<?php echo $contrasena;?>" >
                 </div>
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="FK_rol">Rol</label>
-                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                            id="FK_rol" name="FK_rol" required>
-                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                            <option value="<?php echo $row['idRol']; ?>">
-                                <?php echo htmlspecialchars($row['nom_rol']); ?>
-                            </option>
-                        <?php } ?>
-                    </select>
+                <div class="mb-4 hidden">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="FK_rol">Contraseña</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                           type="text" id="FK_rol" name="FK_rol" value="<?php echo $FK_rol;?>" >
                 </div>
                 
 

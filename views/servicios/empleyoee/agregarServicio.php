@@ -109,7 +109,7 @@ include("../../../config/conexion.php");
 
 
   
-  $sql = "SELECT idServicios, nom_servicio, precio FROM servicios ";
+  $sql = "SELECT idTipo_vehiculo, tipo_vehiculo FROM tipo_vehiculo ";
   
   
   $resultado = mysqli_query($conectar, $sql);
@@ -117,38 +117,28 @@ include("../../../config/conexion.php");
   ?>
     <div class="form-container mx-auto">
         <h2>Agendar  Servicio</h2>
-        <form action="../../../controller/servicios/agendarservicio.php" method="POST">
+        <form action="../../../controller/servicios/agregarservicio.php" method="POST">
             <div class="form-group">
-                <input type="date" id="fecha_reserva" name="fecha_reserva" placeholder=" " required>
-                <label for="fecha_reserva"> fecha Reserva</label>
+                <input type="text" id="nom_servicio" name="nom_servicio" placeholder=" " required>
+                <label for="nom_servicio"> Nombre del servicio</label>
             </div>
 
             <div class="form-group">
-                <input type="time" id="hora_reserva" name="hora_reserva" placeholder=" " required>
-                <label for="hora_reserva">Hora reserva</label>
+                <input type="text" id="descripcion" name="descripcion" placeholder=" " >
+                <label for="hora_reserva"> descripcion</label>
             </div>
 
-            <div class="form-group hidden">
-                <input type="estado" id="estado" name="estado" placeholder=" " required value="Pendiente">
-                <label for="estado"> estado</label>
-            </div>
-
-            <div class="form-group hidden">
-                <input type="estado" id="estado" name="estado" placeholder=" " required value="Pendiente">
-                <label for="estado"> estado</label>
-            </div>
-
-            <div class="form-group hidden">
-                <input type="usuario" id="FK_usuario" name="FK_usuario" placeholder=" " required value="2">
-                <label for="usuario"> usuario</label>
+            <div class="form-group ">
+                <input type="number" id="precio" name="precio" placeholder=" " required>
+                <label for="precio"> Precio</label>
             </div>
             <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="FK_servicios">Servicios</label>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="FK_tipoVehiculo">Tipo de Vehiculo</label>
                     <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                            id="FK_servicios" name="FK_servicios" required>
+                            id="FK_tipoVehiculo" name="FK_tipoVehiculo" required>
                         <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
-                            <option value="<?php echo $row['idServicios']; ?>">
-                                <?php echo htmlspecialchars($row['nom_servicio']); ?>
+                            <option value="<?php echo $row['idTipo_vehiculo']; ?>">
+                                <?php echo htmlspecialchars($row['tipo_vehiculo']); ?>
                             </option>
                         <?php } ?>
                     </select>
@@ -158,7 +148,7 @@ include("../../../config/conexion.php");
                     <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="enviar">
                         Registrar
                     </button>
-                    <a href="viewReservas.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
+                    <a href="viewServicesE.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
                         Cancelar
                     </a>
                 </div>

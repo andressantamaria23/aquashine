@@ -76,7 +76,7 @@ if (isset($_POST['enviar'])) {
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="nom_rol">Nombre del Rol</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                           type="text" id="nom_rol" name="nom_rol" value="<?php echo $idRol;?>" required>
+                           type="text" id="nom_rol" name="nom_rol" value="<?php echo $nom_rol;?>" required>
                 </div>
 
                 <div class="mb-4">

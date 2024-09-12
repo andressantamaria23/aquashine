@@ -7,9 +7,22 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <title>SERVICIOS</title>
-</head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
+    <title>Reservas</title>
+</head>
+<style>
+        .content {
+            transition: margin-left 0.3s ease-in-out;
+            padding-left: 0;
+        }
+        .sidebar-open .content {
+            padding-left: 300px;
+        }
+        .sidebar {
+            z-index: 50;
+        }
+    </style>
 <body class="mx-auto font-[Poppins]">
 <?php
 include("../../../config/conexion.php");
@@ -53,7 +66,7 @@ include("../../../config/conexion.php");
                 <ul class="list-style-none me-auto flex flex-col ps-0 lg:flex-row" data-twe-navbar-nav-ref>
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
                         <!-- Enlace al Dashboard -->
-                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="vierwServicesE.php" data-twe-nav-link-ref>Servicios</a>
+                        <a class="rounded-md text-gray-200 transition duration-200 hover:bg-blue-600  hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2" href="viewServicesE.php" data-twe-nav-link-ref>Servicios</a>
                     </li>
                     <!-- Enlace al Equipo -->
                     <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
@@ -141,7 +154,19 @@ include("../../../config/conexion.php");
                             <a href="agendarservicio.php" class="mb-3 cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Añadir servicio</a> <br> 
                             <a href="viewServicesE.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar servicio</a>
                             
+                            <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
+                                <i class="bi bi-layers-fill"></i>
+                                <div class="flex justify-between w-full items-center" onclick="Close()">
+                                    <span class="text-[15px] ml-4 text-gray-200">Reservas</span>
+                                    <span class="text-sm rotate-180" id="reserva">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                                </div>
                             </div>
+                            <div class="leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto hidden" id="Roles">
+                            <a href="viewReservas.php" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Visualizar reservas</a>
+                            </div>
+
                             <hr class="my-4 text-gray-600">
     
                             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
@@ -174,64 +199,47 @@ include("../../../config/conexion.php");
         </script>
 <div class="container mx-auto mt-10">
 
-<div class="text-center text-4xl font-bold text-gray-900 "> RESERVAS  </div>
+<div class="text-center text-4xl font-bold text-gray-900 "> RESERVAS   </div>
 <!-- Table responsive wrapper -->
 <hr class="my-4 text-gray-600">
 
-<div class="overflow-x-auto bg-white dark:bg-neutral-700">
 
-<!-- Table -->
-<table class="min-w-full text-left text-sm whitespace-nowrap mb-3" >
-
-<!-- Table head -->
-<thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 border-t">
-<tr>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-idReserva
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-fecha reserva
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-hora reserva
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-estado
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-servicio
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-cliente
-</th>
-<th scope="col" class="px-6 py-5 border-x dark:border-neutral-600">
-visualizar
-</th>
-</tr>
-</thead>
-
-<!-- Table body -->
-<tbody>
-<?php
- while ($fila = mysqli_fetch_assoc($resultado)) {
-    echo '<tr class="border-b dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">';
-    echo '<th scope="row" class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['idReservas'] .'</th>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['fecha_reserva'] . '</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['hora_reserva'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['estado'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_usuario'] .'</td>';
-    echo '<td class="px-6 py-5 border-x dark:border-neutral-600">'. $fila['nom_servicio'] .'</td>';
-    echo '</tr>';
-}
-?>
-</tbody>
-
-
-</table>
-
+<div class="table-responsive">
+            <table id="myTable" class="table table-hover table-striped mt-4 text-center">
+                <thead class="bg-gray-900 text-white text-center">
+                <tr>
+                    <th scope="col">Fecha Reserva</th>
+                    <th scope="col">Hora Reserva</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+                    <tr class="border-b border-gray-200 bg-white hover:bg-gray-100 " >
+                        <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['fecha_reserva']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['hora_reserva']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['estado']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_servicio']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_usuario']; ?></td>
+                        <td class="text-center px-5 py-5 text-sm border-x border-y">
+                            <a href="editReservasE.php?idReservas=<?php echo $row['idReservas']; ?>" class="bi bi-pencil text-blue-600 hover:text-blue-900"></a>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-</div>
-
-            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
 </body>
 </html>

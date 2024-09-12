@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="relative flex w-full flex-col flex-wrap items-stretch mb-4">
                         <div class="relative">
-                            <input type="password" name="contraseña" id="contraseña" placeholder="contraseña" class="px-4 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
+                            <input type="password" name="contrasena" id="contrasena" placeholder="contraseña" class="px-4 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
                             <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
                                 <!-- Iconos de mostrar/ocultar contraseña -->
                                 <svg id="eyeIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.5c-2.5 0-4.5 2-4.5 4.5s2 4.5 4.5 4.5 4.5-2 4.5-4.5S14.5 6.5 12 6.5zM12 13c-1.4 0-2.5-1.1-2.5-2.5S10.6 8 12 8s2.5 1.1 2.5 2.5S13.4 13 12 13z"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8.01-3.61-8.01-8.01 0-1.31.31-2.55.87-3.67 1.6-2.48 4.32-4.32 7.16-5.07.46-.13.93-.21 1.41-.21s.95.08 1.41.21c2.83.75 5.55 2.59 7.15 5.07.56 1.12.87 2.36.87 3.67 0 4.4-3.6 8.01-8.01 8.01z"></path></svg>

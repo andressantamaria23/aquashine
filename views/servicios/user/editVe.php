@@ -1,20 +1,20 @@
 <?php
-include("../../config/conexion.php");
+include("../../../config/conexion.php");
 
 // Comprobar si se ha enviado el formulario
 if (isset($_POST['enviar'])) {
     // Obtener los datos enviados por POST
     $idVehiculo = $_POST['idVehiculo'];
     $Placa = $_POST['Placa'];
-    $tipo_vehiculo = $_POST['tipo_Vehiculo'];
+    $FK_tipoVehiculo = $_POST['FK_tipoVehiculo'];
     $color_vehiculo = $_POST['color_vehiculo'];
     $marca = $_POST['marca'];
     $FK_usuario = $_POST['FK_usuario'];
 
-    // Consulta para actualizar los datos del usuario
+    // Consulta para actualizar los datos del vehículo
     $sql = "UPDATE vehiculo SET 
                 Placa = '$Placa',
-                tipo_vehiculo = '$tipo_vehiculo',
+                FK_tipoVehiculo = '$FK_tipoVehiculo',
                 color_vehiculo = '$color_vehiculo',
                 marca = '$marca',
                 FK_usuario = '$FK_usuario'
@@ -29,43 +29,43 @@ if (isset($_POST['enviar'])) {
         location.assign("viewCar.php");</script>';
     } else {
         echo '<script>alert("Error al actualizar los datos");
-        location.assign("editVe.php?idVehiculo ='.$idVehiculo.'");</script>';
+        location.assign("editVe.php?idVehiculo='.$idVehiculo.'");</script>';
     }
 
     // Cerrar la conexión
     mysqli_close($conectar);
 
 } else {
-    // Comprobar si se ha pasado un ID de usuario por GET
+    // Comprobar si se ha pasado un ID de vehículo por GET
     if (isset($_GET['idVehiculo'])) {
         $idVehiculo = $_GET['idVehiculo'];
 
-        // Consulta para obtener los datos del usuario
+        // Consulta para obtener los datos del vehículo
         $sql = "SELECT * FROM vehiculo WHERE idVehiculo ='$idVehiculo'";
         $resultado = mysqli_query($conectar, $sql);
 
-        // Verificar si el usuario existe
+        // Verificar si el vehículo existe
         if ($resultado && mysqli_num_rows($resultado) > 0) {
-            // Obtener los datos del usuario
+            // Obtener los datos del vehículo
             $fila = mysqli_fetch_assoc($resultado);
             $Placa = $fila['Placa'];
-            $tipo_vehiculo = $fila['tipo_vehiculo'];
+            $FK_tipoVehiculo = $fila['FK_tipoVehiculo'];
             $color_vehiculo = $fila['color_vehiculo'];
             $marca = $fila['marca'];
             $FK_usuario = $fila['FK_usuario'];
         } else {
-            echo '<script>alert("Vehiculo no encontrado"); location.assign("viewCar.php");</script>';
+            echo '<script>alert("Vehículo no encontrado"); location.assign("viewCar.php");</script>';
             exit();
         }
 
         // Cerrar la conexión
         mysqli_close($conectar);
     } else {
-        echo '<script>alert("ID de vehiculo no proporcionado"); location.assign("viewCar.php");</script>';
+        echo '<script>alert("ID de vehículo no proporcionado"); location.assign("viewCar.php");</script>';
         exit();
     }
 }
-  ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -78,27 +78,28 @@ if (isset($_POST['enviar'])) {
     <div class="container mx-auto px-4 py-12">
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
             <h1 class="text-2xl font-semibold text-center mb-4 text-blue-600">Editar Vehículo</h1>
-            <form action="../../controller/servicios/editarVe.php" method="POST">
+            <form action="editVe.php?idVehiculo=<?php echo $idVehiculo; ?>" method="POST">
+                <input type="hidden" name="idVehiculo" value="<?php echo $idVehiculo; ?>" />
+
                 <div class="mb-4">
                     <label for="Placa" class="block text-gray-700 text-sm font-bold mb-2">Placa</label>
                     <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                           id="Placa" name="Placa" placeholder="Placa" value="<?php echo htmlspecialchars($Placa); ?>" readonly>
+                           id="Placa" name="Placa" placeholder="Placa" value="<?php echo htmlspecialchars($Placa); ?>" required>
                 </div>
 
                 <div class="mb-4">
-                    <label for="tipo_vehiculo" class="block text-gray-700 text-sm font-bold mb-2">Tipo de Vehículo</label>
-                    <select id="tipo_vehiculo" name="tipo_vehiculo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                            onchange="updateMarcaOptions()">
-                        <option value=""></option>
-                        <option value="carro" <?php echo ($tipo_vehiculo == 'carro') ? 'selected' : ''; ?>>Carro</option>
-                        <option value="moto" <?php echo ($tipo_vehiculo == 'moto') ? 'selected' : ''; ?>>Moto</option>
-                    </select>
-                </div>
+    <label for="FK_tipoVehiculo" class="block text-gray-700 text-sm font-bold mb-2">Tipo de Vehículo</label>
+    <select id="FK_tipoVehiculo" name="FK_tipoVehiculo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <option value="">Seleccione el tipo de vehículo</option>
+        <option value="1" <?php echo ($FK_tipoVehiculo == '1') ? 'selected' : ''; ?>>Carro</option>
+        <option value="2" <?php echo ($FK_tipoVehiculo == '2') ? 'selected' : ''; ?>>Moto</option>
+    </select>
+</div>
+
 
                 <div class="mb-4">
                     <label for="color_vehiculo" class="block text-gray-700 text-sm font-bold mb-2">Color del Vehículo</label>
                     <select id="color_vehiculo" name="color_vehiculo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <option value=""></option>
                         <option value="blanco" <?php echo ($color_vehiculo == 'blanco') ? 'selected' : ''; ?>>Blanco</option>
                         <option value="negro" <?php echo ($color_vehiculo == 'negro') ? 'selected' : ''; ?>>Negro</option>
                         <option value="gris" <?php echo ($color_vehiculo == 'gris') ? 'selected' : ''; ?>>Gris</option>
@@ -117,7 +118,7 @@ if (isset($_POST['enviar'])) {
                         <?php
                         $marcasCarro = ['Toyota', 'Ford', 'Chevrolet', 'Honda', 'Nissan', 'Volkswagen'];
                         $marcasMoto = ['Yamaha', 'Honda', 'Suzuki', 'Kawasaki', 'Harley-Davidson', 'Ducati', 'Pulsar', 'TVS'];
-                        $marcas = ($tipo_vehiculo == 'carro') ? $marcasCarro : $marcasMoto;
+                        $marcas = ($FK_tipoVehiculo == '1') ? $marcasCarro : $marcasMoto;
 
                         foreach ($marcas as $marcaOption) {
                             $selected = ($marca == $marcaOption) ? 'selected' : '';
@@ -126,9 +127,9 @@ if (isset($_POST['enviar'])) {
                         ?>
                     </select>
                 </div>
-
+                <input type="hidden" name="FK_usuario" value="<?php echo $FK_usuario; ?>" value="2" />
                 <div class="flex items-center justify-between">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" name="enviar">
                         Guardar Cambios
                     </button>
                     <a href="viewCar.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
@@ -141,7 +142,7 @@ if (isset($_POST['enviar'])) {
 
     <script>
         function updateMarcaOptions() {
-            const tipoVehiculo = document.getElementById('tipo_vehiculo').value;
+            const tipoVehiculo = document.getElementById('FK_tipoVehiculo').value;
             const marcaSelect = document.getElementById('marca');
 
             // Limpiar las opciones actuales
@@ -159,6 +160,12 @@ if (isset($_POST['enviar'])) {
                 marcaSelect.appendChild(option);
             });
         }
+
+        // Ejecutar la función al cargar la página
+        window.onload = function() {
+            updateMarcaOptions();
+        };
     </script>
 </body>
 </html>
+ 

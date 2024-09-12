@@ -5,7 +5,32 @@ if ($varsesion == null || $varsesion == '') {
     header('location:../../../Index.php');
     die();
 }
+
+include("../../../config/conexion.php");
+
+$email = $_SESSION['email'];
+$sql = "SELECT idUsuario, nom_usuario, apel_usuario, fecha_nacimiento, email, contrasena, FK_rol FROM usuario
+        INNER JOIN rol ON rol.idRol = usuario.FK_rol 
+        WHERE email = '".$email."'"; 
+
+$resultado = mysqli_query($conectar, $sql);
+
+if ($resultado && mysqli_num_rows($resultado) > 0) {
+    $fila = mysqli_fetch_assoc($resultado);
+    $idUsuario = $fila['idUsuario'];
+    $nom_usuario = $fila['nom_usuario'];
+    $apel_usuario = $fila['apel_usuario'];
+    $fecha_nacimiento = $fila['fecha_nacimiento'];
+    $email = $fila['email'];
+    $contrasena = $fila['contrasena'];
+    $FK_rol = $fila['FK_rol'];
+} else {
+    
+    echo "No se encontraron datos para el usuario.";
+   
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

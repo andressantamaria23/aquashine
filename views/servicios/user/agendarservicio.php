@@ -1,3 +1,37 @@
+<?php
+session_start();
+$varsesion = $_SESSION['email'];
+if ($varsesion == null || $varsesion == '') {
+    header('location:../../../Index.php');
+    die();
+}
+
+include("../../../config/conexion.php");
+
+$email = $_SESSION['email'];
+$sql = "SELECT idUsuario, nom_usuario, apel_usuario, fecha_nacimiento, email, contrasena, FK_rol FROM usuario
+        INNER JOIN rol ON rol.idRol = usuario.FK_rol 
+        WHERE email = '".$email."'"; 
+
+$resultado = mysqli_query($conectar, $sql);
+
+if ($resultado && mysqli_num_rows($resultado) > 0) {
+    $fila = mysqli_fetch_assoc($resultado);
+    $idUsuario = $fila['idUsuario'];
+    $nom_usuario = $fila['nom_usuario'];
+    $apel_usuario = $fila['apel_usuario'];
+    $fecha_nacimiento = $fila['fecha_nacimiento'];
+    $email = $fila['email'];
+    $contrasena = $fila['contrasena'];
+    $FK_rol = $fila['FK_rol'];
+} else {
+    
+    echo "No se encontraron datos para el usuario.";
+   
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -134,12 +168,7 @@ include("../../../config/conexion.php");
             </div>
 
             <div class="form-group hidden">
-                <input type="estado" id="estado" name="estado" placeholder=" " required value="Pendiente">
-                <label for="estado"> estado</label>
-            </div>
-
-            <div class="form-group hidden">
-                <input type="usuario" id="FK_usuario" name="FK_usuario" placeholder=" " required value="2">
+                <input type="usuario" id="FK_usuario" name="FK_usuario" placeholder=" " required value="<?php echo $idUsuario;?>">
                 <label for="usuario"> usuario</label>
             </div>
             <div class="mb-4">

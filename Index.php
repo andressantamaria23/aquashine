@@ -18,7 +18,7 @@
     <title>AquaShine</title>
     <style>
         .swiper-button-next, .swiper-button-prev {
-            color: rgb(245, 0, 0);
+            color: rgb(255, 255, 255);
             top: 50%; 
             transform: translateY(-20%);
         }
