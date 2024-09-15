@@ -1,7 +1,7 @@
 <?php
 include("../../../config/conexion.php");
 
-// Comprobar si se ha enviado el formulario
+
 if (isset($_POST['enviar'])) {
     // Obtener los datos enviados por POST
     $idVehiculo = $_POST['idVehiculo'];
@@ -88,14 +88,13 @@ if (isset($_POST['enviar'])) {
                 </div>
 
                 <div class="mb-4">
-    <label for="FK_tipoVehiculo" class="block text-gray-700 text-sm font-bold mb-2">Tipo de Vehículo</label>
-    <select id="FK_tipoVehiculo" name="FK_tipoVehiculo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-        <option value="">Seleccione el tipo de vehículo</option>
-        <option value="1" <?php echo ($FK_tipoVehiculo == '1') ? 'selected' : ''; ?>>Carro</option>
-        <option value="2" <?php echo ($FK_tipoVehiculo == '2') ? 'selected' : ''; ?>>Moto</option>
-    </select>
-</div>
-
+                    <label for="FK_tipoVehiculo" class="block text-gray-700 text-sm font-bold mb-2">Tipo de Vehículo</label>
+                    <select id="FK_tipoVehiculo" name="FK_tipoVehiculo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onchange="updateMarcaOptions()">
+                        <option value="">Seleccione el tipo de vehículo</option>
+                        <option value="1" <?php echo ($FK_tipoVehiculo == '1') ? 'selected' : ''; ?>>Carro</option>
+                        <option value="3" <?php echo ($FK_tipoVehiculo == '3') ? 'selected' : ''; ?>>Moto</option>
+                    </select>
+                </div>
 
                 <div class="mb-4">
                     <label for="color_vehiculo" class="block text-gray-700 text-sm font-bold mb-2">Color del Vehículo</label>
@@ -116,6 +115,7 @@ if (isset($_POST['enviar'])) {
                     <select id="marca" name="marca" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="">Seleccione la marca</option>
                         <?php
+                        // Definir las marcas segun el tipo de vehículo seleccionado
                         $marcasCarro = ['Toyota', 'Ford', 'Chevrolet', 'Honda', 'Nissan', 'Volkswagen'];
                         $marcasMoto = ['Yamaha', 'Honda', 'Suzuki', 'Kawasaki', 'Harley-Davidson', 'Ducati', 'Pulsar', 'TVS'];
                         $marcas = ($FK_tipoVehiculo == '1') ? $marcasCarro : $marcasMoto;
@@ -127,7 +127,7 @@ if (isset($_POST['enviar'])) {
                         ?>
                     </select>
                 </div>
-                <input type="hidden" name="FK_usuario" value="<?php echo $FK_usuario; ?>" value="2" />
+                <input type="hidden" name="FK_usuario" value="<?php echo $FK_usuario; ?>" />
                 <div class="flex items-center justify-between">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" name="enviar">
                         Guardar Cambios
@@ -151,7 +151,7 @@ if (isset($_POST['enviar'])) {
             // Añadir opciones basadas en el tipo de vehículo
             const marcasCarro = ['Toyota', 'Ford', 'Chevrolet', 'Honda', 'Nissan', 'Volkswagen'];
             const marcasMoto = ['Yamaha', 'Honda', 'Suzuki', 'Kawasaki', 'Harley-Davidson', 'Ducati', 'Pulsar', 'TVS'];
-            const marcas = (tipoVehiculo === 'carro') ? marcasCarro : marcasMoto;
+            const marcas = (tipoVehiculo === '1') ? marcasCarro : marcasMoto;
 
             marcas.forEach(marca => {
                 const option = document.createElement('option');
@@ -161,11 +161,10 @@ if (isset($_POST['enviar'])) {
             });
         }
 
-        // Ejecutar la función al cargar la página
+        // Ejecutar la función al cargar la página para asegurarse de que las marcas coincidan con el tipo seleccionado
         window.onload = function() {
             updateMarcaOptions();
         };
     </script>
 </body>
 </html>
- 

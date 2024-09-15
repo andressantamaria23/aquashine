@@ -1,5 +1,6 @@
 <?php
 require "../../config/conexion.php";
+require "../../clienteFunciones.php";
 
 $nom_usuario = $_POST['nom_usuario'];
 $apel_usuario = $_POST['apel_usuario'];
