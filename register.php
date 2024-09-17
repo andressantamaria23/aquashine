@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -57,10 +58,25 @@
             <p class="my-2">REGÍSTRATE</p>
         </div>
 
+        <?php
+// Inicializar la variable $errors
+$errors = [];
+
+// Validación y manejo del formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once "controller/Admin/agregarUsuario.php";
+    
+    mostrarmensajes($errors);
+}
+?>
+
+
+
+
         <div class="my-3 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
         </div>
 
-        <form id="Registrarse" action="controller/Admin/agregarUsuario.php" method="POST" class="bg-white text-gray-900 rounded-lg shadow-lg p-8 mx-4 my-6 max-w-md mx-auto">
+        <form id="" action="controller/Admin/agregarUsuario.php" method="POST" class="bg-white text-gray-900 rounded-lg shadow-lg p-8 mx-4 my-6 max-w-md mx-auto">
             <div class="mb-4">
                 <!-- Nombre -->
                 <div class="relative mb-6 mt-2">
@@ -96,6 +112,11 @@
                 <div class="relative mb-6 hidden">
                     <input type="number" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear" id="FK_rol" name="FK_rol" value="2" />
                     <label for="FK_rol" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out">Rol</label>
+                </div>
+
+                <div class="relative mb-6 hidden">
+                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear" id="confirmacion" name="confirmacion" />
+                    <label for="confirmacion" class=" absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out">hash</label>
                 </div>
 
                 <button value="Enviar" type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

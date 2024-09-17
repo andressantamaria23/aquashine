@@ -8,7 +8,7 @@ if (isset($_SESSION['usuario'])) {
 }
 
 
-require './config/conexion.php'; // Asegúrate de que tienes un archivo de configuración con la conexión a la base de datos
+require './config/conexion.php'; 
 
 $error = '';
 
@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg w-full hover:bg-primary-accent-300">Iniciar sesión</button>
                     <div class="text-center mb-4">
                         <br>
-                        <a href="register.html" class="text-sm text-gray-500 hover:text-gray-700">¿No tienes cuenta? Registrate!</a>
+                        <a href="register.php" class="text-sm text-gray-500 hover:text-gray-700">¿No tienes cuenta? Registrate!</a>
                     </div>
                 </form>
             </div>

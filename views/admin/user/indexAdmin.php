@@ -111,6 +111,7 @@ $resultado = mysqli_query($conectar, $sql);
                     <th scope="col">Fecha nacimiento</th>
                     <th scope="col">email</th>
                     <th scope="col">rol</th>
+                    <th scope="col">estado</th>
                     <th scope="col">Acciones</th>
                 </tr>
                 </thead>
@@ -122,6 +123,7 @@ $resultado = mysqli_query($conectar, $sql);
                         <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['fecha_nacimiento']; ?></td>
                         <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['email']; ?></td>
                         <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_rol']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['estado']; ?></td>
                         <td class="text-center px-5 py-5 text-sm border-x border-y">
                             <a href="editarUsuario.php?idUsuario=<?php echo $row['idUsuario']; ?>" class="bi bi-pencil text-blue-600 hover:text-blue-900"></a>
                             <a href="#" onclick="openModal('<?php echo $row['idUsuario']; ?>', '<?php echo $row['nom_usuario']; ?>')" class="bi bi-trash text-red-600 hover:text-red-900 ml-4"></a>
