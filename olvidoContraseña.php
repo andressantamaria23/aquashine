@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,8 +65,8 @@
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         <div class="relative z-10 flex items-center justify-center h-full">
             <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                <h2 class="text-2xl font-semibold text-center mb-6">INICIO DE SESIÓN</h2>
-                <form action="email/index.php" method="post">
+                <h2 class="text-2xl font-semibold text-center mb-6">RECUPERAR CONTRASEÑA</h2>
+                <form action="controller/Admin/enviar_recuperar.php" method="post">
                     <div class="relative flex w-full flex-col flex-wrap items-stretch mb-4">
                         <input type="email" name="email" placeholder="Correo electrónico" class="px-4 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
                     </div>

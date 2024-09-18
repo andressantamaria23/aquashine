@@ -129,3 +129,74 @@ function esActivo($email, $conectar){
     }
 return false; 
 }
+
+function SolicitarPassword($idUsuario, $conectar) {
+    $token = generarToken();
+
+    // Prepara la consulta para actualizar el token
+    $sql = $conectar->prepare("UPDATE usuario SET confirmacion_contrasena = ? WHERE idUsuario = ?");
+
+    // Vincula los parámetros
+    $sql->bind_param("si", $token, $idUsuario); // "si" indica string y entero
+
+    // Ejecuta la consulta
+    if ($sql->execute()) {
+        // Cierra la declaración para liberar los recursos
+        $sql->close();
+        return $token;
+    }
+
+    // Cierra la declaración en caso de fallo
+    $sql->close();
+    return null;
+}
+
+function verificarToken($idUsuario, $token, $conectar){
+    // Prepara la consulta SQL
+    $sql = $conectar->prepare("SELECT idUsuario FROM usuario WHERE idUsuario = ? AND confirmacion_contrasena = ? LIMIT 1");
+
+    // Vincula los parámetros a la consulta
+    $sql->bind_param('is', $idUsuario, $token);
+
+    // Ejecuta la consulta
+    $sql->execute();
+
+    // Obtiene el resultado
+    $resultado = $sql->get_result();
+
+    // Verifica si existe un resultado (si se encuentra el usuario con el token)
+    if ($resultado->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+function actualizaPassword($idUsuario, $contrasena, $conectar) {
+
+    // Prepara la consulta
+    $sql = $conectar->prepare("UPDATE usuario SET contrasena = ?, confirmacion_contrasena = '' WHERE idUsuario = ?");
+
+    if ($sql === false) {
+        die('Error en la preparación de la consulta: ' . $conectar->error);
+    }
+
+    // Vincula los parámetros a la consulta (string para la contraseña y entero para el idUsuario)
+    $sql->bind_param("si", $contrasena, $idUsuario);
+
+    // Ejecuta la consulta y muestra mensajes de depuración
+    if ($sql->execute()) {
+        echo "Contraseña actualizada correctamente.";
+        $sql->close();
+        return $contrasena;
+    } else {
+        echo "Error al actualizar la contraseña: " . $sql->error;
+    }
+
+    // Cierra la declaración
+    $sql->close();
+    return null;
+}
+
