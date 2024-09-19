@@ -20,12 +20,14 @@ if ($filas) {
     if ($filas['FK_rol'] == 1) { // Admin
         header("location:../views/admin/roles/indexR.php");
     } elseif ($filas['FK_rol'] == 2) { // User
-        header("location:../views/servicios/user/index.php");
+        header("location:../views/ventas/ventas.php");
     } elseif ($filas['FK_rol'] == 3) { // Servicio
-        header("location:../views/servicios/empleyoee/indexServicesE.php");
-    } elseif ($filas['FK_rol'] == 4) { // Vendedor
-        header("location: ../../../controller/Trabajador/vistaTrabajador.php");
-    } else {
+        header("location:../views/servicios/empleoye/indexServicesE.php");
+    }elseif ($filas['FK_rol'] == 4) { // Vendedor
+        header("location:../controller/Trabajador/vistaTrabajador.php");
+        exit();
+    }
+    else {
         echo '<h1 class="bad">Datos incorrectos</h1>';
     }
 } else {

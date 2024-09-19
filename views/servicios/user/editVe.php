@@ -33,7 +33,7 @@ if (isset($_POST['enviar'])) {
     }
 
     // Cerrar la conexión
-    mysqli_close($conectar);
+    mysqli_close($conn);
 
 } else {
     // Comprobar si se ha pasado un ID de usuario por GET
@@ -42,7 +42,7 @@ if (isset($_POST['enviar'])) {
 
         // Consulta para obtener los datos del usuario
         $sql = "SELECT * FROM vehiculo WHERE idVehiculo ='$idVehiculo'";
-        $resultado = mysqli_query($conectar, $sql);
+        $resultado = mysqli_query($conn, $sql);
 
         // Verificar si el usuario existe
         if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -59,7 +59,7 @@ if (isset($_POST['enviar'])) {
         }
 
         // Cerrar la conexión
-        mysqli_close($conectar);
+        mysqli_close($conn);
     } else {
         echo '<script>alert("ID de vehiculo no proporcionado"); location.assign("viewCar.php");</script>';
         exit();

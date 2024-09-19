@@ -7,122 +7,307 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <title>Registrarse</title>
     <style>
-        .bg-image {
-            background-image: url('../aquashine/static/img/auto.gif');
-            background-size: cover;
-            background-position: center;
+        /* Estilo para el fondo con el GIF */
+        body {
+            position: relative;
+            background-image: url('../aquashine/static/img/car.gif'); /* Reemplaza con la ruta de tu GIF */
+            background-size: cover; /* Ajusta el tamaño del fondo para cubrir todo el elemento */
+            background-position: center; /* Centra el fondo */
+            background-repeat: no-repeat; /* Evita la repetición del fondo */
+            overflow: hidden; /* Asegura que no haya scroll debido al fondo */
+        }
+
+        /* Capa oscura */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(114, 102, 102, 0.5); /* Negro con 50% de opacidad */
+            z-index: -1; /* Coloca la capa detrás del contenido */
         }
     </style>
 </head>
-<body class="mx-auto font-[Poppins] bg-image">
-    <header class="mt-3">
-        <nav class="flex items-center justify-between flex-wrap bg-gray-900 border-2 border-zinc-200 p-6">
-            <div class="text-6xl flex items-center flex-shrink-0 text-blue-600 mr-6">
-                <span class="font-semibold text-xl tracking-tight">Aqua Shine</span>
-            </div>
-            <div class="block lg:hidden">
-                <button id="boton" class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Menu</title>
-                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
-                    </svg>
-                </button>
-            </div>
-            <div id="menu" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
-                <div class="text-sm lg:flex-grow">
-                    <a href="Index.php" class="px-4 py-2 rounded-md inline-block hover:shadow-lg mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:bg-blue-600 mr-4">
-                        INICIO
-                    </a>
-                    <a href="./views/servicios/user/indexP.php" class="px-4 py-2 rounded-md inline-block hover:shadow-lg mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:bg-blue-600 mr-4">
-                        SERVICIOS
-                    </a>
-                    <a href="views/ventas/ventas.html" class="px-4 py-2 rounded-md inline-block hover:shadow-lg mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:bg-blue-600">
-                        TIENDA
-                    </a>
-                    <a href="ayuda/ayuda.php" class="px-4 py-2 rounded-md inline-block hover:shadow-lg mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:bg-blue-600">
-                        AYUDA
-                    </a>
-                </div>
-                <div>
-                    <a href="login.php" class="inline-block text-sm text-gray-200 px-4 py-2 leading-none border rounded border-white hover:border-transparent hover:text-gray-900 hover:bg-purple-300 mt-4 lg:mt-0">INGRESAR</a>
+<div class="bg-gray-100 text-gray-800">
 
+    <!-- Barra de Navegación -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="Index.php" class="flex-shrink-0">
+                        <img class="h-10 w-auto" src="static/img/logoaquashine.png" alt="Logo">
+                    </a>
+                </div>
+
+             <!-- Barra de Búsqueda -->
+             <div class="flex-1 flex justify-center">
+                <div class="w-full max-w-lg">
+                    <form action="#" method="GET" class="relative">
+                        <input type="text" name="search" placeholder="Buscar en AquaShine"
+                            class="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <button type="submit"
+                            class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"/>
+                            </svg>
+                        </button>
+                    </form>
                 </div>
             </div>
-        </nav>
-    </header>
+                <div class="flex items-center space-x-4">
+                    <!-- Menú desplegable de inicio de sesión -->
+                    <div class="relative login-menu group">
+                        <a href="#" class="text-gray-600 hover:text-gray-800 flex items-center">
+                            Hola, Inicia sesión
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <div class="absolute hidden dropdown-menu bg-white shadow-lg mt-2 rounded-lg w-40 z-10">
+                            <!-- Flecha arriba del menú -->
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
+                            
+                            <ul class="py-2">
+                                <li>
+                                    <a href="login.php" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Inicia sesión</a>
+                                </li>
+                                <li>
+                                    <a href="register.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Regístrate</a>
+                                </li>
+                                <li>
+                                    <a href="perfilUsuario.php" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Mi cuenta</a>
+                                </li>
+                                <li>
+                                    <hr class="border-gray-200">
+                                </li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+                <!-- Sección Derecha -->
+                <div class="flex items-center space-x-4">
+        <div class="relative login-menu group">
+            <a href="#" class="text-gray-600 hover:text-gray-800 flex items-center" id="menuButton">
+                Actividades
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+            <div class="absolute hidden dropdown-menu bg-white shadow-lg mt-2 rounded-lg w-40 z-10" id="dropdownMenu">
+                <!-- Flecha arriba del menú -->
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
+                
+                <ul class="py-2">
+                    <li>
+                        <a href="./views/servicios/user/indexP.php" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Servicios</a>
+                    </li>
+                    <li>
+                        <a href="./views/ventas/ventas.php" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Compras</a>
+                    </li>
+                    <li>
+                        <a href="./ayuda/ayuda.php" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Ayuda</a>
+                    </li>
+                    <li>
+                        <hr class="border-gray-200">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+                    <!-- Mis Compras -->
+                    
+                    <!-- Icono del carrito -->
+                    <a href="./views/ventas/carritoCompras.php" class="relative text-gray-600 hover:text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18l-2 9H5L3 3zm5 13a2 2 0 100 4 2 2 0 000-4zm8 2a2 2 0 110 4 2 2 0 010-4z" />
+                        </svg>
+                        <span class="absolute -top-1 -right-2 bg-red-600 text-white text-xs rounded-full px-1">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
 
     <div class="container mx-auto text-center">
-        <div class="mt-2 text-4xl font-bold text-blue-600">
+        <div class="mt-2 text-4xl font-bold" style="color: #1e1b4b;">
             <p class="my-2">REGÍSTRATE</p>
         </div>
+        
 
         <div class="my-3 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
         </div>
 
-        <form action="controller/Admin/agregarUsuario.php" method="POST" class="bg-white text-gray-900 rounded-lg shadow-lg p-8 mx-4 my-6 max-w-md mx-auto">
+        <form action="controller/Admin/agregarUsuario.php" method="POST" class="bg-white text-gray-900 rounded-lg shadow-lg p-8 mx-4 my-6 max-w-md mx-auto" id="registration-form">
             <div class="mb-4">
                 <!-- Nombre -->
                 <div class="relative mb-6 mt-2">
-                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="nom_usuario" name="nom_usuario" placeholder=" " required />
-                    <label for="nom_usuario" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-75 peer-focus:text-blue-600">Nombre</label>
+                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="nom_usuario" name="nom_usuario" required />
+                    <label for="nom_usuario" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Nombre</label>
                 </div>
 
                 <!-- Apellido -->
                 <div class="relative mb-6">
-                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="apel_usuario" name="apel_usuario" placeholder=" " required />
-                    <label for="apel_usuario" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-75 peer-focus:text-blue-600">Apellido</label>
+                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="apel_usuario" name="apel_usuario" required />
+                    <label for="apel_usuario" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Apellido</label>
                 </div>
 
                 <!-- Fecha de Nacimiento -->
                 <div class="relative mb-6">
                     <input type="date" class="peer block w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="fecha_nacimiento" name="fecha_nacimiento" required />
-                    <label for="fecha_nacimiento" class="absolute left-3 -top-3.5 bg-white px-1 text-gray-500 transition-all duration-200 ease-out origin-top-left transform scale-75 peer-focus:-top-3.5 peer-focus:scale-75">Fecha Nacimiento</label>
+                    <label for="fecha_nacimiento" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Fecha Nacimiento</label>
                 </div>
 
                 <!-- Email -->
                 <div class="relative mb-6">
-                    <input type="email" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="email" name="email" placeholder=" " required />
-                    <label for="email" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-75 peer-focus:text-blue-600">Email</label>
+                    <input type="email" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="email" name="email" required />
+                    <label for="email" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Email</label>
                 </div>
 
                 <!-- Contraseña -->
                 <div class="relative mb-6">
-                    <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="contrasena" name="contrasena" placeholder=" " required />
-                    <label for="contrasena" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-75 peer-focus:text-blue-600">Contraseña</label>
+                    <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="contrasena" name="contrasena" required />
+                    <label for="contrasena" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Contraseña</label>
+                    <span class="absolute right-3 top-3 cursor-pointer" onclick="togglePassword('contrasena', this)">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                    <p id="password-requirements" class="text-xs text-[#1e1b4b] mt-1">
+                        La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.
+                    </p>
+                    
+                </div>
+
+                <!-- Confirmar Contraseña -->
+                <div class="relative mb-6">
+                    <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="confirmarcontrasena" name="confirmarcontrasena" required />
+                    <label for="confirmarcontrasena" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Confirmar Contraseña</label>
+                    <span class="absolute right-3 top-3 cursor-pointer" onclick="togglePassword('confirmarcontrasena', this)">
+                        <i class="fas fa-eye"></i>
+                    </span>
                 </div>
 
                 <!-- Rol (oculto) -->
                 <div class="relative mb-6 hidden">
                     <input type="number" class="peer block min-h-[auto] w-full rounded border border-gray-200 bg-transparent px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear" id="FK_rol" name="FK_rol" value="2" />
-                    <label for="FK_rol" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out">Rol</label>
+                    <label for="FK_rol" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out origin-top-left">Rol</label>
                 </div>
-
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Registrarse
-                </button>
-
             </div>
-            <a href="login.php" class="text-sm text-gray-500 hover:text-gray-700">Volver al inicio</a>
 
+            <!-- Botones -->
+            <div class="flex flex-col items-center mt-4">
+                <button type="submit" style="background-color: #1e1b4b; color: white;" 
+                class="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Registrarse
+        </button>
+        
+                
+        <a href="login.php" style="color: #1e1b4b; text-decoration: underline;" class="mt-2">
+            Ya tengo cuenta
+        </a>
+        
+            </div>
+            
+
+            <!-- Mensaje de Error -->
+            <p id="error-message" class="text-red-500 mt-4"></p>
         </form>
     </div>
+    <footer class="bg-gray-900 py-6">
+        <div class="container mx-auto text-center text-white">
+            <p>&copy; 2024 AquaShine. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+        function togglePassword(fieldId, icon) {
+            const passwordField = document.getElementById(fieldId);
+            const iconElement = icon.querySelector('i');
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                iconElement.classList.remove('fa-eye');
+                iconElement.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = "password";
+                iconElement.classList.remove('fa-eye-slash');
+                iconElement.classList.add('fa-eye');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            const password = document.getElementById('contrasena').value;
+            const confirmPassword = document.getElementById('confirmarcontrasena').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Expresión regular para validar la contraseña
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            // Validar si las contraseñas coinciden
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Las contraseñas no coinciden.';
+                event.preventDefault(); // Evitar el envío del formulario
+                return;
+            }
+
+            // Validar si la contraseña cumple con el patrón
+            if (!passwordPattern.test(password)) {
+                errorMessage.textContent = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.';
+                event.preventDefault(); // Evitar el envío del formulario
+                return;
+            }
+
+            // Limpiar el mensaje de error si la validación es correcta
+            errorMessage.textContent = '';
+        });
+    });
+    </script>
     <footer class="bg-gray-900 text-gray-200 py-6">
         <div class="container mx-auto text-center">
             <p class="text-lg mb-4">&copy; 2024 AquaShine. Todos los derechos reservados.</p>
-            <div class="flex justify-center">
-                <a href="https://www.facebook.com/" class="mx-2 text-gray-200 hover:text-white">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2.04c-5.3 0-9.63 4.33-9.63 9.63 0 4.7 3.48 8.6 8.02 9.4v-6.63h-2.4v-2.67h2.4v-1.9c0-2.35 1.42-3.63 3.52-3.63 1 0 1.85.07 2.1.1v2.43l-1.44.01c-1.13 0-1.35.54-1.35 1.32v1.73h2.7l-.36 2.67h-2.34V21c4.53-.8 8.02-4.7 8.02-9.4 0-5.3-4.33-9.63-9.63-9.63z"/>
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/" class="mx-2 text-gray-200 hover:text-white">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2.04c-5.3 0-9.63 4.33-9.63 9.63 0 4.7 3.48 8.6 8.02 9.4v-6.63h-2.4v-2.67h2.4v-1.9c0-2.35 1.42-3.63 3.52-3.63 1 0 1.85.07 2.1.1v2.43l-1.44.01c-1.13 0-1.35.54-1.35 1.32v1.73h2.7l-.36 2.67h-2.34V21c4.53-.8 8.02-4.7 8.02-9.4 0-5.3-4.33-9.63-9.63-9.63z"/>
-                    </svg>
-                </a>
-            </div>
         </div>
     </footer>
+    
+    <script>
+        // Selecciona el elemento del menú y el contenido desplegable
+        const loginMenu = document.querySelector('.login-menu');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+        // Evento cuando el mouse pasa sobre el menú
+        loginMenu.addEventListener('mouseover', () => {
+            dropdownMenu.classList.remove('hidden');  // Mostrar el menú
+        });
+    
+        // Evento cuando el mouse sale del área del menú
+        loginMenu.addEventListener('mouseout', () => {
+            dropdownMenu.classList.add('hidden');  // Esconder el menú
+        });
+    </script>
+    
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const menuButton = document.getElementById('menuButton');
+                const dropdownMenu = document.getElementById('dropdownMenu');
+    
+                menuButton.addEventListener('click', function(event) {
+                    event.preventDefault(); // Evita el comportamiento por defecto del enlace
+                    dropdownMenu.classList.toggle('hidden');
+                });
+    
+                // Cierra el menú si se hace clic fuera de él
+                document.addEventListener('click', function(event) {
+                    if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                        dropdownMenu.classList.add('hidden');
+                    }
+                });
+            });
+        </script>
 </body>
 </html>

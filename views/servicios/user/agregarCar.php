@@ -151,9 +151,16 @@
                 <label for="FK_usuario">Usuario</label>
             </div>
 
-            <div class="btn-container">
-                <button type="submit" class="btn">Registrar</button>
-            </div>
+            <div class="col-span-2">
+                <div class="flex items-center justify-between">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="enviar">
+                        Registrar
+                    </button>
+                    <a href="viewCar.php" class="text-blue-500 hover:text-blue-700 font-semibold text-sm transition duration-200">
+                        Cancelar
+                    </a>
+                </div>
+                </div>
         </form>
     </div>
 

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <title>Inventario</title>
     <style>
@@ -140,12 +141,10 @@
     <div class="container">
         <a href="añadirInventario.php" class="btn green">+ Añadir al inventario</a>
         <a href="visualizarInventario.php" class="btn blue">Visualizar inventario</a>
-        <input type="text" placeholder="Buscar..." class="search">
 
-        <table class="min-w-full divide-y divide-gray-200">
+        <table  id="myTable"  class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-200">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Inventario</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cantidad</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre Producto</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proveedor</th>
@@ -174,7 +173,6 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['idInventario']) . "</td>";
                         echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['cantidad']) . "</td>";
                         echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['nom_producto']) . "</td>";
                         echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['Nombre']) . "</td>";
@@ -216,6 +214,29 @@
     });
   });
 </script>
+
+<script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                responsive: true,
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                language: {
+                    search: "Buscar:",
+                    paginate: {
+                        next: "Siguiente",
+                        previous: "Anterior"
+                    },
+                    emptyTable: "No hay datos disponibles en la tabla",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                    infoEmpty: "Mostrando 0 a 0 de 0 entradas",
+                    lengthMenu: "Mostrar _MENU_ entradas"
+                }
+            });
+        });
+    </script>
 
 
 </body>

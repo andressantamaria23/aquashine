@@ -1,32 +1,31 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-require "../../config/conexion.php"; 
+require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
 
 if (isset($_GET['id'])) {
     $idCompras = $_GET['id'];
 
     // Obtener los datos actuales de la compra
     $sql = "SELECT * FROM compras WHERE idCompras = ?";
-    if ($stmt = mysqli_prepare($conn, $sql)) {
+    if ($stmt = mysqli_prepare($conectar, $sql)) {
         mysqli_stmt_bind_param($stmt, "i", $idCompras);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $compra = mysqli_fetch_assoc($result);
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
+        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
         exit();
     }
 
     // Obtener la lista de productos
     $sqlProductos = "SELECT idProductos, nom_producto FROM productos";
-    $resultProductos = mysqli_query($conn, $sqlProductos);
+    $resultProductos = mysqli_query($conectar, $sqlProductos);
 
     // Obtener la lista de proveedores
     $sqlProveedores = "SELECT idProveedores, nombre FROM proveedores";
-    $resultProveedores = mysqli_query($conn, $sqlProveedores);
+    $resultProveedores = mysqli_query($conectar, $sqlProveedores);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener los datos del formulario
@@ -34,20 +33,21 @@ if (isset($_GET['id'])) {
         $cantidad = $_POST['cantidad'];
         $precioUnitario = $_POST['precioUnitario'];
         $precioTotal = $_POST['precioTotal'];
+        $estado = $_POST['estado'];
         $observaciones = $_POST['observaciones'];
         $FK_producto = $_POST['FK_producto'];
         $FK_proveedores = $_POST['FK_proveedores'];
 
         // Verificar los datos del formulario
-        if (empty($fechaCompra) || empty($cantidad) || empty($precioUnitario) || empty($precioTotal) || empty($FK_producto) || empty($FK_proveedores)) {
+        if (empty($fechaCompra) || empty($cantidad) || empty($precioUnitario) || empty($precioTotal) || empty($estado) || empty($FK_producto) || empty($FK_proveedores)) {
             echo "Error: Todos los campos son obligatorios.";
             exit();
         }
 
         // Crear la consulta SQL para actualizar la compra
-        $sql = "UPDATE compras SET fechaCompra = ?, cantidad = ?, precioUnitario = ?, precioTotal = ?, observaciones = ?, FK_producto = ?, FK_proveedores = ? WHERE idCompras = ?";
-        if ($stmt = mysqli_prepare($conn, $sql)) {
-            mysqli_stmt_bind_param($stmt, "sisssiii", $fechaCompra, $cantidad, $precioUnitario, $precioTotal, $observaciones, $FK_producto, $FK_proveedores, $idCompras);
+        $sql = "UPDATE compras SET fechaCompra = ?, cantidad = ?, precioUnitario = ?, precioTotal = ?, estado = ?, observaciones = ?, FK_producto = ?, FK_proveedores = ? WHERE idCompras = ?";
+        if ($stmt = mysqli_prepare($conectar, $sql)) {
+            mysqli_stmt_bind_param($stmt, "sissssiii", $fechaCompra, $cantidad, $precioUnitario, $precioTotal, $estado, $observaciones, $FK_producto, $FK_proveedores, $idCompras);
             if (mysqli_stmt_execute($stmt)) {
                 // Verificar si se actualizaron filas
                 if (mysqli_stmt_affected_rows($stmt) > 0) {
@@ -58,15 +58,15 @@ if (isset($_GET['id'])) {
                     echo "No se realizaron cambios. Verifica el ID de compra.";
                 }
             } else {
-                echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conn);
+                echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conectar);
             }
             mysqli_stmt_close($stmt);
         } else {
-            echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
+            echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
         }
     }
 
-    mysqli_close($conn);
+    mysqli_close($conectar);
 } else {
     echo "Error: ID de compra no especificado.";
     exit();
@@ -86,7 +86,7 @@ if (isset($_GET['id'])) {
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
             <h1 class="text-2xl font-semibold text-center mb-4 text-blue-600">Editar Compra</h1>
             <form action="editarCompras.php?id=<?php echo $compra['idCompras']; ?>" method="POST">
-                <div class="mb-4">
+            <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="fechaCompra">Fecha de Compra</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                            type="date" id="fechaCompra" name="fechaCompra" value="<?php echo htmlspecialchars($compra['fechaCompra']); ?>" required>
@@ -108,6 +108,12 @@ if (isset($_GET['id'])) {
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="precioTotal">Precio Total</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                            type="text" id="precioTotal" name="precioTotal" value="<?php echo htmlspecialchars($compra['precioTotal']); ?>" required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="estado">Estado</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                           type="text" id="estado" name="estado" value="<?php echo htmlspecialchars($compra['estado']); ?>" required>
                 </div>
 
                 <div class="mb-4">

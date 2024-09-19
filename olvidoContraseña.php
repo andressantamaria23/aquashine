@@ -28,38 +28,113 @@
         }
     </style>
 </head>
-<body class="mx-auto bg-zinc-50 font-[Poppins]">
-    <header class="mx-auto mt-3">
-        <nav class="flex items-center justify-between flex-wrap bg-gray-900 border-inset border-2 border-zinc-200 p-6">
-            <div class="text-6xl flex items-center flex-shrink-0 text-blue-600 mr-6">
-                <span class="font-semibold text-xl tracking-tight">Aqua Shine</span>
-            </div>
-            <div class="block lg:hidden">
-                <button id="boton" class="flex items-center px-3 py-2 border rounded-md text-teal-200 border-teal-400 hover:text-white hover:border-white">
-                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                </button>
-            </div>
-            <div id="menu" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center">
-                <div class="text-sm lg:flex-grow">
-                    <a href="Index.php" class="px-4 py-2 rounded-md inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-gray-200 hover:bg-blue-600 mr-4">
-                        INICIO
-                    </a>
-                    <a href="./views/servicios/user/indexP.php" class="px-4 py-2 rounded-md inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-gray-200 hover:bg-blue-600 mr-4">
-                        SERVICIOS
-                    </a>
-                    <a href="views/ventas/ventas.html" class="px-4 py-2 rounded-md block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-gray-200 hover:bg-blue-600">
-                        TIENDA
-                    </a>
-                    <a href="ayuda/ayuda.php" class="px-4 py-2 rounded-md block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-gray-200 hover:bg-blue-600">
-                      AYUDA
+<div class="bg-gray-100 text-gray-800">
+
+    <!-- Barra de Navegación -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0">
+                        <img class="h-10 w-auto" src="static/img/logoaquashine.png" alt="Logo">
                     </a>
                 </div>
-                <div>
-                    <a href="register.html" class="inline-block text-gray-200 text-sm px-4 py-2 leading-none border rounded border-white hover:border-transparent hover:text-gray-900 hover:bg-purple-300 mt-4 lg:mt-0">REGISTRATE</a>
+
+             <!-- Barra de Búsqueda -->
+             <div class="flex-1 flex justify-center">
+                <div class="w-full max-w-lg">
+                    <form action="#" method="GET" class="relative">
+                        <input type="text" name="search" placeholder="Buscar en AquaShine"
+                            class="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <button type="submit"
+                            class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"/>
+                            </svg>
+                        </button>
+                    </form>
                 </div>
             </div>
-        </nav>
-    </header>
+                <div class="flex items-center space-x-4">
+                    <!-- Menú desplegable de inicio de sesión -->
+                    <div class="relative login-menu group">
+                        <a href="#" class="text-gray-600 hover:text-gray-800 flex items-center">
+                            Hola, Inicia sesión
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <div class="absolute hidden dropdown-menu bg-white shadow-lg mt-2 rounded-lg w-40 z-10">
+                            <!-- Flecha arriba del menú -->
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
+                            
+                            <ul class="py-2">
+                                <li>
+                                    <a href="../../login.php" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Inicia sesión</a>
+                                </li>
+                                <li>
+                                    <a href="../../register.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Regístrate</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Mi cuenta</a>
+                                </li>
+                                <li>
+                                    <hr class="border-gray-200">
+                                </li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+              <!-- Sección Derecha -->
+<div class="flex items-center space-x-4">
+    <div class="relative login-menu group">
+        <a href="#" class="text-gray-600 hover:text-gray-800 flex items-center" id="menuButton">
+            Actividades
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </a>
+        <div class="absolute hidden dropdown-menu bg-white shadow-lg mt-2 rounded-lg w-40 z-10" id="dropdownMenu">
+            <!-- Flecha arriba del menú -->
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-white"></div>
+            
+            <ul class="py-2">
+                <li>
+                    <a href="../../login.php" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Servicios</a>
+                </li>
+                <li>
+                    <a href="../../register.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Compras</a>
+                </li>
+                <li>
+                    <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800">Ayuda</a>
+                </li>
+                <li>
+                    <hr class="border-gray-200">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+                    <!-- Mis Compras -->
+                    
+                    <!-- Icono del carrito -->
+                    <a href="#" class="relative text-gray-600 hover:text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18l-2 9H5L3 3zm5 13a2 2 0 100 4 2 2 0 000-4zm8 2a2 2 0 110 4 2 2 0 010-4z" />
+                        </svg>
+                        <span class="absolute -top-1 -right-2 bg-red-600 text-white text-xs rounded-full px-1">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
     <section class="relative h-screen bg-cover bg-center" style="background-image: url('static/img/pexels-pixabay-372810.jpg');">
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         <div class="relative z-10 flex items-center justify-center h-full">
@@ -112,5 +187,40 @@
         </div>
     </div>
 </footer>
+
+<script>
+        // Selecciona el elemento del menú y el contenido desplegable
+        const loginMenu = document.querySelector('.login-menu');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+        // Evento cuando el mouse pasa sobre el menú
+        loginMenu.addEventListener('mouseover', () => {
+            dropdownMenu.classList.remove('hidden');  // Mostrar el menú
+        });
+    
+        // Evento cuando el mouse sale del área del menú
+        loginMenu.addEventListener('mouseout', () => {
+            dropdownMenu.classList.add('hidden');  // Esconder el menú
+        });
+    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuButton = document.getElementById('menuButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        menuButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Evita el comportamiento por defecto del enlace
+            dropdownMenu.classList.toggle('hidden'); // Alterna la clase 'hidden'
+        });
+
+        // Cierra el menú si se hace clic fuera de él
+        document.addEventListener('click', function(event) {
+            if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden'); // Añade la clase 'hidden' para ocultar el menú
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

@@ -49,14 +49,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
-        echo '<script>alert("Producto registrado exitosamente.");
-        location.assign("producto.php");
-        </script>';
-    } else {
-        echo '<script>alert("Error al registrar el producto.");
-        location.assign("añadirProducto.php");
-        </script>';
-    }
+        echo "<!DOCTYPE html>
+        <html lang='es'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>Registro Exitoso</title>
+            <link rel='shortcut icon' href='../../static/img/aquashine.php' type='image/x-icon'>
+            <link href='https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css' rel='stylesheet'>
+        </head>
+        <body>
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js'></script>
+            <script>
+                Swal.fire({
+                    title: '¡Excelente!',
+                    text: 'El producto fue agregado correctamente.',
+                    icon: 'success'
+                }).then(function() {
+                    window.location = 'producto.php'; // Redirige después de cerrar el SweetAlert
+                });
+            </script>
+        </body>
+        </html>";
+} else {
+    echo '<script>alert("Error al registrar el producto.");
+    location.assign("añadirProducto.php");
+    </script>';
+}
+
 
     // Cerrar la conexión
     $stmt->close();
@@ -162,6 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             outline: none;
         }
     </style>
+    
 </head>
 <body>
     <div class="form-container">
@@ -173,14 +194,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <div class="form-group">
-                <label for="categoria">Categoría</label>
-                <select id="categoria" name="categoria[]" multiple required>
-                    <option value="ceras">Ceras, brillos y protección</option>
-                    <option value="interior">Interior y exterior</option>
-                    <option value="pulidores">Pulidores</option>
-                    <option value="accesorios">Accesorios</option>
-                </select>
-            </div>
+    <label for="categoria" class="mb-2 inline-block text-neutral-500">Categoría</label>
+    <select id="categoria" name="categoria[]" multiple required class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600">
+        <option value="ceras">Ceras, brillos y protección</option>
+        <option value="interior">Interior y exterior</option>
+        <option value="pulidores">Pulidores</option>
+        <option value="accesorios">Accesorios</option>
+    </select>
+</div>
+
 
             <div class="form-group">
                 <label for="precio">Precio</label>
