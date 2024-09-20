@@ -8,10 +8,11 @@ if ($varsesion == null || $varsesion == '') {
 
 include("../../../config/conexion.php");
 
+// Obtener datos del usuario
 $email = $_SESSION['email'];
 $sql = "SELECT idUsuario, nom_usuario, apel_usuario, fecha_nacimiento, email, contrasena, FK_rol FROM usuario
         INNER JOIN rol ON rol.idRol = usuario.FK_rol 
-        WHERE email = '".$email."'"; 
+        WHERE email = '$varsesion'"; 
 
 $resultado = mysqli_query($conectar, $sql);
 
@@ -25,11 +26,17 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
     $contrasena = $fila['contrasena'];
     $FK_rol = $fila['FK_rol'];
 } else {
-    
-    echo "No se encontraron datos para el usuario.";
-   
+    die("No se encontraron datos para el usuario.");
 }
+
+// Obtener vehículos del usuario
+$sqle = "SELECT idVehiculo, Placa FROM vehiculo
+        WHERE FK_usuario = '$idUsuario'";
+$result = mysqli_query($conectar, $sqle);
+
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -135,6 +142,20 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
         .btn:hover {
             background-color: #1e40af;
         }
+        .form-group input, .form-group select {
+            padding: 12px 12px 12px 40px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #f9fafb;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -152,26 +173,53 @@ include("../../../config/conexion.php");
     <div class="form-container mx-auto">
         <h2>Agendar  Servicio</h2>
         <form action="../../../controller/servicios/agendarservicio.php" method="POST">
-            <div class="form-group">
-                <input type="date" id="fecha_reserva" name="fecha_reserva" placeholder=" " required>
-                <label for="fecha_reserva"> fecha Reserva</label>
-            </div>
+    <div class="form-group">
+        <input type="date" id="fecha_reserva" name="fecha_reserva" placeholder=" " required>
+        <label for="fecha_reserva">Fecha Reserva</label>
+    </div>
 
-            <div class="form-group">
-                <input type="time" id="hora_reserva" name="hora_reserva" placeholder=" " required>
-                <label for="hora_reserva">Hora reserva</label>
-            </div>
+    <div class="form-group">
+        <select id="hora_reserva" name="hora_reserva" required>
+            <option value="">Seleccione una hora</option>
+            <option value="8:00">8:00</option>
+            <option value="9:30">9:30</option>
+            <option value="11:00">11:00</option>
+            <option value="12:30">12:30</option>
+            <option value="14:00">14:00</option>
+            <option value="15:30">15:30</option>
+            <option value="17:00">17:00</option>
+            <option value="18:30">18:30</option>
+        </select>
+        <label for="hora_reserva">Seleccione hora</label>
+    </div>
 
-            <div class="form-group hidden">
-                <input type="estado" id="estado" name="estado" placeholder=" " required value="Pendiente">
-                <label for="estado"> estado</label>
-            </div>
+    <div class="form-group hidden">
+        <input type="text" id="estado_vehiculo" name="estado_vehiculo" placeholder=" " required value="Pendiente">
+        <label for="estado">Estado</label>
+    </div>
 
-            <div class="form-group hidden">
-                <input type="usuario" id="FK_usuario" name="FK_usuario" placeholder=" " required value="<?php echo $idUsuario;?>">
-                <label for="usuario"> usuario</label>
-            </div>
-            <div class="mb-4">
+    <div class="form-group hidden">
+        <input type="text" id="nom_usuario" name="nom_usuario" placeholder=" " required value="<?php echo htmlspecialchars($nom_usuario); ?>">
+        <label for="nom_usuario">Usuario</label>
+    </div>
+
+    <div class="form-group hidden">
+        <input type="text" id="email" name="email" placeholder=" " required value="<?php echo htmlspecialchars($email); ?>">
+        <label for="email">Email</label>
+    </div>
+
+    <div class="form-group">
+        <select id="FK_vehiculo" name="FK_vehiculo" required>
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <option value="<?php echo htmlspecialchars($row['idVehiculo']); ?>">
+                    <?php echo htmlspecialchars($row['Placa']); ?>
+                </option>
+            <?php } ?>
+        </select>
+        <label for="FK_vehiculo">Vehículo</label>
+    </div>
+
+    <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="FK_servicios">Servicios</label>
                     <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                             id="FK_servicios" name="FK_servicios" required>
@@ -192,7 +240,23 @@ include("../../../config/conexion.php");
                     </a>
                 </div>
                 </div>
-        </form>
-    </div>
 </body>
+
+<script>
+    // Obtener la fecha de hoy
+    var today = new Date();
+    
+    // Obtener la fecha de mañana
+    var tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    
+    // Formatear la fecha en 'YYYY-MM-DD'
+    var minDate = tomorrow.toISOString().split('T')[0];
+    
+    // Establecer el valor mínimo del input tipo date
+    document.getElementById("fecha_reserva").setAttribute('min', minDate);
+</script>
+
+
+
 </html>

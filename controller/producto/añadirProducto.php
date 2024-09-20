@@ -4,26 +4,25 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Incluir el archivo de conexión
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo
+require "../../config/conexion.php"; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtener los datos del formulario y sanitizarlos
     $nom_producto = $_POST['name'];
     $categoria_prod_idcat = $_POST['categoria']; // Esto es un array por el multiple select
     $precio = $_POST['precio'];
-    $prod_descrip = $_POST['descripcion'];
+    $prod_descrp = $_POST['descripcion'];
     $proveedor_id = $_POST['proveedor_id']; // Este es el FK_proveedores
 
     // Verificar que los campos no estén vacíos
-    if (empty($nom_producto) || empty($categoria_prod_idcat) || empty($precio) || empty($prod_descrip) || empty($proveedor_id)) {
+    if (empty($nom_producto) || empty($categoria_prod_idcat) || empty($precio) || empty($prod_descrp) || empty($proveedor_id)) {
         echo '<script>alert("Por favor, complete todos los campos.");
         location.assign("añadirProducto.php");
         </script>';
         exit();
     }
 
-    // Manejo de la imagen
-    $upload_dir = realpath('../uploads');
+    $upload_dir = realpath('../../uploads');
     $image_name = null;
 
     if ($_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
@@ -45,23 +44,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Preparar la consulta SQL para evitar inyección SQL
-    $stmt = $conectar->prepare("INSERT INTO productos (nom_producto, prod_descrip, categoria_prod_idcat, precio, img_producto, FK_proveedores) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssisi", $nom_producto, $prod_descrip, implode(',', $categoria_prod_idcat), $precio, $image_name, $proveedor_id);
+    $stmt = $conn->prepare("INSERT INTO productos (nom_producto, prod_descrp, categoria_prod_idcat, precio, img_producto, FK_proveedores) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssisi", $nom_producto, $prod_descrp, implode(',', $categoria_prod_idcat), $precio, $image_name, $proveedor_id);
 
     // Ejecutar la consulta
     if ($stmt->execute()) {
-        echo '<script>alert("Producto registrado exitosamente.");
-        location.assign("producto.php");
-        </script>';
-    } else {
-        echo '<script>alert("Error al registrar el producto.");
-        location.assign("añadirProducto.php");
-        </script>';
-    }
+        echo "<!DOCTYPE html>
+        <html lang='es'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>Registro Exitoso</title>
+            <link rel='shortcut icon' href='../../static/img/aquashine.php' type='image/x-icon'>
+            <link href='https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css' rel='stylesheet'>
+        </head>
+        <body>
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js'></script>
+            <script>
+                Swal.fire({
+                    title: '¡Excelente!',
+                    text: 'El producto fue agregado correctamente.',
+                    icon: 'success'
+                }).then(function() {
+                    window.location = 'producto.php'; // Redirige después de cerrar el SweetAlert
+                });
+            </script>
+        </body>
+        </html>";
+} else {
+    echo '<script>alert("Error al registrar el producto.");
+    location.assign("añadirProducto.php");
+    </script>';
+}
+
 
     // Cerrar la conexión
     $stmt->close();
-    $conectar->close();
+    $conn->close();
 }
 ?>
 
@@ -73,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Registrar Producto</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <style>
         body {
             background-color: #e2e8f0; /* Fondo gris claro para contraste */
@@ -164,6 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             outline: none;
         }
     </style>
+    
 </head>
 <body>
     <div class="form-container">
@@ -175,14 +194,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <div class="form-group">
-                <label for="categoria">Categoría</label>
-                <select id="categoria" name="categoria[]" multiple required>
-                    <option value="ceras">Ceras, brillos y protección</option>
-                    <option value="interior">Interior y exterior</option>
-                    <option value="pulidores">Pulidores</option>
-                    <option value="accesorios">Accesorios</option>
-                </select>
-            </div>
+    <label for="categoria" class="mb-2 inline-block text-neutral-500">Categoría</label>
+    <select id="categoria" name="categoria[]" multiple required class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600">
+        <option value="ceras">Ceras, brillos y protección</option>
+        <option value="interior">Interior y exterior</option>
+        <option value="pulidores">Pulidores</option>
+        <option value="accesorios">Accesorios</option>
+    </select>
+</div>
+
 
             <div class="form-group">
                 <label for="precio">Precio</label>
@@ -199,7 +219,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <select id="proveedor_id" name="proveedor_id" required>
                     <?php
                     // Obtener los proveedores desde la base de datos
-                    $result = $conectar->query("SELECT idProveedores, Nombre FROM proveedores");
+                    $result = $conn->query("SELECT idProveedores, Nombre FROM proveedores");
+                    if (!$result) {
+                        die("Error en la consulta: " . $conn->error);
+                    }
                     while ($row = $result->fetch_assoc()) {
                         echo '<option value="' . $row['idProveedores'] . '">' . $row['Nombre'] . '</option>';
                     }

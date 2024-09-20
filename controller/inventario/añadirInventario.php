@@ -1,15 +1,21 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+require "../../config/conexion.php";
 
 // Obtener la lista de productos
 $sqlProductos = "SELECT idProductos, nom_producto FROM productos";
-$resultProductos = mysqli_query($conectar, $sqlProductos);
+$resultProductos = mysqli_query($conn, $sqlProductos);
+if (!$resultProductos) {
+    die('Error al obtener productos: ' . mysqli_error($conn));
+}
 
 // Obtener la lista de proveedores
 $sqlProveedores = "SELECT idProveedores, nombre FROM proveedores";
-$resultProveedores = mysqli_query($conectar, $sqlProveedores);
+$resultProveedores = mysqli_query($conn, $sqlProveedores);
+if (!$resultProveedores) {
+    die('Error al obtener proveedores: ' . mysqli_error($conn));
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos del formulario
@@ -25,21 +31,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Crear la consulta SQL para añadir al inventario
     $sql = "INSERT INTO inventario (cantidad, FK_producto, FK_proveedores) VALUES (?, ?, ?)";
-    if ($stmt = mysqli_prepare($conectar, $sql)) {
+    if ($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "iii", $cantidad, $FK_producto, $FK_proveedores);
         if (mysqli_stmt_execute($stmt)) {
             // Redirigir a la página de inventario con un mensaje de éxito
             header("Location: inventario.php?msg=Inventario añadido correctamente");
             exit();
         } else {
-            echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conectar);
+            echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conn);
         }
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
+        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
     }
 
-    mysqli_close($conectar);
+    mysqli_close($conn);
 }
 ?>
 
@@ -67,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                             id="FK_producto" name="FK_producto" required>
                         <?php while ($row = mysqli_fetch_assoc($resultProductos)) { ?>
-                            <option value="<?php echo $row['idProductos']; ?>">
+                            <option value="<?php echo htmlspecialchars($row['idProductos']); ?>">
                                 <?php echo htmlspecialchars($row['nom_producto']); ?>
                             </option>
                         <?php } ?>
@@ -79,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                             id="FK_proveedores" name="FK_proveedores" required>
                         <?php while ($row = mysqli_fetch_assoc($resultProveedores)) { ?>
-                            <option value="<?php echo $row['idProveedores']; ?>">
+                            <option value="<?php echo htmlspecialchars($row['idProveedores']); ?>">
                                 <?php echo htmlspecialchars($row['nombre']); ?>
                             </option>
                         <?php } ?>

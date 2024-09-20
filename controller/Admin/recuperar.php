@@ -1,8 +1,7 @@
 <?php
 require "../../config/conexion.php";
 require "../../clienteFunciones.php";
-echo "ID Usuario: " . $idUsuario . "<br>";
-echo "Token: " . $token . "<br>";
+
 
 // Capturar el idUsuario y token desde GET o POST
 $idUsuario = $_GET['idUsuario'] ?? $_POST['idUsuario'] ?? '';

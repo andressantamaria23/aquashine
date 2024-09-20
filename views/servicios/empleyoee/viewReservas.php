@@ -29,9 +29,11 @@ include("../../../config/conexion.php");
 
 
   
-  $sql = "SELECT * FROM reservas
-  INNER JOIN usuario ON usuario.idUsuario = reservas.FK_usuario
-  INNER JOIN servicios ON servicios.idServicios = reservas.FK_servicios";
+  $sql = "SELECT * 
+FROM reservas
+INNER JOIN vehiculo ON vehiculo.idVehiculo = reservas.FK_vehiculo
+INNER JOIN servicios ON servicios.idServicios = reservas.FK_servicios
+INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario";
   
   
   $resultado = mysqli_query($conectar, $sql);
@@ -217,7 +219,7 @@ include("../../../config/conexion.php");
                     <tr class="border-b border-gray-200 bg-white hover:bg-gray-100 " >
                         <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['fecha_reserva']; ?></td>
                         <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['hora_reserva']; ?></td>
-                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['estado']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['estado_vehiculo']; ?></td>
                         <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_servicio']; ?></td>
                         <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_usuario']; ?></td>
                         <td class="text-center px-5 py-5 text-sm border-x border-y">

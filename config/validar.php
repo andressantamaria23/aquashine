@@ -30,7 +30,7 @@ if ($filas) {
         } elseif ($filas['FK_rol'] == 3) { // Servicio
             header("location:../views/servicios/empleyoee/indexServicesE.php");
         } elseif ($filas['FK_rol'] == 4) { // Vendedor
-            header("location:../views/servicios/user/perfil.php");
+            header("location:../views/trabajador/vistaTrabajador.php");
         } else {
             echo '<script>alert("Usuario no encontrado.");
             location.assign("../login.php");

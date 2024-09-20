@@ -1,5 +1,6 @@
 <?php
 require "../../config/conexion.php";
+require 'serviciosFunciones.php';
 
 $Placa = $_POST['Placa'];
 $FK_tipoVehiculo = $_POST['FK_tipoVehiculo'];
@@ -7,11 +8,20 @@ $color_vehiculo = $_POST['color_vehiculo'];
 $marca = $_POST['marca'];
 $FK_usuario = $_POST['FK_usuario'];
 
-$insert = "INSERT INTO vehiculo(Placa,FK_tipoVehiculo,color_vehiculo,marca,FK_usuario) 
-VALUES('$Placa','$FK_tipoVehiculo','$color_vehiculo','$marca','$FK_usuario')";
-  
-$query = mysqli_query($conectar,$insert);
+$errors = [];
 
+
+
+if (placaExiste($Placa, $conectar)) {
+    $errors[] =  "La placa del vehiculo ya esta registrada";
+} 
+
+
+if (count($errors) === 0) {
+
+    $insert = "INSERT INTO vehiculo(Placa,FK_tipoVehiculo,color_vehiculo,marca,FK_usuario) 
+VALUES('$Placa','$FK_tipoVehiculo','$color_vehiculo','$marca','$FK_usuario')";
+$query = mysqli_query($conectar,$insert);
 if($query){
 
     echo "<!DOCTYPE html>
@@ -41,6 +51,13 @@ if($query){
     echo '<script>alert("Error al conectarse a la BD");
     location.assign("../../views/servicios/agregarCar.php");
     </script>';
+}} else {
+    // Mostrar errores con un alert de JavaScript
+    echo "<script>
+            let errorMsg = '" . implode("\\n", $errors) . "';
+            alert(errorMsg);
+            window.history.back(); // Redirigir hacia atrás
+        </script>";
 }
 
 ?>

@@ -8,7 +8,7 @@ if (isset($_SESSION['usuario'])) {
 }
 
 
-require './config/conexion.php'; 
+require './config/conexion.php'; // Asegúrate de que tienes un archivo de configuración con la conexión a la base de datos
 
 $error = '';
 
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href="views/servicios/user/indexP.php" class="px-4 py-2 rounded-md inline-block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:bg-blue-600 mr-4">
                         SERVICIOS
                     </a>
-                    <a href="views/ventas/ventas.html" class="px-4 py-2 rounded-md block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:bg-blue-600">
+                    <a href="views/ventas/ventas.php" class="px-4 py-2 rounded-md block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:bg-blue-600">
                         TIENDA
                     </a>
                     <a href="ayuda/ayuda.php" class="px-4 py-2 rounded-md block hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:bg-blue-600">
@@ -129,15 +129,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="email" name="email" placeholder="Correo electrónico" class="px-4 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
                     </div>
                     <div class="relative flex w-full flex-col flex-wrap items-stretch mb-4">
-                        <div class="relative">
-                            <input type="password" name="contrasena" id="contrasena" placeholder="contraseña" class="px-4 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
-                            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                                <!-- Iconos de mostrar/ocultar contraseña -->
-                                <svg id="eyeIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.5c-2.5 0-4.5 2-4.5 4.5s2 4.5 4.5 4.5 4.5-2 4.5-4.5S14.5 6.5 12 6.5zM12 13c-1.4 0-2.5-1.1-2.5-2.5S10.6 8 12 8s2.5 1.1 2.5 2.5S13.4 13 12 13z"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8.01-3.61-8.01-8.01 0-1.31.31-2.55.87-3.67 1.6-2.48 4.32-4.32 7.16-5.07.46-.13.93-.21 1.41-.21s.95.08 1.41.21c2.83.75 5.55 2.59 7.15 5.07.56 1.12.87 2.36.87 3.67 0 4.4-3.6 8.01-8.01 8.01z"></path></svg>
-                                <svg id="eyeSlashIcon" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4c2.2 0 4.3.8 5.9 2.1l-1.6 1.6c-1.1-.8-2.4-1.4-3.8-1.7-.5-.1-1-.2-1.6-.2-2.2 0-4.3.8-5.9 2.1l1.6 1.6c1.1-.8 2.4-1.4 3.8-1.7.5-.1 1-.2 1.6-.2zM21.6 5.5l-2.6 2.6c-.4-.6-.8-1.1-1.3-1.5l2.6-2.6c1.6 2.5 2.7 5.5 2.7 8.8s-1.1 6.3-2.7 8.8l-2.6-2.6c.4-.6.8-1.1 1.3-1.5l-2.6-2.6c-.5 1.5-.8 3.2-.8 4.8s.3 3.3.8 4.8l2.6-2.6c.6-.4 1.1-.8 1.5-1.3l2.6 2.6c-2.5 1.6-5.4 2.6-8.7 2.6-2.2 0-4.3-.8-5.9-2.1l-1.6 1.6c1.6 1.3 3.7 2.1 5.9 2.1 4.4 0 8.3-2 11-5.3l2.6 2.6c1.4-2.2 2.6-4.7 3.3-7.4.6-2.4.9-5 1.1-7.6z"></path></svg>
-                            </button>
-                        </div>
-                    </div>
+    <div class="relative">
+        <input type="password" name="contrasena" id="contraseña" placeholder="contraseña" class="px-4 py-3 placeholder-gray-400 text-gray-700 bg-white border border-gray-300 rounded-lg text-base w-full" required />
+        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+            <!-- Iconos de mostrar/ocultar contraseña -->
+            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+            </svg>
+            <svg id="eyeSlashIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill hidden" viewBox="0 0 16 16">
+                <path d="M13.359 11.238l1.397 1.398c-.876.659-1.934 1.264-3.105 1.651C10.183 14.776 9.099 15 8 15c-2.694 0-5.048-1.281-7-3.5a13.133 13.133 0 0 1 2.083-2.197"/>
+                <path d="M3.383 2.092L2.02.728a.5.5 0 1 1 .707-.707l1.717 1.717c.364-.11.74-.192 1.126-.248 1.16-.177 2.362-.12 3.603.206 1.84.48 3.488 1.472 5.07 3.076A13.13 13.13 0 0 1 16 8c-.632.885-1.317 1.693-2.043 2.419l-1.46-1.46a4.5 4.5 0 0 0-6.445-6.445L3.383 2.092z"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
                     <div class="text-center mb-4">
                         <a href="olvidoContraseña.php" class="text-sm text-gray-500 hover:text-gray-700">Olvidé mi contraseña</a>
                     </div>
@@ -168,21 +175,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </footer>
     <script>
-        document.getElementById('togglePassword').addEventListener('click', function () {
-            const password = document.getElementById('password');
-            const eyeIcon = document.getElementById('eyeIcon');
-            const eyeSlashIcon = document.getElementById('eyeSlashIcon');
+   document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const password = document.getElementById('contraseña');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const eyeSlashIcon = document.getElementById('eyeSlashIcon');
 
-            if (password.type === 'password') {
-                password.type = 'text';
-                eyeIcon.classList.add('hidden');
-                eyeSlashIcon.classList.remove('hidden');
-            } else {
-                password.type = 'password';
-                eyeSlashIcon.classList.add('hidden');
-                eyeIcon.classList.remove('hidden');
-            }
-        });
-    </script>
+        if (password.type === 'password') {
+            password.type = 'text';
+            eyeIcon.classList.add('hidden');
+            eyeSlashIcon.classList.remove('hidden');
+        } else {
+            password.type = 'password';
+            eyeSlashIcon.classList.add('hidden');
+            eyeIcon.classList.remove('hidden');
+        }
+    });
+});
+
+</script>
 </body>
 </html>

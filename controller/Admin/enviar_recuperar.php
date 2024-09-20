@@ -38,7 +38,7 @@ if ($sql->fetch()) {
         $mailer = new mailer();
 
         // URL para restablecer la contraseña
-        $url = 'http://localhost/car/' . 'recuperar.php?idUsuario=' . $idUsuario . '&confirmacion_contrasena=' . $token;
+        $url = 'https://0781-38-52-155-163.ngrok-free.app/car' . '/recuperar.php?idUsuario=' . $idUsuario . '&confirmacion_contrasena=' . $token;
         $asunto = "RECUPERAR CONTRASEÑA - AquaShine";
         $cuerpo = "Estimado cliente: <br>
                    Para restablecer su contraseña da clic en el siguiente enlace: 

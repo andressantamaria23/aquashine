@@ -59,11 +59,11 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
 include("../../../config/conexion.php");
 
 
-  $sql= "SELECT * 
+  $sql= "SELECT *  
 FROM vehiculo
-  INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario
-  INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo_vehiculo = vehiculo.FK_tipoVehiculo
-  LEFT JOIN reservas ON reservas.FK_usuario = usuario.idUsuario";
+INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario
+INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo_vehiculo = vehiculo.FK_tipoVehiculo
+LEFT JOIN reservas ON reservas.FK_vehiculo = vehiculo.idVehiculo";
   
   
   $resultado = mysqli_query($conectar, $sql);
@@ -274,7 +274,7 @@ estado
     echo '<td class="px-6 py-5 border-x ">'. $fila['marca'] .'</td>';
     echo '<td class="px-6 py-5 border-x ">'. $fila['nom_usuario'] .'</td>';
     echo '<td class="px-6 py-5 border-x ">'. $fila['apel_usuario'] .'</td>';
-    echo '<td class="px-6 py-5 border-x ">'. $fila['estado'] .'</td>';
+    echo '<td class="px-6 py-5 border-x ">'. $fila['estado_vehiculo'] .'</td>';
     echo '</tr>';
 }
 ?>

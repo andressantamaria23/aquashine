@@ -1,21 +1,22 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+
+require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
 
 if (isset($_GET['id'])) {
     $idProveedores = $_GET['id'];
 
     // Obtener los datos actuales del proveedor
     $sql = "SELECT * FROM proveedores WHERE idProveedores = ?";
-    if ($stmt = mysqli_prepare($conectar, $sql)) {
+    if ($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "i", $idProveedores);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $proveedor = mysqli_fetch_assoc($result);
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
+        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,22 +27,22 @@ if (isset($_GET['id'])) {
 
         // Crear la consulta SQL para actualizar el proveedor
         $sql = "UPDATE proveedores SET Nombre = ?, email = ?, telefono = ? WHERE idProveedores = ?";
-        if ($stmt = mysqli_prepare($conectar, $sql)) {
+        if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, "sssi", $Nombre, $email, $telefono, $idProveedores);
             if (mysqli_stmt_execute($stmt)) {
                 // Redirigir a la página de proveedores con un mensaje de éxito
                 header("Location: proveedores.php?msg=Proveedor actualizado correctamente");
                 exit();
             } else {
-                echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conectar);
+                echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conn);
             }
             mysqli_stmt_close($stmt);
         } else {
-            echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
+            echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
         }
     }
 
-    mysqli_close($conectar);
+    mysqli_close($conn);
 } else {
     echo "Error: ID de proveedor no especificado.";
     exit();

@@ -76,36 +76,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="my-3 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
         </div>
 
-        <form id="" action="controller/Admin/agregarUsuario.php" method="POST" class="bg-white text-gray-900 rounded-lg shadow-lg p-8 mx-4 my-6 max-w-md mx-auto">
-            <div class="mb-4">
+        <form action="controller/Admin/agregarUsuario.php" method="POST" class="bg-white text-gray-900 rounded-lg shadow-lg p-8 mx-4 my-6 max-w-md mx-auto" id="registration-form">
+            <div class="mb-4 ">
                 <!-- Nombre -->
                 <div class="relative mb-6 mt-2">
-                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="nom_usuario" name="nom_usuario" placeholder=" " required />
-                    <label for="nom_usuario" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-75 peer-focus:text-blue-600">Nombre</label>
+                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="nom_usuario" name="nom_usuario" required />
+                    <label for="nom_usuario" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Nombre</label>
                 </div>
 
                 <!-- Apellido -->
                 <div class="relative mb-6">
-                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="apel_usuario" name="apel_usuario" placeholder=" " required />
-                    <label for="apel_usuario" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-75 peer-focus:text-blue-600">Apellido</label>
+                    <input type="text" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="apel_usuario" name="apel_usuario" required />
+                    <label for="apel_usuario" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Apellido</label>
                 </div>
 
                 <!-- Fecha de Nacimiento -->
                 <div class="relative mb-6">
                     <input type="date" class="peer block w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="fecha_nacimiento" name="fecha_nacimiento" required />
-                    <label for="fecha_nacimiento" class="absolute left-3 -top-3.5 bg-white px-1 text-gray-500 transition-all duration-200 ease-out origin-top-left transform scale-75 peer-focus:-top-3.5 peer-focus:scale-75">Fecha Nacimiento</label>
+                    <label for="fecha_nacimiento" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Fecha Nacimiento</label>
                 </div>
 
                 <!-- Email -->
                 <div class="relative mb-6">
-                    <input type="email" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="email" name="email" placeholder=" " required />
-                    <label for="email" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-75 peer-focus:text-blue-600">Email</label>
+                    <input type="email" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="email" name="email" required />
+                    <label for="email" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Email</label>
                 </div>
 
                 <!-- Contraseña -->
                 <div class="relative mb-6">
-                    <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="contrasena" name="contrasena"  required />
-                    <label for="contraseña" class="absolute left-3 top-0 text-gray-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.80rem] peer-focus:scale-75 peer-focus:text-blue-600">Contraseña</label>
+                    <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="contrasena" name="contrasena" required />
+                    <label for="contrasena" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Contraseña</label>
+                    <span class="absolute right-3 top-3 cursor-pointer" onclick="togglePassword('contrasena', this)">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                    <p id="password-requirements" class="text-xs text-[#1e1b4b] mt-1">
+                        La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.
+                    </p>
+                    
+                </div>
+
+                <!-- Confirmar Contraseña -->
+                <div class="relative mb-6">
+                    <input type="password" class="peer block min-h-[auto] w-full rounded border border-gray-300 bg-gray-100 px-3 py-2 leading-tight outline-none transition-all duration-200 ease-linear focus:ring-2 focus:ring-blue-400" id="confirmarcontrasena" name="confirmarcontrasena" required />
+                    <label for="confirmarcontrasena" class="absolute left-3 -top-3.5 bg-white px-1 text-blue-600 scale-75 transition-all duration-200 ease-out origin-top-left">Confirmar Contraseña</label>
+                    <span class="absolute right-3 top-3 cursor-pointer" onclick="togglePassword('confirmarcontrasena', this)">
+                        <i class="fas fa-eye"></i>
+                    </span>
                 </div>
 
                 <!-- Rol (oculto) -->
@@ -129,7 +145,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js'></script>
     <script src="envioemail.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+        function togglePassword(fieldId, icon) {
+            const passwordField = document.getElementById(fieldId);
+            const iconElement = icon.querySelector('i');
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                iconElement.classList.remove('fa-eye');
+                iconElement.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = "password";
+                iconElement.classList.remove('fa-eye-slash');
+                iconElement.classList.add('fa-eye');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            const password = document.getElementById('contrasena').value;
+            const confirmPassword = document.getElementById('confirmarcontrasena').value;
+            const errorMessage = document.getElementById('error-message');
 
+            // Expresión regular para validar la contraseña
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            // Validar si las contraseñas coinciden
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Las contraseñas no coinciden.';
+                event.preventDefault(); // Evitar el envío del formulario
+                return;
+            }
+
+            // Validar si la contraseña cumple con el patrón
+            if (!passwordPattern.test(password)) {
+                errorMessage.textContent = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.';
+                event.preventDefault(); // Evitar el envío del formulario
+                return;
+            }
+
+            // Limpiar el mensaje de error si la validación es correcta
+            errorMessage.textContent = '';
+        });
+    });
+    </script>
     <footer class="bg-gray-900 text-gray-200 py-6">
         <div class="container mx-auto text-center">
             <p class="text-lg mb-4">&copy; 2024 AquaShine. Todos los derechos reservados.</p>

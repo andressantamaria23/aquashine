@@ -29,6 +29,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
     echo "No se encontraron datos para el usuario.";
    
 }
+
 ?>
 
 
@@ -137,7 +138,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                         <!-- home -->
                         <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-house-door-fill"></i>
-                                <a href="indexP.php" class="text-[15px] ml-4 text-gray-200">HOME</a>
+                                <a href="index.php" class="text-[15px] ml-4 text-gray-200">HOME</a>
                             </div>
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
@@ -210,12 +211,56 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
             <a href="editPerfil.php?idUsuario=<?php echo $idUsuario; ?>" class="text-blue-500 hover:underline text-sm">Editar perfil</a>
             </div>
     </div>
+    <?php
+include("../../../config/conexion.php");
 
+
+  
+  $sql = "SELECT * 
+FROM reservas
+INNER JOIN vehiculo ON vehiculo.idVehiculo = reservas.FK_vehiculo
+INNER JOIN servicios ON servicios.idServicios = reservas.FK_servicios
+INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario
+WHERE usuario.idUsuario = $idUsuario 
+AND reservas.estado_vehiculo = 'completado';
+"; 
+  
+  
+  $resultado = mysqli_query($conectar, $sql);
+
+  ?>
     <!-- Calendario -->
-    <div class="max-w-6xl mx-auto mt-6 p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-xl font-semibold text-gray-700 mb-4">Calendario</h2>
-        <!-- Aquí podrías incluir un calendario interactivo o una lista de eventos -->
+    <div class="max-w-6xl mx-auto mt-6 p-6 bg-white rounded-lg shadow-md grid grid-cols-2">
+    <div class="table-responsive">
+    <table id="myTable" class="table table-hover table-striped mt-4 text-center">
+        <thead class="bg-gray-900 text-white text-center">
+        <tr>
+            <th class="hidden" scope="col">idReserva</th>
+            <th scope="col">Fecha Reserva</th>
+            <th scope="col">Hora Reserva</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Vehiculo</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+        <tr class="border-b border-gray-200 bg-white hover:bg-gray-100 ">
+            <td class="px-5 py-5 text-sm border-x border-y hidden"><?php echo $row['idReservas']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['fecha_reserva']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['hora_reserva']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['estado_vehiculo']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_servicio']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['Placa']; ?></td>
+            
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<div>pedidos</div>
     </div>
+    </div>
+   
 
     <script>
         function dropDown() {

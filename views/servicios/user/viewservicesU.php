@@ -61,10 +61,13 @@ include("../../../config/conexion.php");
 
 
   
-  $sql = "SELECT * FROM reservas
-                INNER JOIN usuario ON usuario.idUsuario = reservas.FK_usuario
-                INNER JOIN servicios ON servicios.idServicios = reservas.FK_servicios
-                WHERE reservas.FK_usuario = $idUsuario"; 
+  $sql = "SELECT * 
+FROM reservas
+INNER JOIN vehiculo ON vehiculo.idVehiculo = reservas.FK_vehiculo
+INNER JOIN servicios ON servicios.idServicios = reservas.FK_servicios
+INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario
+WHERE usuario.idUsuario = $idUsuario;
+"; 
   
   
   $resultado = mysqli_query($conectar, $sql);
@@ -162,7 +165,7 @@ include("../../../config/conexion.php");
 
                         <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                                 <i class="bi bi-house-door-fill"></i>
-                                <a href="indexP.php" class="text-[15px] ml-4 text-gray-200">HOME</a>
+                                <a href="index.php" class="text-[15px] ml-4 text-gray-200">HOME</a>
                             </div>
                         <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
@@ -242,57 +245,80 @@ include("../../../config/conexion.php");
 
 </a>
 <div class="table-responsive">
-            <table id="myTable" class="table table-hover table-striped mt-4 text-center">
-                <thead class="bg-gray-900 text-white text-center">
-                <tr>
-                    <th scope="col">Fecha Reserva</th>
-                    <th scope="col">Hora Reserva</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Servicio</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-                </thead>
-                <tbody class="text-center">
-                <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
-                    <tr class="border-b border-gray-200 bg-white hover:bg-gray-100 " >
-                        <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['fecha_reserva']; ?></td>
-                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['hora_reserva']; ?></td>
-                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['estado']; ?></td>
-                        <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_servicio']; ?></td>
-                        <td class="text-center px-5 py-5 text-sm border-x border-y">
-                            <a href="editReservas.php?idReservas=<?php echo $row['idReservas']; ?>" class="bi bi-pencil text-blue-600 hover:text-blue-900"></a>
-                            <a href="#" onclick="openModal('<?php echo $row['idReservas']; ?>', '<?php echo $row['fecha_reserva']; ?>')" class="bi bi-trash text-red-600 hover:text-red-900 ml-4"></a>
-                        </td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-
-<div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-    <div class="bg-white p-6 rounded shadow-lg text-center">
-        <h2 class="text-xl font-semibold mb-4">¿Desea eliminar la reserva?</h2>
-        <p class="mb-6">Esta acción no se puede deshacer.</p>
-        <div class="flex justify-center space-x-4">
-            <a href="#" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">Eliminar</a>
-            <button onclick="closeModal()" class="bg-gray-500 hover:bg-gray-700 text-white px-4 py-2 rounded">Cancelar</button>
-        </div>
-    </div>
-</div>
+    <table id="myTable" class="table table-hover table-striped mt-4 text-center">
+        <thead class="bg-gray-900 text-white text-center">
+        <tr>
+            <th class="hidden" scope="col">idReserva</th>
+            <th scope="col">Fecha Reserva</th>
+            <th scope="col">Hora Reserva</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Vehiculo</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <?php while ($row = mysqli_fetch_assoc($resultado)) { ?>
+        <tr class="border-b border-gray-200 bg-white hover:bg-gray-100 ">
+            <td class="px-5 py-5 text-sm border-x border-y hidden"><?php echo $row['idReservas']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['fecha_reserva']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['hora_reserva']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['estado_vehiculo']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_servicio']; ?></td>
+            <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['Placa']; ?></td>
+            <td class="text-center px-5 py-5 text-sm border-x border-y">
+                <button class="btn cancel-button" type="button"
+                    data-id-reservas="<?php echo $row['idReservas']; ?>"
+                    data-date-start="<?php echo $row['fecha_reserva'] . 'T' . $row['hora_reserva']; ?>" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash text-red-600 hover:text-red-900 ml-4" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                    </svg>
+                </button>
+                <ul class="dropdown-menu">
+    
+                </ul>
+            </td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cancelButtons = document.querySelectorAll('.cancel-button');
 
-    function openModal(id, nombre) {
-        document.querySelector("#deleteModal h2").textContent = `¿Desea eliminar la Reserva? ${nombre}`;
-        document.querySelector("#deleteModal a").href = `../../../controller/servicios/deleteReserva.php?idReservas=${id}`;
-        document.getElementById("deleteModal").style.display = "flex";
-    }
+    cancelButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const idReservas = this.dataset.idReservas;
+            const dateHourStart = new Date(this.dataset.dateStart);
+            const currentDate = new Date();
+            const differenceInHours = (dateHourStart - currentDate) / 1000 / 60 / 60;
 
-    function closeModal() {
-        document.getElementById("deleteModal").style.display = "none";
-    }
+            if (differenceInHours < 24) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'No se puede cancelar',
+                    text: 'No se puede cancelar la reserva porque faltan menos de 24 horas.',
+                    confirmButtonText: 'Entendido'
+                });
+            } else {
+                Swal.fire({
+                    icon: 'question',
+                    title: '¿Estás seguro?',
+                    text: '¿Deseas cancelar esta reserva?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, cancelar',
+                    cancelButtonText: 'No, mantenerla'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../../../controller/servicios/deleteReserva.php?idReservas=' + idReservas;
+                    }
+                });
+            }
+        });
+    });
+});
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -301,6 +327,5 @@ include("../../../config/conexion.php");
         $('#myTable').DataTable();
     });
 </script>
-            
 </body>
 </html>

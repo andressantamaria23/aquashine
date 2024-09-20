@@ -46,7 +46,7 @@ if (count($errors) === 0) {
         // Preparar el envío del correo
         require '../../mailer.php';
         $mailer = new mailer();
-        $url =  'http://localhost/car/'.'activa_cliente.php?idUsuario='.$idUsuario.'&confirmacion='.$token;
+        $url =  'https://0781-38-52-155-163.ngrok-free.app/car'.'/activar_cliente.php?idUsuario='.$idUsuario.'&confirmacion='.$token;
         $asunto = "Activa tu cuenta - AquaShine";
         $cuerpo =  "Estimado cliente $nom_usuario: <br> 
                     Para continuar con el proceso de registro, es importante que hagas clic en el siguiente enlace: 

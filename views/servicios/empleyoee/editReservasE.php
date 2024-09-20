@@ -9,8 +9,8 @@ if (isset($_POST['enviar'])) {
     $idReservas = $_POST['idReservas'];
     $fecha_reserva = $_POST['fecha_reserva'];
     $hora_reserva = $_POST['hora_reserva'];
-    $estado = $_POST['estado'];
-    $FK_usuario = $_POST['FK_usuario'];
+    $estado_vehiculo = $_POST['estado_vehiculo'];
+    $FK_vehiculo = $_POST['FK_vehiculo'];
     $FK_servicios = $_POST['FK_servicios'];
     
 
@@ -18,8 +18,8 @@ if (isset($_POST['enviar'])) {
     $sql = "UPDATE reservas SET 
                 fecha_reserva = '$fecha_reserva',
                 hora_reserva = '$hora_reserva',
-                estado = '$estado',
-                FK_usuario = '$FK_usuario',
+                estado_vehiculo = '$estado_vehiculo',
+                FK_vehiculo = '$FK_vehiculo',
                 FK_servicios = '$FK_servicios'
             WHERE idReservas = '$idReservas'";
 
@@ -28,6 +28,14 @@ if (isset($_POST['enviar'])) {
 
     // Verificar si la actualización fue exitosa
     if ($resultado) {
+        if($estado_vehiculo == 'completado'){
+            require '../../../mailer.php';
+            $mailer = new mailer();
+            $asunto = "TU carro  ya esta listo $Placa - AquaShine";
+            $cuerpo = "Estimado cliente: <br> Ha ya puede pasar a recoger su carro $placa";
+            $mailer->enviarEmail($email, $asunto, $cuerpo);
+        }
+        
         echo '<script>alert("Se actualizaron los datos correctamente");
         location.assign("viewReservas.php");</script>';
     } else {
@@ -53,8 +61,8 @@ if (isset($_POST['enviar'])) {
             $fila = mysqli_fetch_assoc($resultado);
                 $fecha_reserva = $fila['fecha_reserva'];
                 $hora_reserva = $fila['hora_reserva'];
-                $estado = $fila['estado'];
-                $FK_usuario = $fila['FK_usuario'];
+                $estado_vehiculo = $fila['estado_vehiculo'];
+                $FK_vehiculo = $fila['FK_vehiculo'];
                 $FK_servicios = $fila['FK_servicios'];
              
         } else {
@@ -101,10 +109,10 @@ if (isset($_POST['enviar'])) {
 
                 <div class="mb-4 ">
                     <label for="estado" class="block text-gray-700 text-sm font-bold mb-2">Estado</label>
-                    <select id="estado" name="estado" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <option value="Pendiente" <?php echo ($estado == 'pendiente') ? 'selected' : ''; ?>>Pendiente</option>
-                        <option value="Completado" <?php echo ($estado == 'Completado') ? 'selected' : ''; ?>>Completado</option>
-                        <option value="En Proceso" <?php echo ($estado == 'En proceso') ? 'selected' : ''; ?>>En proceso</option>
+                    <select id="estado_vehiculo" name="estado_vehiculo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="Pendiente" <?php echo ($estado_vehiculo == 'pendiente') ? 'selected' : ''; ?>>Pendiente</option>
+                        <option value="Completado" <?php echo ($estado_vehiculo == 'Completado') ? 'selected' : ''; ?>>Completado</option>
+                        <option value="En Proceso" <?php echo ($estado_vehiculo == 'En proceso') ? 'selected' : ''; ?>>En proceso</option>
                     </select>
                 </div>
 
@@ -114,7 +122,7 @@ if (isset($_POST['enviar'])) {
                            type="text" id="FK_servicios" name="FK_servicios" value="<?php echo $FK_servicios;?>" readonly>
                 </div>
                 
-                <input type="hidden" name="FK_usuario" value="<?php echo $FK_usuario; ?>" />
+                <input type="hidden" name="FK_vehiculo" value="<?php echo $FK_vehiculo; ?>" />
 
                 <div class="col-span-2">
                 <div class="flex items-center justify-between">

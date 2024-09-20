@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-JobWAqYk5CSjWuVV3mxgS+MmccJqkrBaDhk8SKS1BW+71dJ9gzascwzW85UwGhxiSyR7Pxhu50k+Nl3+o5I49A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -80,6 +85,16 @@
             padding: 10px;
             text-align: right;
         }
+
+        .section-title {
+            background: linear-gradient(to right, #1e3a8a, #6ee7b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem; /* Adjust as needed */
+            font-weight: 800; /* Bold font weight */
+            text-align: center;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -111,7 +126,7 @@
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex flex-shrink-0 items-center">
-            <img class="h-8 w-auto" src="../img/aquashine.png" alt="Your Company">
+ <img class="h-8 w-auto" src="../../static/img/aquashine.png" alt="Your Company">
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
@@ -151,55 +166,97 @@
       </div>
     </div>
   </nav>
-
+  <h1 class="section-title">
+        Proveedores
+    </h1>
   <div class="container">
-    <a href="añadirProveedor.php" class="btn green">+ Añadir Proveedor</a>
-    <input type="text" placeholder="Buscar..." class="search">
+    <div class="flex justify-between items-center mb-4">
+        <a href="añadirProveedor.php" class="btn green">+ Añadir Proveedor</a>
+        <a href="../../fpdf/reporteProveedores.php" target="_blank" class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            <i class="far fa-file-pdf mr-2"></i>Generar Reportes
+        </a>
+    </div>
 
-    <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-200">
-            <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Identificador de proveedor</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefono</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            <?php
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
-            require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
 
-            $sql = "SELECT * FROM proveedores";
-            $result = mysqli_query($conectar, $sql);
+    <table id="myTable" class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-200">
+        <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefono</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                        <td class='px-6 py-4'>{$row['idProveedores']}</td>
-                        <td class='px-6 py-4'>{$row['Nombre']}</td>
-                        <td class='px-6 py-4'>{$row['email']}</td>
-                        <td class='px-6 py-4'>{$row['telefono']}</td>
-                        <td class='px-6 py-4 actions'>
-                            <i class='fas fa-edit' onclick=\"window.location.href='editarProveedor.php?id={$row['idProveedores']}'\" title='Editar'></i>
-                            <i class='fas fa-trash' onclick=\"if(confirm('¿Estás seguro de que quieres eliminar este proveedor?')) window.location.href='eliminarProveedor.php?id={$row['idProveedores']}'\" title='Eliminar'></i>
-                        </td>
-                    </tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5' class='px-6 py-4 text-center'>No hay proveedores registrados.</td></tr>";
+        require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+        $sql = "SELECT Nombre, email, telefono, idProveedores FROM proveedores";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                    <td class='px-6 py-4'>{$row['Nombre']}</td>
+                    <td class='px-6 py-4'>{$row['email']}</td>
+                    <td class='px-6 py-4'>{$row['telefono']}</td>
+                    <td class='px-6 py-4 text-gray-500'>
+                        <i class='fas fa-edit cursor-pointer text-blue-500 hover:text-blue-700' onclick=\"window.location.href='editarProveedor.php?id={$row['idProveedores']}'\" title='Editar'></i>
+                        <i class='fas fa-trash cursor-pointer text-red-500 hover:text-red-700' onclick=\"if(confirm('¿Estás seguro de que quieres eliminar este proveedor?')) window.location.href='eliminarProveedor.php?id={$row['idProveedores']}'\" title='Eliminar'></i>
+                    </td>
+                </tr>";
             }
+        } else {
+            echo "<tr><td colspan='4' class='px-6 py-4 text-center'>No hay proveedores registrados.</td></tr>";
+        }
 
-            // Cerrar la conexión
-            mysqli_close($conectar);
-            ?>
-        </tbody>
-    </table>
-   
+        // Cerrar la conexión
+        mysqli_close($conn);
+        ?>
+    </tbody>
+</table>
 
- 
+<!-- Include this script at the end of your HTML file, just before the closing </body> tag -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userMenu = document.querySelector('[role="menu"]');
+        
+        userMenuButton.addEventListener('click', function () {
+            // Toggle the 'hidden' class to show/hide the dropdown
+            userMenu.classList.toggle('hidden');
+        });
+
+        // Optional: Close the dropdown if clicked outside
+        document.addEventListener('click', function (event) {
+            if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Initialize DataTable
+        $('#myTable').DataTable({
+            responsive: true,
+            paging: true,
+            searching: true,
+            ordering: true,
+            info: true,
+            language: {
+                search: "Buscar:",
+                paginate: {
+                    next: "Siguiente",
+                    previous: "Anterior"
+                },
+                emptyTable: "No hay datos disponibles en la tabla",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                infoEmpty: "Mostrando 0 a 0 de 0 entradas",
+                lengthMenu: "Mostrar _MENU_ entradas"
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

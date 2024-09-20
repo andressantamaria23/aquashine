@@ -129,7 +129,17 @@ if (isset($_POST['enviar'])) {
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                            type="text" id="FK_rol" name="FK_rol" value="<?php echo $FK_rol;?>" >
                 </div>
-                
+                <div class="form-group">
+                <label for="formFile" class="mb-2 inline-block text-neutral-500">
+                    Imagen del Producto
+                </label>
+                <input
+                    class="file-input"
+                    type="file"
+                    id="imagen"
+                    name="imagen"
+                />
+            </div>
 
                 <div class="col-span-2">
                 <div class="flex items-center justify-between">

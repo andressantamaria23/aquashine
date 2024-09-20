@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require "../conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
+require "../../config/conexion.php"; // Ajusta esta ruta según la ubicación de tu archivo de conexión
 
 if (isset($_GET['id'])) {
     $idProductos = $_GET['id'];
@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
     $sql = "DELETE FROM productos WHERE idProductos = ?";
     
     // Preparar la declaración
-    if ($stmt = mysqli_prepare($conectar, $sql)) {
+    if ($stmt = mysqli_prepare($conn, $sql)) {
         // Vincular variables a la declaración preparada como parámetros
         mysqli_stmt_bind_param($stmt, "i", $idProductos);
 
@@ -20,17 +20,17 @@ if (isset($_GET['id'])) {
             header("Location: producto.php?msg=Producto eliminado correctamente");
             exit();
         } else {
-            echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conectar);
+            echo "Error: No se pudo ejecutar la consulta: " . mysqli_error($conn);
         }
 
         // Cerrar la declaración
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conectar);
+        echo "Error: No se pudo preparar la consulta: " . mysqli_error($conn);
     }
 
     // Cerrar la conexión
-    mysqli_close($conectar);
+    mysqli_close($conn);
 } else {
     echo "Error: ID de producto no especificado.";
 }

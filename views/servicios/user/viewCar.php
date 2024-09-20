@@ -62,10 +62,13 @@ include("../../../config/conexion.php");
 
 
   
-  $sql = "SELECT * FROM vehiculo
-  INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario
-  INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo_vehiculo = vehiculo.FK_tipoVehiculo
-  WHERE vehiculo.FK_usuario = $idUsuario";
+  $sql = "SELECT * 
+FROM vehiculo
+INNER JOIN usuario ON usuario.idUsuario = vehiculo.FK_usuario
+INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo_vehiculo = vehiculo.FK_tipoVehiculo
+LEFT JOIN reservas ON reservas.FK_vehiculo = vehiculo.idVehiculo
+WHERE vehiculo.FK_usuario = $idUsuario;
+";
   
   
   $resultado = mysqli_query($conectar, $sql);
@@ -259,6 +262,7 @@ clip-rule="evenodd"
                     <th scope="col">Marca</th>
                     <th scope="col">Color</th>
                     <th scope="col">Usuario</th>
+                    <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
                 </tr>
                 </thead>
@@ -270,6 +274,7 @@ clip-rule="evenodd"
                         <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['marca']; ?></td>
                         <td class="px-5 py-5 text-sm border-x border-y"><?php echo $row['color_vehiculo']; ?></td>
                         <td  class="px-5 py-5 text-sm border-x border-y"><?php echo $row['nom_usuario']; ?></td>
+                        <td  class="px-5 py-5 text-sm border-x border-y "><?php echo $row['estado_vehiculo']; ?> <a href="estado_vehiculo.php?idVehiculo=<?php echo $row['idVehiculo']; ?>" class="bi bi-eye-fill text-blue-600 hover:text-blue-900"></a></td>
                         <td class="text-center px-5 py-5 text-sm border-x border-y">
                             <a href="editVe.php?idVehiculo=<?php echo $row['idVehiculo']; ?>" class="bi bi-pencil text-blue-600 hover:text-blue-900"></a>
                             <a href="#" onclick="openModal('<?php echo $row['idVehiculo']; ?>', '<?php echo $row['Placa']; ?>')" class="bi bi-trash text-red-600 hover:text-red-900 ml-4"></a>

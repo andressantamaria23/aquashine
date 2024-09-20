@@ -136,6 +136,7 @@ $resultado = mysqli_query($conectar, $sql);
     </div>
 </div>
 
+<a href="../../../fpdf/pruebaV.php" role="button" class="bi bi-file-earmark-pdf mb-7 inline-block rounded-full bg-emerald-500 text-sm text-white hover:bg-emerald-700 px-6 pt-2.5 pb-2">Gnerar reporte</a>
 
 <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
     <div class="bg-white p-6 rounded shadow-lg text-center">
